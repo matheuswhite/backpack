@@ -12,4 +12,8 @@ add_library(backpack STATIC ${SRC_FILES})
 
 file(GLOB TEST_FILES test/*.cpp)
 
-add_executable(test ${SRC_FILES} ${TEST_FILES})
+add_executable(all_test ${SRC_FILES} ${TEST_FILES})
+
+enable_testing()
+
+add_test(all_test all_test)
