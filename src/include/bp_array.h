@@ -28,16 +28,18 @@ typedef struct {
 
 #define BP_ARRAY_INVALID_INDEX 0xffFFffFF
 
-#define BP_ARRAY_INIT(array_)                                              \
-    {                                                                      \
-        ._array = (u8_t *) (array_), ._element_size = sizeof((array_)[0]), \
-        ._max_size = sizeof(array_) / sizeof((array_)[0]), ._size = 0,     \
+#define BP_ARRAY_INIT(array_)                                          \
+    {                                                                  \
+        ._element_size = sizeof((array_)[0]),                          \
+        ._max_size = sizeof(array_) / sizeof((array_)[0]), ._size = 0, \
+        ._array = (u8_t *) (array_),                                   \
     }
 
 #define BP_ARRAY_START(array_, size_)                                        \
     {                                                                        \
-        ._array = (u8_t *) (array_), ._element_size = sizeof((array_)[0]),   \
+        ._element_size = sizeof((array_)[0]),                                \
         ._max_size = sizeof(array_) / sizeof((array_)[0]), ._size = (size_), \
+        ._array = (u8_t *) (array_),                                         \
     }
 
 void *bp_array_get(bp_array_t *array, usize idx);

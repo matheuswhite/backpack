@@ -16,6 +16,7 @@ extern "C" {
 #endif
 
 #include <errno.h>
+#include <stdbool.h>
 
 typedef char s8_t;
 typedef unsigned char u8_t;
@@ -27,11 +28,6 @@ typedef long long s64_t;
 typedef unsigned long long u64_t;
 
 typedef u32_t usize;
-
-typedef char bool;
-
-#define true 1
-#define false 0
 
 #ifndef NULL
 #define NULL ((void*) 0)

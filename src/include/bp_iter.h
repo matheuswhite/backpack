@@ -28,9 +28,9 @@ typedef struct bp_iter {
     void *coll;
 } bp_iter_t;
 
-#define BP_FOREACH(type, var, iter_ptr)                                      \
-    for (type *var = (iter_ptr)->init(iter_ptr); (iter_ptr)->next(iter_ptr); \
-         var       = (iter_ptr)->get(iter_ptr))
+#define BP_FOREACH(type, var, iter_ptr)                                               \
+    for (type *var = (type *) (iter_ptr)->init(iter_ptr); (iter_ptr)->next(iter_ptr); \
+         var       = (type *) (iter_ptr)->get(iter_ptr))
 
 #ifdef __cplusplus
 }
