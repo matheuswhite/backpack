@@ -8,7 +8,7 @@ cache:
 
 addons:
   apt:
-    packages: [ lcov ]
+    packages: [ lcov, ninja ]
 
 branches:
   only:
@@ -17,10 +17,10 @@ branches:
 before_script:
   - mkdir build
   - cd build
-  - cmake ..
+  - cmake .. -GNinja
 
 script:
-  - make
+  - ninja
   - ctest --extra-verbose
 
 after_success:
