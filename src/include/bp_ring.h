@@ -11,6 +11,10 @@
 #ifndef BACKPACK_RING_H
 #define BACKPACK_RING_H
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include <string.h>
 #include "bp_iter.h"
 #include "bp_types.h"
@@ -50,5 +54,9 @@ int bp_ring_clear(bp_ring_t *ring);
 usize bp_ring_size(bp_ring_t *ring);
 
 bp_iter_t bp_ring_iter(bp_ring_t *ring);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif  // TEST_BACKPACK_RING_H

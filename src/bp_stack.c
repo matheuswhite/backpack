@@ -10,6 +10,10 @@
  */
 #include "bp_stack.h"
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 static void *bp_stack_iter_init(struct bp_iter *self);
 
 static bool bp_stack_iter_next(struct bp_iter *self);
@@ -88,3 +92,7 @@ static void *bp_stack_iter_get(struct bp_iter *self)
 {
     return bp_array_get(self->coll, self->current.idx);
 }
+
+#ifdef __cplusplus
+}
+#endif

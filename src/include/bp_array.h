@@ -11,6 +11,10 @@
 #ifndef BACKPACK_ARRAY_H
 #define BACKPACK_ARRAY_H
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include <string.h>
 #include "bp_iter.h"
 #include "bp_types.h"
@@ -52,5 +56,9 @@ int bp_array_clear(bp_array_t *array);
 usize bp_array_size(bp_array_t *array);
 
 bp_iter_t bp_array_iter(bp_array_t *array);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif  // BACKPACK_ARRAY_H

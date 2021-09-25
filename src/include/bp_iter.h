@@ -11,6 +11,10 @@
 #ifndef BACKPACK_ITER_H
 #define BACKPACK_ITER_H
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include "bp_types.h"
 
 typedef struct bp_iter {
@@ -27,5 +31,9 @@ typedef struct bp_iter {
 #define BP_FOREACH(type, var, iter_ptr)                                      \
     for (type *var = (iter_ptr)->init(iter_ptr); (iter_ptr)->next(iter_ptr); \
          var       = (iter_ptr)->get(iter_ptr))
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif  // BACKPACK_ITER_H

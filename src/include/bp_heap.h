@@ -11,6 +11,10 @@
 #ifndef BACKPACK_HEAP_H
 #define BACKPACK_HEAP_H
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include "bp_array.h"
 
 typedef int (*bp_heap_cmp_t)(void *left, void *right);
@@ -53,5 +57,9 @@ void *bp_heap_find(bp_heap_t *heap, void *param, bool (*cmp)(void *el, void *par
 bp_iter_t bp_heap_bfs_iter(bp_heap_t *heap);
 
 bp_iter_t bp_heap_dfs_iter(bp_heap_t *heap);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif  // BACKPACK_HEAP_H

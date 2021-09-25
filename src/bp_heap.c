@@ -10,6 +10,10 @@
  */
 #include "bp_heap.h"
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #ifdef _MSC_VER
 #include <malloc.h>
 #define __builtin_popcount _mm_popcnt_u32
@@ -396,3 +400,7 @@ static bool bp_heap_dfs_iter_next(struct bp_iter *self)
         return true;
     }
 }
+
+#ifdef __cplusplus
+}
+#endif

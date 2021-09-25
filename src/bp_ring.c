@@ -10,6 +10,10 @@
  */
 #include "bp_ring.h"
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #define BP_RING_ADVANCE_PTR(ring, ptr) \
     (((ring)->ptr == ((ring)->_max_size - 1)) ? 0 : ((ring)->ptr + 1))
 
@@ -216,3 +220,7 @@ static void *bp_ring_iter_get(struct bp_iter *self)
 {
     return bp_ring_get(self->coll, self->current.idx);
 }
+
+#ifdef __cplusplus
+}
+#endif

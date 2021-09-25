@@ -11,6 +11,10 @@
 #ifndef BACKPACK_TYPES_H
 #define BACKPACK_TYPES_H
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include <errno.h>
 
 typedef char s8_t;
@@ -30,7 +34,11 @@ typedef char bool;
 #define false 0
 
 #ifndef NULL
-#define NULL 0
+#define NULL ((void*) 0)
+#endif
+
+#ifdef __cplusplus
+}
 #endif
 
 #endif  // BACKPACK_TYPES_H

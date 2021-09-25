@@ -10,6 +10,10 @@
  */
 #include "bp_array.h"
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 static bool bp_array_default_cmp(void *left, void *right, usize el_size);
 
 static void *bp_array_iter_init(struct bp_iter *self);
@@ -194,3 +198,7 @@ static void *bp_array_iter_get(struct bp_iter *self)
 {
     return bp_array_get(self->coll, self->current.idx);
 }
+
+#ifdef __cplusplus
+}
+#endif
