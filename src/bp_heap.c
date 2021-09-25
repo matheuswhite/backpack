@@ -10,6 +10,11 @@
  */
 #include "bp_heap.h"
 
+#ifdef _MSC_VER
+#include <malloc.h>
+#define __builtin_popcount _mm_popcnt_u32
+#endif
+
 #define BP_HEAP_PARENT(i) ((i) >> 1)
 
 #define BP_HEAP_LEFT_CHILD(i) ((i) << 1)
@@ -228,7 +233,12 @@ static int log2fast(unsigned int n)
 
 static void bp_heap_swap(bp_heap_t *heap, usize idx1, usize idx2)
 {
+#ifdef _MSC_VER
+    u8_t *aux = (u8_t *) alloca(sizeof(u8_t) * heap->_coll._element_size);
+#else
     u8_t aux[heap->_coll._element_size];
+#endif
+
     void *el1 = BP_HEAP_GET(heap, idx1);
     void *el2 = BP_HEAP_GET(heap, idx2);
 
