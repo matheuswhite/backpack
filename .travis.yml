@@ -22,8 +22,8 @@ matrix:
         - mkdir -p build && cd build
         - cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_CXX_COMPILER=g++-5 -DBUILD_TESTS=ON -DENABLE_COVERAGE=ON -DGEN_DOCS=OFF ..
       script:
-        - cmake build .
-        - cmake build . --target coverage
+        - make -j2
+        - make coverage
       after_success:
         - bash <(curl -s https://codecov.io/bash) || echo "Codecov did not collect coverage reports"
     - os: linux
