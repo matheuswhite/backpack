@@ -6,13 +6,18 @@ cache:
   - directories:
       - $HOME/.cache
 
+sudo:
+  required
+
 addons:
   apt:
-    packages: [ lcov, ninja ]
+    packages: [ lcov ]
 
 branches:
   only:
     - main
+
+install: sudo apt-get install ninja-build
 
 before_script:
   - mkdir build
