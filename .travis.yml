@@ -23,6 +23,7 @@ matrix:
         - cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_CXX_COMPILER=g++-5 -DBUILD_TESTS=ON -DENABLE_COVERAGE=ON -DGEN_DOCS=OFF ..
       script:
         - make -j2
+        - ctest --output-on-failure
         - make coverage
       after_success:
         - bash <(curl -s https://codecov.io/bash) || echo "Codecov did not collect coverage reports"
@@ -56,5 +57,5 @@ before_script:
   - cmake -DCMAKE_BUILD_TYPE=$BUILD_TYPE -DCMAKE_CXX_COMPILER=$COMPILER -DBUILD_TESTS=ON -DGEN_DOCS=OFF ..
 
 script:
-  - cmake --build . -- -j2
+  - make -j2
   - ctest --output-on-failure
