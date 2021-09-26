@@ -12,6 +12,23 @@
 
 #include "bp_array.h"
 
+extern "C" {
+#include <stdio.h>
+
+typedef struct {
+    usize id;
+    u16_t value;
+} id_value16_t;
+
+static bool id_value_cmp_id(void *el, void *param)
+{
+    id_value16_t *el_ = (id_value16_t *) el;
+    usize *id         = (usize *) param;
+
+    return el_->id == *id;
+}
+}
+
 TEST_SUITE("Normal flow")
 {
     TEST_CASE("Push an element to array")
@@ -101,6 +118,23 @@ TEST_SUITE("Normal flow")
         REQUIRE(*el == expected_el);
     }
 
+    TEST_CASE("Find an element in the array by its id")
+    {
+        id_value16_t array[10] = {0};
+        for (usize i = 0; i < 10; ++i) {
+            array[i].id    = i + 1;
+            array[i].value = i * i;
+        }
+        bp_array_t coll = BP_ARRAY_START(array, 10);
+        usize el_id     = 4;
+        id_value16_t *el;
+
+        el = (id_value16_t *) bp_array_find(&coll, &el_id, id_value_cmp_id);
+
+        REQUIRE(el != nullptr);
+        REQUIRE(el->id == 4);
+        REQUIRE(el->value == 9);
+    }
 
     TEST_CASE("Get the index of an array element")
     {
@@ -114,6 +148,21 @@ TEST_SUITE("Normal flow")
         REQUIRE(idx == 3);
     }
 
+    TEST_CASE("Get the index of an array element by its id")
+    {
+        id_value16_t array[10] = {0};
+        for (usize i = 0; i < 10; ++i) {
+            array[i].id    = i + 1;
+            array[i].value = i * i;
+        }
+        bp_array_t coll = BP_ARRAY_START(array, 10);
+        int el_id       = 4;
+        usize idx;
+
+        idx = bp_array_find_idx(&coll, &el_id, id_value_cmp_id);
+
+        REQUIRE(idx == 3);
+    }
 
     TEST_CASE("Drop all elements in the array")
     {
@@ -136,6 +185,108 @@ TEST_SUITE("Normal flow")
         size = bp_array_size(&coll);
 
         REQUIRE(size == coll._size);
+    }
+}
+
+TEST_SUITE("Invalid Parameters")
+{
+    TEST_CASE("Null array argument in get function")
+    {
+        void *el = nullptr;
+
+        el = bp_array_get(nullptr, 0);
+
+        REQUIRE(el == nullptr);
+    }
+
+    TEST_CASE("Null array argument in push function")
+    {
+        int err;
+        int el = 7;
+
+        err = bp_array_push(nullptr, &el);
+
+        REQUIRE(err != 0);
+    }
+
+    TEST_CASE("Null element argument in push function")
+    {
+        int err;
+        int array[10]   = {0};
+        bp_array_t coll = BP_ARRAY_INIT(array);
+
+        err = bp_array_push(&coll, nullptr);
+
+        REQUIRE(err != 0);
+    }
+
+    TEST_CASE("Null array argument in delete function")
+    {
+        int err;
+
+        err = bp_array_del(nullptr, 0);
+
+        REQUIRE(err != 0);
+    }
+
+    TEST_CASE("Null array argument in find index function")
+    {
+        usize idx;
+        int param = 7;
+
+        idx = bp_array_find_idx(nullptr, &param, nullptr);
+
+        REQUIRE(idx == BP_ARRAY_INVALID_INDEX);
+    }
+
+    TEST_CASE("Null param argument in find index function")
+    {
+        usize idx;
+        int array[10]   = {0};
+        bp_array_t coll = BP_ARRAY_INIT(array);
+
+        idx = bp_array_find_idx(&coll, nullptr, nullptr);
+
+        REQUIRE(idx == BP_ARRAY_INVALID_INDEX);
+    }
+
+    TEST_CASE("Null array argument in find function")
+    {
+        int *el;
+        int param = 7;
+
+        el = (int *) bp_array_find(nullptr, &param, nullptr);
+
+        REQUIRE(el == nullptr);
+    }
+
+    TEST_CASE("Null param argument in find function")
+    {
+        void *el;
+        int array[10]   = {0};
+        bp_array_t coll = BP_ARRAY_INIT(array);
+
+        el = (int *) bp_array_find(&coll, nullptr, nullptr);
+
+        REQUIRE(el == nullptr);
+    }
+
+    TEST_CASE("Null array argument in clear function")
+    {
+        int err;
+
+        err = bp_array_clear(nullptr);
+
+        REQUIRE(err != 0);
+    }
+
+    TEST_CASE("Null array argument in size function")
+    {
+        usize size;
+
+        size = bp_array_size(nullptr);
+
+        REQUIRE(size == 0);
     }
 }
 
