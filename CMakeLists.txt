@@ -17,7 +17,7 @@ if (ENABLE_COVERAGE)
     include(CodeCoverage)
 
     append_coverage_compiler_flags()
-    set(COVERAGE_EXCLUDES "/usr/include/\\*;${CMAKE_SOURCE_DIR}/test/*;")
+    set(COVERAGE_EXCLUDES "/usr/include/\\*;${CMAKE_SOURCE_DIR}/test/*;${CMAKE_SOURCE_DIR}/examples/*")
 
     setup_target_for_coverage(NAME coverage EXECUTABLE ctest DEPENDENCIES coverage)
 endif (ENABLE_COVERAGE)
