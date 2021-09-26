@@ -1,42 +1,60 @@
 language: cpp
-os: linux
-compiler: gcc
 
-cache:
-  - directories:
-      - $HOME/.cache
-
-sudo:
-  required
-
-addons:
-  apt:
-    packages: [ lcov ]
+sudo: required
 
 branches:
   only:
     - main
 
-install: sudo apt-get install ninja-build
+matrix:
+  include:
+    - os: linux
+      compiler: gcc
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - g++-5
+            - cmake
+            - lcov
+      before_script:
+        - mkdir -p build && cd build
+        - cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_CXX_COMPILER=g++-5 -DBUILD_TESTS=ON -DENABLE_COVERAGE=ON -DGEN_DOCS=OFF ..
+      script:
+        - cmake build . -- -j2
+        - cmake build . --target coverage
+      after_success:
+        - bash <(curl -s https://codecov.io/bash) || echo "Codecov did not collect coverage reports"
+    - os: linux
+      compiler: gcc
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - g++-5
+            - cmake
+      env:
+        - MATRIX_EVAL="COMPILER=g++-5 && BUILD_TYPE=Release"
+    - os: osx
+      osx_image: xcode9.2
+      compiler: clang
+      env:
+        - MATRIX_EVAL="COMPILER=clang++ && BUILD_TYPE=Debug"
+    - os: osx
+      osx_image: xcode9.2
+      compiler: clang
+      env:
+        - MATRIX_EVAL="COMPILER=clang++ && BUILD_TYPE=Release"
+
+before_install:
+  - eval "${MATRIX_EVAL}"
 
 before_script:
-  - mkdir build
-  - cd build
-  - cmake .. -GNinja
+  - mkdir -p build && cd build
+  - cmake -DCMAKE_BUILD_TYPE=$BUILD_TYPE -DCMAKE_CXX_COMPILER=$COMPILER -DBUILD_TESTS=ON -DGEN_DOCS=OFF ..
 
 script:
-  - ninja
-  - ctest --extra-verbose
-
-after_success:
-  # Create lcov report
-  # capture coverage info
-  - lcov --directory . --capture --output-file coverage.info
-  # filter out system and extra files.
-  # To also not include test code in coverage add them with full path to the patterns: '*/tests/*'
-  - lcov --remove coverage.info '/usr/*' "${HOME}"'/.cache/*' --output-file coverage.info
-  # output coverage data for debugging (optional)
-  - lcov --list coverage.info
-  # Uploading to CodeCov
-  # '-f' specifies file(s) to use and disables manual coverage gathering and file search which has already been done above
-  - bash <(curl -s https://codecov.io/bash) -f coverage.info || echo "Codecov did not collect coverage reports"
+  - cmake --build . -- -j2
+  - ctest --output-on-failure

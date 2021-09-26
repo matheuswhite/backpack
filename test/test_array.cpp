@@ -8,7 +8,6 @@
  * @copyright Matheus T. dos Santos todos os direitos reservados (c) 2021
  *
  */
-#define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
 #include "doctest.h"
 
 #include "bp_array.h"
