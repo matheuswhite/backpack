@@ -49,6 +49,9 @@ matrix:
       env:
         - MATRIX_EVAL="COMPILER=clang++ && BUILD_TYPE=Release"
 
+cache:
+  apt: true
+
 before_install:
   - eval "${MATRIX_EVAL}"
 
