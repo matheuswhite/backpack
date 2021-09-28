@@ -40,6 +40,10 @@ int bp_stack_pop(bp_array_t *stack, void *el)
 
 void *bp_stack_peek(bp_array_t *stack)
 {
+    if (stack == NULL) {
+        return NULL;
+    }
+
     if (stack->_size == 0) {
         return NULL;
     }

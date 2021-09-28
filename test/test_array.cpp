@@ -29,7 +29,7 @@ static bool id_value_cmp_id(void *el, void *param)
 }
 }
 
-TEST_SUITE("Normal flow")
+TEST_SUITE("Array | Normal flow")
 {
     TEST_CASE("Push an element to array")
     {
@@ -188,7 +188,7 @@ TEST_SUITE("Normal flow")
     }
 }
 
-TEST_SUITE("Invalid Parameters")
+TEST_SUITE("Array | Invalid Parameters")
 {
     TEST_CASE("Null array argument in get function")
     {
@@ -290,7 +290,7 @@ TEST_SUITE("Invalid Parameters")
     }
 }
 
-TEST_SUITE("Error flow")
+TEST_SUITE("Array | Error flow")
 {
     TEST_CASE("Push an element on full array")
     {
@@ -351,7 +351,7 @@ TEST_SUITE("Error flow")
     }
 }
 
-TEST_SUITE("Iterator test")
+TEST_SUITE("Array | Iterator test")
 {
     TEST_CASE("Manual for")
     {
