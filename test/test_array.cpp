@@ -156,17 +156,12 @@ TEST_SUITE("Normal flow")
             array[i].value = i * i;
         }
         bp_array_t coll = BP_ARRAY_START(array, 10);
-        int el_id       = 4;
+        usize el_id     = 4;
         usize idx;
 
         idx = bp_array_find_idx(&coll, &el_id, id_value_cmp_id);
 
-        for (auto &a : array) {
-            printf("element %lu: %d\n", a.id, a.value);
-        }
         REQUIRE(idx == 3);
-        REQUIRE(array[idx].id == el_id);
-        REQUIRE(array[idx].value == 9);
     }
 
     TEST_CASE("Drop all elements in the array")
