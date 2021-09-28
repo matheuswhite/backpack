@@ -156,7 +156,7 @@ TEST_SUITE("Normal flow")
             array[i].value = i * i;
         }
         bp_array_t coll = BP_ARRAY_START(array, 10);
-        usize el_id     = 4;
+        int el_id       = 4;
         usize idx;
 
         idx = bp_array_find_idx(&coll, &el_id, id_value_cmp_id);
