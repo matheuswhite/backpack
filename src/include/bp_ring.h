@@ -20,10 +20,10 @@ extern "C" {
 #include "bp_types.h"
 
 typedef struct {
+    u8_t *_array;
     usize _element_size;
     usize _max_size;
     usize _size;
-    u8_t *_array;
     usize _head;
     usize _tail;
 } bp_ring_t;

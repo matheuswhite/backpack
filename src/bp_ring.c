@@ -44,7 +44,7 @@ void *bp_ring_get(bp_ring_t *ring, usize idx)
         idx -= ring->_max_size;
     }
 
-    return &ring->_array[idx];
+    return &ring->_array[idx * ring->_element_size];
 }
 
 void *bp_ring_peek(bp_ring_t *ring)
@@ -57,7 +57,7 @@ void *bp_ring_peek(bp_ring_t *ring)
         return NULL;
     }
 
-    return &ring->_array[ring->_tail];
+    return &ring->_array[ring->_tail * ring->_element_size];
 }
 
 int bp_ring_pop(bp_ring_t *ring, void *el)
@@ -70,7 +70,7 @@ int bp_ring_pop(bp_ring_t *ring, void *el)
         return -ENOENT;
     }
 
-    el = &ring->_array[ring->_tail];
+    memcpy(el, &ring->_array[ring->_tail * ring->_element_size], ring->_element_size);
     ring->_size -= 1;
     ring->_tail = BP_RING_ADVANCE_TAIL(ring);
 
@@ -159,6 +159,10 @@ int bp_ring_clear(bp_ring_t *ring)
 
 usize bp_ring_size(bp_ring_t *ring)
 {
+    if (ring == NULL) {
+        return 0;
+    }
+
     return ring->_size;
 }
 
