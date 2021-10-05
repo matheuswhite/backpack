@@ -35,7 +35,7 @@ static int log2fast(unsigned int n);
 
 static void bp_heap_swap(bp_heap_t *heap, usize idx1, usize idx2);
 
-static void bp_heap_shift_up(bp_heap_t *heap, usize idx);
+static usize bp_heap_shift_up(bp_heap_t *heap, usize idx);
 
 static void bp_heap_shift_down(bp_heap_t *heap, usize idx);
 
@@ -156,32 +156,19 @@ int bp_heap_del(bp_heap_t *heap, void *param, bool (*cmp)(void *el, void *param)
         bp_heap_swap(heap, idx, heap->_coll._size);
         heap->_coll._size -= 1;
 
+        idx = bp_heap_shift_up(heap, idx);
         bp_heap_shift_down(heap, idx);
     }
 
     return 0;
 }
 
-usize bp_heap_find_idx(bp_heap_t *heap, void *param, bool (*cmp)(void *el, void *param))
-{
-    for (usize i = 1; i <= heap->_coll._size; ++i) {
-        void *ptr = BP_HEAP_GET(heap, i);
-        if (cmp != NULL) {
-            if (cmp(ptr, param)) {
-                return i;
-            }
-        } else {
-            if (heap->_cmp(ptr, param) == 0) {
-                return i;
-            }
-        }
-    }
-
-    return BP_ARRAY_INVALID_INDEX;
-}
-
 void *bp_heap_find(bp_heap_t *heap, void *param, bool (*cmp)(void *el, void *param))
 {
+    if (heap == NULL || param == NULL) {
+        return NULL;
+    }
+
     for (usize i = 1; i <= heap->_coll._size; ++i) {
         void *ptr = BP_HEAP_GET(heap, i);
         if (cmp != NULL) {
@@ -251,7 +238,7 @@ static void bp_heap_swap(bp_heap_t *heap, usize idx1, usize idx2)
     memcpy(el2, aux, heap->_coll._element_size);
 }
 
-static void bp_heap_shift_up(bp_heap_t *heap, usize idx)
+static usize bp_heap_shift_up(bp_heap_t *heap, usize idx)
 {
     void *el     = NULL;
     void *parent = NULL;
@@ -274,6 +261,8 @@ static void bp_heap_shift_up(bp_heap_t *heap, usize idx)
         bp_heap_swap(heap, idx, BP_HEAP_PARENT(idx));
         idx = BP_HEAP_PARENT(idx);
     }
+
+    return idx;
 }
 
 static void bp_heap_shift_down(bp_heap_t *heap, usize idx)

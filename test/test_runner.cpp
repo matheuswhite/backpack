@@ -8,5 +8,21 @@
  * @copyright Matheus T. dos Santos todos os direitos reservados (c) 2021
  *
  */
-#define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
+#define DOCTEST_CONFIG_IMPLEMENT
 #include "doctest.h"
+
+const char* getCurrentTestName()
+{
+    return doctest::detail::g_cs->currentTest->m_name;
+}
+
+int main(int argc, char** argv)
+{
+    doctest::Context context;
+    int err;
+
+    context.applyCommandLine(argc, argv);
+    err = context.run();
+
+    return err;
+}
