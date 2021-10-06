@@ -1,11 +1,11 @@
-/**
+/*!
  * @file bp_stack.c
  * @author Matheus T. dos Santos (tenoriomatheus0@gmail.com)
- * @brief
+ * @brief Implement the stack structure.
  * @version 0.1.0
  * @date 19/09/2021
  *
- * @copyright Matheus T. dos Santos todos os direitos reservados (c) 2021
+ * @copyright Matheus T. dos Santos all rights reserved (c) 2021
  *
  */
 #include "bp_stack.h"
@@ -14,10 +14,26 @@
 extern "C" {
 #endif
 
+/*!
+ * Initialize iterator for stack.
+ * @param self Reference to the iterator itself.
+ * @return Reference to the top element in the stack.
+ */
 static void *bp_stack_iter_init(struct bp_iter *self);
 
+/*!
+ * Move the iterator to the next position.
+ * @param self Reference to the iterator itself.
+ * @return false if the current element is the bottom element in the stack.
+ * @return true  if the current element isn't the bottom element in the stack.
+ */
 static bool bp_stack_iter_next(struct bp_iter *self);
 
+/*!
+ * Get the current iterator element.
+ * @param self Reference to the iterator itself.
+ * @return Reference to the current iterator element.
+ */
 static void *bp_stack_iter_get(struct bp_iter *self);
 
 int bp_stack_pop(bp_array_t *stack, void *el)
