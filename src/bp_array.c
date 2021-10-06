@@ -1,11 +1,11 @@
-/**
+/*!
  * @file bp_array.c
  * @author Matheus T. dos Santos (tenoriomatheus0@gmail.com)
- * @brief
+ * @brief Implement the array structure.
  * @version 0.1.0
  * @date 19/09/2021
  *
- * @copyright Matheus T. dos Santos todos os direitos reservados (c) 2021
+ * @copyright Matheus T. dos Santos all rights reserved (c) 2021
  *
  */
 #include "bp_array.h"
@@ -14,12 +14,35 @@
 extern "C" {
 #endif
 
+/*!
+ * Fallback function for compare elements. It's used when the user doesn't provide an
+ * function for compare. This function will compare the two elements byte by byte.
+ * @param left Reference to the first element to compare.
+ * @param right Reference to the seconds element to compare.
+ * @param el_size Size of each element.
+ * @return true if the elements are equals, false otherwise.
+ */
 static bool bp_array_default_cmp(void *left, void *right, usize el_size);
 
+/*!
+ * Initialize iterator for bp_array.
+ * @param self Reference to the iterator itself.
+ * @return Reference to the first element in the array.
+ */
 static void *bp_array_iter_init(struct bp_iter *self);
 
+/*!
+ * Move the iterator to the next position.
+ * @param self Reference to the iterator itself.
+ * @return false if the current element is the final element, true otherwise.
+ */
 static bool bp_array_iter_next(struct bp_iter *self);
 
+/*!
+ * Get the current iterator element.
+ * @param self Reference to the iterator itself.
+ * @return Reference to the current iterator element.
+ */
 static void *bp_array_iter_get(struct bp_iter *self);
 
 void *bp_array_get(bp_array_t *array, usize idx)
