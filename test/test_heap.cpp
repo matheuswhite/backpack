@@ -78,7 +78,7 @@ TEST_SUITE("Min Heap | Normal flow")
         u32_t buffer[20] = {0};
         bp_heap_t heap   = BP_MIN_HEAP_INIT(buffer, bp_int_cmp);
         u32_t el;
-        u32_t minor;
+        u32_t minor = 0x7fFFffFF;
         u32_t *top_el;
         unsigned int seed = time(NULL);
 
