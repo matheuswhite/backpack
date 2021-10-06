@@ -34,7 +34,8 @@ static void *bp_array_iter_init(struct bp_iter *self);
 /*!
  * Move the iterator to the next position.
  * @param self Reference to the iterator itself.
- * @return false if the current element is the final element, true otherwise.
+ * @return false if the current element is the last element.
+ * @return true if the current element isn't the last element.
  */
 static bool bp_array_iter_next(struct bp_iter *self);
 

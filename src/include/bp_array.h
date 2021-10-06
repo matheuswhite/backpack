@@ -72,7 +72,7 @@ void *bp_array_get(bp_array_t *array, usize idx);
 /*!
  * Push an element at the end of array.
  * @param array Reference to bp_array.
- * @param el Element to be pushed.
+ * @param el Reference to the element to be pushed.
  * @return 0 on success, errno otherwise.
  */
 int bp_array_push(bp_array_t *array, void *el);
@@ -91,7 +91,7 @@ int bp_array_del(bp_array_t *array, usize idx);
  * be done based on cmp function pointer. If the cmp function pointer argument is null,
  * then the elements will be compared with the parameter byte by byte.
  * @param array Reference to bp_array.
- * @param param Parameter used to compare elements.
+ * @param param Reference to the parameter used to compare elements.
  * @param cmp Function to compare an element with the parameter passed at argument param.
  * @return The index of found element, or BP_ARRAY_INVALID_INDEX if the element wasn't
  * found or some mandatory argument is null.
@@ -105,7 +105,7 @@ usize bp_array_find_idx(bp_array_t *array, void *param,
  * based on cmp function pointer. If the cmp function point argument is null, then the
  * elements will be compared with the parameter byte by byte.
  * @param array Reference to bp_array.
- * @param param Parameter used to compare elements.
+ * @param param Reference to the parameter used to compare elements.
  * @param cmp Function to compare an element with the parameter passed at argument param.
  * @return A reference to the found element, or NULL if the element wasn't found or some
  * mandatory argument is null.
@@ -134,7 +134,7 @@ usize bp_array_size(bp_array_t *array);
  * null, a crash will occur. That check must be done outside the function.
  *
  * @param array Reference to bp_array.
- * @return A new iterator for the bp_array.
+ * @return A new iterator instance for the bp_array.
  */
 bp_iter_t bp_array_iter(bp_array_t *array);
 
