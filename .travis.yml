@@ -57,9 +57,8 @@ matrix:
             - python3-setuptools
             - python3-sphinx
             - python3-breathe
-      before_install:
-        - pip3 install sphinx-rtd-theme
-        - pip3 install sphinx-sitemap
+            - python3-sphinx-rtd-theme
+            - python3-sphinx-sitemap
       cache:
         apt: true
       before_script:
