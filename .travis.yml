@@ -55,6 +55,7 @@ matrix:
             - sphinx-doc
             - python3-pip
       before_install:
+        - pip3 install sphinx
         - pip3 install sphinx-rtd-theme
         - pip3 install breathe
         - pip3 install sphinx-sitemap
@@ -73,6 +74,7 @@ matrix:
         skip_cleanup: true
         github_token: $GITHUB_TOKEN
         keep_history: true
+        target_branch: gh-pages
         on:
           branch: main
     - os: osx
