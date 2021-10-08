@@ -55,8 +55,8 @@ matrix:
             - sphinx-doc
             - python3-pip
             - python3-setuptools
+            - python3-sphinx
       before_install:
-        - pip3 install sphinx
         - pip3 install sphinx-rtd-theme
         - pip3 install breathe
         - pip3 install sphinx-sitemap
