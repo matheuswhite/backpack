@@ -53,6 +53,7 @@ matrix:
             - cmake
             - doxygen
             - sphinx-doc
+            - python3-pip
       before_install:
         - pip3 install sphinx-rtd-theme
         - pip3 install breathe
