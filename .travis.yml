@@ -42,6 +42,38 @@ matrix:
         apt: true
       env:
         - MATRIX_EVAL="COMPILER=g++-5 && BUILD_TYPE=Release"
+    - os: linux
+      compiler: gcc
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - g++-5
+            - cmake
+            - doxygen
+            - sphinx-doc
+      before_install:
+        - pip3 install sphinx-rtd-theme
+        - pip3 install breathe
+        - pip3 install sphinx-sitemap
+      cache:
+        apt: true
+      before_script:
+        - mkdir -p build && cd build
+        - cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_COMPILER=g++-5 -DBUILD_TESTS=OFF -DENABLE_COVERAGE=OFF -DGEN_DOCS=ON ..
+      script:
+        - cd ../docs/sphinx
+        - make html
+        - cd _build/html
+        - touch .nojekyll
+      deploy:
+        provider: pages
+        skip_cleanup: true
+        github_token: $GITHUB_TOKEN
+        keep_history: true
+        on:
+          branch: main
     - os: osx
       osx_image: xcode9.2
       compiler: clang
