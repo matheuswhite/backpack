@@ -59,7 +59,6 @@ matrix:
             - python3-breathe
       before_install:
         - pip3 install sphinx-rtd-theme
-        - pip3 install breathe
         - pip3 install sphinx-sitemap
       cache:
         apt: true
