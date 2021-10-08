@@ -54,7 +54,7 @@ matrix:
             - doxygen
             - sphinx-doc
             - python3-pip
-            - python-setuptools
+            - python3-setuptools
       before_install:
         - pip3 install sphinx
         - pip3 install sphinx-rtd-theme
