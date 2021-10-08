@@ -58,10 +58,10 @@ matrix:
             - python3-sphinx
             - python3-breathe
             - python3-sphinx-rtd-theme
-            - python3-sphinx-sitemap
       cache:
         apt: true
       before_script:
+        - pip3 install sphinx-sitemap
         - mkdir -p build && cd build
         - cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_COMPILER=g++-5 -DBUILD_TESTS=OFF -DENABLE_COVERAGE=OFF -DGEN_DOCS=ON ..
       script:
