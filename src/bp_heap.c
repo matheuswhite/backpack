@@ -1,7 +1,7 @@
-/**
+/*!
  * @file bp_heap.c
  * @author Matheus T. dos Santos (tenoriomatheus0@gmail.com)
- * @brief
+ * @brief Imple
  * @version 0.1.0
  * @date 19/09/2021
  *
@@ -14,37 +14,120 @@
 extern "C" {
 #endif
 
+/*!
+ * Definition of __builtin_popcount function for MSVC compilers
+ */
 #ifdef _MSC_VER
 #include <malloc.h>
 #define __builtin_popcount _mm_popcnt_u32
 #endif
 
+/*!
+ * Macro to get the parent index of the i-th node
+ * @param i The node index.
+ * @return The node parent index.
+ */
 #define BP_HEAP_PARENT(i) ((i) >> 1)
 
+/*!
+ * Macro to get the left child index of the i-th node.
+ * @param i The node index.
+ * @return The left child node index.
+ */
 #define BP_HEAP_LEFT_CHILD(i) ((i) << 1)
 
+/*!
+ * Macro to get the right child index of the i-th node.
+ * @param i The node index.
+ * @return The right child node index.
+ */
 #define BP_HEAP_RIGHT_CHILD(i) (((i) << 1) + 1)
 
+/*!
+ * Macro to get the level of the i-th node, in the Heap tree.
+ * @param i The node index.
+ * @return The node level.
+ */
 #define BP_HEAP_LEVEL(i) log2fast(i)
 
+/*!
+ * Macro to get the last node index in the DFS sequence.
+ * @param size The size of the Heap tree.
+ * @return The last node index of the DFS sequence.
+ */
 #define BP_HEAP_DFS_END_NODE(size) ((2 << (log2fast((size) + 1) - 1)) - 1)
 
+/*!
+ * Macro to get a heap element, based on its index.
+ * @note The index starts by 1.
+ * @param heap_ptr Reference to bp_heap
+ * @param idx Index of the desired node.
+ * @return Reference to the desired node, or NULL if the index is out of range or the
+ * heap_ptr argument is NULL.
+ */
 #define BP_HEAP_GET(heap_ptr, idx) bp_array_get(&(heap_ptr)->_coll, (idx) -1)
 
+/*!
+ * Calculate the log2 of the parameter n.
+ * @param n The argument of log2.
+ * @return The log2 of n parameter.
+ */
 static int log2fast(unsigned int n);
 
+/*!
+ * Swap two elements in the heap.
+ * @note The index starts by 1.
+ * @param heap Reference to bp_heap.
+ * @param idx1 The index of the first element to be swapped.
+ * @param idx2 The index of the second element to be swapped.
+ */
 static void bp_heap_swap(bp_heap_t *heap, usize idx1, usize idx2);
 
+/*!
+ * Shift up an element in the heap, until its parent is less than (or greater than, for
+ * Max-Heap) itself.
+ * @param heap Reference to bp_heap.
+ * @param idx The index of the element to be shifted up.
+ * @return The new index of the element after the shift up.
+ */
 static usize bp_heap_shift_up(bp_heap_t *heap, usize idx);
 
+/*!
+ * Shift down an element in the heap, until itself is less than (or greater than, for
+ * Max-Heap) its children.
+ * @param heap Reference to bp_heap.
+ * @param idx The index of the element to be shifted down.
+ */
 static void bp_heap_shift_down(bp_heap_t *heap, usize idx);
 
+/*!
+ * Initialize iterator for bp_heap.
+ * @param self Reference to the iterator itself.
+ * @return Reference to the root element in the Heap.
+ */
 static void *bp_heap_iter_init(struct bp_iter *self);
 
+/*!
+ * Get the current iterator element.
+ * @param self Reference to the iterator itself.
+ * @return Reference to the current iterator element.
+ */
 static void *bp_heap_iter_get(struct bp_iter *self);
 
+/*!
+ * Move the iterator to the next position, following the BFS sequence.
+ * @param self Reference to the iterator itself.
+ * @return false if the current element is the last element.
+ * @return true if the current element isn't the last element.
+ */
 static bool bp_heap_bfs_iter_next(struct bp_iter *self);
 
+/*!
+ * Move the iterator to the next position, following the DFS sequence.
+ * @param self Reference to the iterator itself.
+ * @return false if the current element is the last element.
+ * @return true if the current element isn't the last element.
+ */
 static bool bp_heap_dfs_iter_next(struct bp_iter *self);
 
 void *bp_heap_top(bp_heap_t *heap)
