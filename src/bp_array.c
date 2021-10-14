@@ -20,7 +20,8 @@ extern "C" {
  * @param left Reference to the first element to compare.
  * @param right Reference to the seconds element to compare.
  * @param el_size Size of each element.
- * @return true if the elements are equals, false otherwise.
+ * @return true if the elements are equals
+ * @return false if the elements are different
  */
 static bool bp_array_default_cmp(void *left, void *right, usize el_size);
 

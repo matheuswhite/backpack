@@ -1,7 +1,7 @@
-/**
+/*!
  * @file bp_ring.c
  * @author Matheus T. dos Santos (tenoriomatheus0@gmail.com)
- * @brief
+ * @brief Implement the ring structure.
  * @version 0.1.0
  * @date 19/09/2021
  *
@@ -14,19 +14,63 @@
 extern "C" {
 #endif
 
+/*!
+ * Macro to advance a ring buffer pointer. If the pointer is in the end of buffer, then
+ * its value will be zero, otherwise it is increased by 1.
+ * @param ring Reference to bp_ring.
+ * @param ptr Pointer name to be advanced.
+ * @return The next value of the pointer
+ */
 #define BP_RING_ADVANCE_PTR(ring, ptr) \
     (((ring)->ptr == ((ring)->_max_size - 1)) ? 0 : ((ring)->ptr + 1))
 
+/*!
+ * Macro to advance the head pointer. If the head pointer is in the end of buffer, then
+ * its value will be zero, otherwise it is increased by 1.
+ * @param ring Reference to bp_ring.
+ * @return The next value of the head pointer
+ */
 #define BP_RING_ADVANCE_HEAD(ring) BP_RING_ADVANCE_PTR(ring, _head)
 
+/*!
+ * Macro to advance the tail pointer. If the tail pointer is in the end of buffer, then
+ * its value will be zero, otherwise it is increased by 1.
+ * @param ring Reference to bp_ring.
+ * @return The next value of the tail pointer
+ */
 #define BP_RING_ADVANCE_TAIL(ring) BP_RING_ADVANCE_PTR(ring, _tail)
 
+/*!
+ * Fallback function for compare elements. It's used when the user doesn't provide an
+ * function for compare. This function will compare the two elements byte by bytes.
+ * @param left Reference to the first element to compare.
+ * @param right Reference to the second element to compare.
+ * @param el_size Size of each element.
+ * @return true if the elements are equals
+ * @return false if the elements are different
+ */
 static bool bp_ring_default_cmp(void *left, void *right, usize el_size);
 
+/*!
+ * Initialize iterator for bp_ring.
+ * @param self Reference to the iterator itself.
+ * @return Reference to the first element (at tail) in the ring buffer.
+ */
 static void *bp_ring_iter_init(struct bp_iter *self);
 
+/*!
+ * Move the iterator to the next position.
+ * @param self Reference to the iterator itself.
+ * @return false if the current element is the last element (at head).
+ * @return true if the current element isn't the last element (at head).
+ */
 static bool bp_ring_iter_next(struct bp_iter *self);
 
+/*!
+ * Get the current iterator element.
+ * @param self Reference to the iterator itself.
+ * @return Reference to the current iterator element.
+ */
 static void *bp_ring_iter_get(struct bp_iter *self);
 
 void *bp_ring_get(bp_ring_t *ring, usize idx)
