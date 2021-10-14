@@ -35,7 +35,8 @@ extern "C" {
 /*!
  * Struct with iterator metadata.
  *
- * @note The functions inside the structures need be filled up by concrete implementation.
+ * @note The functions inside the structure need be filled up by a concrete
+ * implementation.
  *
  * @note The data structure represented by it's iterator is declared outside it. Only a
  * reference is stored inside it.

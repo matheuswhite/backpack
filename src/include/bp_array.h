@@ -101,9 +101,9 @@ usize bp_array_find_idx(bp_array_t *array, void *param,
 
 /*!
  * Find the element in the array, based at some parameter related to the element. This
- * element could be the element itself, or some filed of its type. The match will be done
- * based on cmp function pointer. If the cmp function point argument is null, then the
- * elements will be compared with the parameter byte by byte.
+ * parameter could be the element itself, or some field of its type. The match will be
+ * done based on cmp function pointer. If the cmp function point argument is null, then
+ * the elements will be compared with the parameter byte by byte.
  * @param array Reference to bp_array.
  * @param param Reference to the parameter used to compare elements.
  * @param cmp Function to compare an element with the parameter passed at argument param.
@@ -114,7 +114,7 @@ void *bp_array_find(bp_array_t *array, void *param, bool (*cmp)(void *el, void *
 
 /*!
  * Drop all elements in the array. After this function the array size is zero, but the
- * element stay in the buffer.
+ * elements stay in the buffer.
  * @param array Reference to bp_array.
  * @return 0 on success, errno otherwise.
  */
@@ -130,8 +130,8 @@ usize bp_array_size(bp_array_t *array);
 /*!
  * Get a iterator to walk through the bp_array.
  *
- * @note This function doesn't check if the array argument is null. So if this argument is
- * null, a crash will occur. That check must be done outside the function.
+ * @warning This function doesn't check if the array argument is null. So if this argument
+ * is null, a crash will occur. That check must be done outside the function.
  *
  * @param array Reference to bp_array.
  * @return A new iterator instance for the bp_array.

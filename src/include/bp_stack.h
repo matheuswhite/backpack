@@ -46,8 +46,8 @@ int bp_stack_push(bp_array_t *stack, void *el);
  * Get a iterator to walk through the stack. The traversal order is from top to the bottom
  * of the stack.
  *
- * @note This function doesn't check if the stack argument is null. So if this argument is
- * null, a crash will occur. That check must be done outside the function.
+ * @warning This function doesn't check if the stack argument is null. So if this argument
+ * is null, a crash will occur. That check must be done outside the function.
  *
  * @param stack Reference to the stack.
  * @return A new iterator instance for the stack.
