@@ -34,8 +34,8 @@ if (GEN_DOCS)
 
     if (DOXYGEN_FOUND)
         # set input and output files
-        set(DOXYGEN_IN ${CMAKE_CURRENT_SOURCE_DIR}/docs/sphinx/Doxyfile.in)
-        set(DOXYGEN_OUT ${CMAKE_CURRENT_SOURCE_DIR}/docs/sphinx/Doxyfile.out)
+        set(DOXYGEN_IN ${CMAKE_CURRENT_SOURCE_DIR}/docsrc/Doxyfile.in)
+        set(DOXYGEN_OUT ${CMAKE_CURRENT_SOURCE_DIR}/docsrc/Doxyfile.out)
 
         # request to configure the file
         configure_file(${DOXYGEN_IN} ${DOXYGEN_OUT} @ONLY)

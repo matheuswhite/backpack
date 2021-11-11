@@ -1,7 +1,5 @@
 **/build
 **/.idea
-**/docs/gen
-**/docs/sphinx/_build/html
-**/docs/sphinx/_build/doctrees
-**/docs/sphinx/_static
-**/docs/sphinx/_templates
+**/docs/*
+**/docsrc/_build/
+!**/docs/.nojekyll
