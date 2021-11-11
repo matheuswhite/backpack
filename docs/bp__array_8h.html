@@ -419,8 +419,11 @@
             </table>
         </div>
         <div class="memdoc">
-            <p>Drop all elements in the array. After this function the array size is zero, but the elements stay in the
-                buffer. </p>
+            <p>Drop all elements in the array.</p>
+            <dl class="section warning">
+                <dt>Warning</dt>
+                <dd>After this function the array size is zero, but the elements stay in the buffer.</dd>
+            </dl>
             <dl class="params">
                 <dt>Parameters</dt>
                 <dd>
@@ -435,6 +438,9 @@
             <dl class="section return">
                 <dt>Returns</dt>
                 <dd>0 on success, errno otherwise.</dd>
+                <dd>
+                    -ENODEV if the 'array' argument is NULL.
+                </dd>
             </dl>
 
         </div>
@@ -487,7 +493,13 @@
             </dl>
             <dl class="section return">
                 <dt>Returns</dt>
-                <dd>0 on success, errno otherwise.</dd>
+                <dd>0 on success.</dd>
+                <dd>
+                    -ENODEV if the 'array' argument is NULL.
+                </dd>
+                <dd>
+                    -EFAULT if the index 'idx' is out of range.
+                </dd>
             </dl>
 
         </div>
@@ -551,8 +563,9 @@
             </dl>
             <dl class="section return">
                 <dt>Returns</dt>
-                <dd>A reference to the found element, or NULL if the element wasn't found or some mandatory argument is
-                    null.
+                <dd>A reference to the found element.</dd>
+                <dd>
+                    NULL if the element wasn't found or if the 'array' or the 'param' argument is NULL.
                 </dd>
             </dl>
 
@@ -620,8 +633,10 @@
             </dl>
             <dl class="section return">
                 <dt>Returns</dt>
-                <dd>The index of found element, or BP_ARRAY_INVALID_INDEX if the element wasn't found or some mandatory
-                    argument is null.
+                <dd>The index of found element.</dd>
+                <dd>
+                    BP_ARRAY_INVALID_INDEX if the element wasn't found or if the 'array' or the 'param' argument is
+                    NULL.
                 </dd>
             </dl>
 
@@ -675,8 +690,9 @@
             </dl>
             <dl class="section return">
                 <dt>Returns</dt>
-                <dd>A reference to the desired element, or NULL if the index is out of range or the array argument is
-                    NULL.
+                <dd>A reference to the desired element.</dd>
+                <dd>
+                    NULL if the index is out of range or the 'array' argument is NULL.
                 </dd>
             </dl>
 
@@ -773,7 +789,13 @@
             </dl>
             <dl class="section return">
                 <dt>Returns</dt>
-                <dd>0 on success, errno otherwise.</dd>
+                <dd>0 on success.</dd>
+                <dd>
+                    -ENODEV if the 'array' or the 'el' argument is NULL.
+                </dd>
+                <dd>
+                    -ENOMEM if the array is full.
+                </dd>
             </dl>
 
         </div>
@@ -813,7 +835,10 @@
             </dl>
             <dl class="section return">
                 <dt>Returns</dt>
-                <dd>The size of array. Always return 0 if the argument array is null.</dd>
+                <dd>The size of array.</dd>
+                <dd>
+                    0 if the 'array' argument is NULL.
+                </dd>
             </dl>
 
         </div>

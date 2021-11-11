@@ -64,8 +64,8 @@ typedef struct {
  * Get an element from the array, based on its position.
  * @param array Reference to bp_array.
  * @param idx Element index.
- * @return A reference to the desired element, or NULL if the index is out of range or the
- * array argument is NULL.
+ * @return A reference to the desired element.
+ * @return NULL if the index is out of range or the 'array' argument is NULL.
  */
 void *bp_array_get(bp_array_t *array, usize idx);
 
@@ -73,7 +73,9 @@ void *bp_array_get(bp_array_t *array, usize idx);
  * Push an element at the end of array.
  * @param array Reference to bp_array.
  * @param el Reference to the element to be pushed.
- * @return 0 on success, errno otherwise.
+ * @return 0 on success.
+ * @return -ENODEV if the 'array' or the 'el' argument is NULL.
+ * @return -ENOMEM if the array is full.
  */
 int bp_array_push(bp_array_t *array, void *el);
 
@@ -81,7 +83,9 @@ int bp_array_push(bp_array_t *array, void *el);
  * Delete an array element, based on its position.
  * @param array Reference to bp_array.
  * @param idx Element idx.
- * @return 0 on success, errno otherwise.
+ * @return 0 on success.
+ * @return -ENODEV if the 'array' argument is NULL.
+ * @return -EFAULT if the index 'idx' is out of range.
  */
 int bp_array_del(bp_array_t *array, usize idx);
 
@@ -93,8 +97,9 @@ int bp_array_del(bp_array_t *array, usize idx);
  * @param array Reference to bp_array.
  * @param param Reference to the parameter used to compare elements.
  * @param cmp Function to compare an element with the parameter passed at argument param.
- * @return The index of found element, or BP_ARRAY_INVALID_INDEX if the element wasn't
- * found or some mandatory argument is null.
+ * @return The index of found element.
+ * @return BP_ARRAY_INVALID_INDEX if the element wasn't found or if the 'array' or the
+ * 'param' argument is NULL.
  */
 usize bp_array_find_idx(bp_array_t *array, void *param,
                         bool (*cmp)(void *el, void *param));
@@ -107,23 +112,29 @@ usize bp_array_find_idx(bp_array_t *array, void *param,
  * @param array Reference to bp_array.
  * @param param Reference to the parameter used to compare elements.
  * @param cmp Function to compare an element with the parameter passed at argument param.
- * @return A reference to the found element, or NULL if the element wasn't found or some
- * mandatory argument is null.
+ * @return A reference to the found element.
+ * @return NULL if the element wasn't found or if the 'array' or the 'param' argument is
+ * NULL.
  */
 void *bp_array_find(bp_array_t *array, void *param, bool (*cmp)(void *el, void *param));
 
 /*!
- * Drop all elements in the array. After this function the array size is zero, but the
- * elements stay in the buffer.
+ * Drop all elements in the array.
+ *
+ * @warning After this function the array size is zero, but the elements stay in the
+ * buffer.
+ *
  * @param array Reference to bp_array.
  * @return 0 on success, errno otherwise.
+ * @return -ENODEV if the 'array' argument is NULL.
  */
 int bp_array_clear(bp_array_t *array);
 
 /*!
  * Get the array size.
  * @param array Reference to bp_array.
- * @return The size of array. Always return 0 if the argument array is null.
+ * @return The size of array.
+ * @return 0 if the 'array' argument is NULL.
  */
 usize bp_array_size(bp_array_t *array);
 

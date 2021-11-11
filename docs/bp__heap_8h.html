@@ -522,8 +522,11 @@
             </table>
         </div>
         <div class="memdoc">
-            <p>Drop all elements in the heap. After this function the heap size is zero, but the elements stay in the
-                buffer. </p>
+            <p>Drop all elements in the heap.</p>
+            <dl class="section warning">
+                <dt>Warning</dt>
+                <dd>After this function the heap size is zero, but the elements stay in the buffer.</dd>
+            </dl>
             <dl class="params">
                 <dt>Parameters</dt>
                 <dd>
@@ -537,7 +540,7 @@
             </dl>
             <dl class="section return">
                 <dt>Returns</dt>
-                <dd>0 on success, errno otherwise.</dd>
+                <dd>0 on success. @retrun -ENODEV if the 'heap' argument is NULL.</dd>
             </dl>
 
         </div>
@@ -601,7 +604,16 @@
             </dl>
             <dl class="section return">
                 <dt>Returns</dt>
-                <dd>0 on success, errno otherwise.</dd>
+                <dd>0 on success.</dd>
+                <dd>
+                    -ENODEV if the 'heap' or the 'param' argument is NULL.
+                </dd>
+                <dd>
+                    -ENOENT if the element isn't in the heap.
+                </dd>
+                <dd>
+                    -EINVAL if the heap '_cmp' field is NULL.
+                </dd>
             </dl>
 
         </div>
@@ -710,8 +722,9 @@
             </dl>
             <dl class="section return">
                 <dt>Returns</dt>
-                <dd>A reference to the found element, or NULL if the element wasn't found or some mandatory argument is
-                    null.
+                <dd>A reference to the found element.</dd>
+                <dd>
+                    NULL if the element wasn't found or if the 'heap' or the 'el' argument is NULL.
                 </dd>
             </dl>
 
@@ -763,7 +776,16 @@
             </dl>
             <dl class="section return">
                 <dt>Returns</dt>
-                <dd>0 on success, errno, otherwise.</dd>
+                <dd>0 on success.</dd>
+                <dd>
+                    -ENODEV if the 'heap' or 'el' argument is NULL.
+                </dd>
+                <dd>
+                    -ENOENT if the stack size is zero.
+                </dd>
+                <dd>
+                    -EINVAL if the heap '_cmp' field is NULL.
+                </dd>
             </dl>
 
         </div>
@@ -814,7 +836,13 @@
             </dl>
             <dl class="section return">
                 <dt>Returns</dt>
-                <dd>0 on success, errno otherwise.</dd>
+                <dd>0 on success.</dd>
+                <dd>
+                    -ENODEV if the 'heap' or the 'el' argument is NULL.
+                </dd>
+                <dd>
+                    -EINVAL if the heap '_cmp' field is NULL.
+                </dd>
             </dl>
 
         </div>
@@ -851,7 +879,10 @@
             </dl>
             <dl class="section return">
                 <dt>Returns</dt>
-                <dd>A reference to the root element, or NULL if the heap is empty or the heap argument is NULL.</dd>
+                <dd>A reference to the root element.</dd>
+                <dd>
+                    NULL if the 'heap' argument is NULL or if the heap is empty.
+                </dd>
             </dl>
 
         </div>

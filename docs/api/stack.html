@@ -134,7 +134,14 @@
                                                 </ul>
                                             </dd>
                                             <dt class="field-even">Returns</dt>
-                                            <dd class="field-even"><p>0 on success, errno otherwise. </p>
+                                            <dd class="field-even"><p>0 on success. </p>
+                                            </dd>
+                                            <dt class="field-odd">Returns</dt>
+                                            <dd class="field-odd"><p>-ENODEV if the ‘stack’ or ‘el’ argument is
+                                                NULL. </p>
+                                            </dd>
+                                            <dt class="field-even">Returns</dt>
+                                            <dd class="field-even"><p>-ENOENT if the stack is empty. </p>
                                             </dd>
                                         </dl>
                                     </dd>
@@ -165,8 +172,10 @@
                                             </p>
                                             </dd>
                                             <dt class="field-even">Returns</dt>
-                                            <dd class="field-even"><p>A reference to the desired element, or NULL if the
-                                                stack argument is NULL. </p>
+                                            <dd class="field-even"><p>A reference to the desired element. </p>
+                                            </dd>
+                                            <dt class="field-odd">Returns</dt>
+                                            <dd class="field-odd"><p>NULL if the ‘stack’ argument is NULL. </p>
                                             </dd>
                                         </dl>
                                     </dd>

@@ -23,14 +23,17 @@ extern "C" {
  * Remove the top element in the stack and put it in el argument variable.
  * @param stack Reference to the stack.
  * @param el [out] Reference to a variable, where the removed element will be put.
- * @return 0 on success, errno otherwise.
+ * @return 0 on success.
+ * @return -ENODEV if the 'stack' or 'el' argument is NULL.
+ * @return -ENOENT if the stack is empty.
  */
 int bp_stack_pop(bp_array_t *stack, void *el);
 
 /*!
  * Get the top element in the stack.
  * @param stack Reference to the stack.
- * @return A reference to the desired element, or NULL if the stack argument is NULL.
+ * @return A reference to the desired element.
+ * @return NULL if the 'stack' argument is NULL.
  */
 void *bp_stack_peek(bp_array_t *stack);
 

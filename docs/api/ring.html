@@ -170,8 +170,11 @@
                                                 </ul>
                                             </dd>
                                             <dt class="field-even">Returns</dt>
-                                            <dd class="field-even"><p>A reference to the desired element, or NULL if the
-                                                index is out of range or the ring argument is NULL. </p>
+                                            <dd class="field-even"><p>A reference to the desired element </p>
+                                            </dd>
+                                            <dt class="field-odd">Returns</dt>
+                                            <dd class="field-odd"><p>NULL if the index is out of range or the ‘ring’
+                                                argument is NULL. </p>
                                             </dd>
                                         </dl>
                                     </dd>
@@ -201,8 +204,11 @@
                                             <dd class="field-odd"><p><strong>ring</strong> – Reference to bp_ring. </p>
                                             </dd>
                                             <dt class="field-even">Returns</dt>
-                                            <dd class="field-even"><p>A reference to the oldest element, or NULL if the
-                                                ring argument is NULL. </p>
+                                            <dd class="field-even"><p>A reference to the oldest element. </p>
+                                            </dd>
+                                            <dt class="field-odd">Returns</dt>
+                                            <dd class="field-odd"><p>NULL if the ‘ring’ argument is NULL or if the ring
+                                                is empty. </p>
                                             </dd>
                                         </dl>
                                     </dd>
@@ -238,7 +244,14 @@
                                                 </ul>
                                             </dd>
                                             <dt class="field-even">Returns</dt>
-                                            <dd class="field-even"><p>0 on success, errno otherwise. </p>
+                                            <dd class="field-even"><p>0 on success. </p>
+                                            </dd>
+                                            <dt class="field-odd">Returns</dt>
+                                            <dd class="field-odd"><p>-ENODEV if the ‘ring’ or the ‘el’ argument is
+                                                NULL. </p>
+                                            </dd>
+                                            <dt class="field-even">Returns</dt>
+                                            <dd class="field-even"><p>-ENOENT if the ring is empty. </p>
                                             </dd>
                                         </dl>
                                     </dd>
@@ -275,7 +288,11 @@
                                                 </ul>
                                             </dd>
                                             <dt class="field-even">Returns</dt>
-                                            <dd class="field-even"><p>0 on success, errno otherwise. </p>
+                                            <dd class="field-even"><p>0 on success. </p>
+                                            </dd>
+                                            <dt class="field-odd">Returns</dt>
+                                            <dd class="field-odd"><p>-ENODEV if the ‘ring’ or the ‘el’ argument is
+                                                NULL. </p>
                                             </dd>
                                         </dl>
                                     </dd>
@@ -330,9 +347,11 @@
                                                 </ul>
                                             </dd>
                                             <dt class="field-even">Returns</dt>
-                                            <dd class="field-even"><p>The index of found element, or
-                                                BP_RING_INVALID_INDEX if the element wasn’t found or some mandatory
-                                                argument is null. </p>
+                                            <dd class="field-even"><p>The index of found element. </p>
+                                            </dd>
+                                            <dt class="field-odd">Returns</dt>
+                                            <dd class="field-odd"><p>BP_RING_INVALID_INDEX if the element wasn’t found
+                                                or if the ‘ring’ or the ‘param’ argument is NULL. </p>
                                             </dd>
                                         </dl>
                                     </dd>
@@ -387,8 +406,11 @@
                                                 </ul>
                                             </dd>
                                             <dt class="field-even">Returns</dt>
-                                            <dd class="field-even"><p>A reference to the found element, or NULL if the
-                                                element wasn’t found or some mandatory argument is null. </p>
+                                            <dd class="field-even"><p>A reference to the found element. </p>
+                                            </dd>
+                                            <dt class="field-odd">Returns</dt>
+                                            <dd class="field-odd"><p>NULL if the element wasn’t found or if the ‘ring’
+                                                or the ‘param’ argument is NULL. </p>
                                             </dd>
                                         </dl>
                                     </dd>
@@ -411,14 +433,21 @@
                                             class="pre">ring</span></span><span class="sig-paren">)</span><a
                                             class="headerlink" href="#_CPPv413bp_ring_clearP9bp_ring_t"
                                             title="Permalink to this definition"></a><br/></dt>
-                                    <dd><p>Drop all elements in the ring buffer. After this function the ring buffer
-                                        size is zero, but the elements stay in the buffer. </p>
+                                    <dd><p>Drop all elements in the ring buffer.</p>
+                                        <div class="admonition warning">
+                                            <p class="admonition-title">Warning</p>
+                                            <p>After this function the ring buffer size is zero, but the elements stay
+                                                in the buffer.</p>
+                                        </div>
                                         <dl class="field-list simple">
                                             <dt class="field-odd">Parameters</dt>
                                             <dd class="field-odd"><p><strong>ring</strong> – Reference to bp_ring. </p>
                                             </dd>
                                             <dt class="field-even">Returns</dt>
-                                            <dd class="field-even"><p>0 on success, errno otherwise. </p>
+                                            <dd class="field-even"><p>0 on success. </p>
+                                            </dd>
+                                            <dt class="field-odd">Returns</dt>
+                                            <dd class="field-odd"><p>-ENODEV if the ‘ring’ argument is NULL. </p>
                                             </dd>
                                         </dl>
                                     </dd>
@@ -447,8 +476,10 @@
                                             <dd class="field-odd"><p><strong>ring</strong> – Reference to bp_ring. </p>
                                             </dd>
                                             <dt class="field-even">Returns</dt>
-                                            <dd class="field-even"><p>The size of ring buffer. Always return 0 if the
-                                                argument ring is null. </p>
+                                            <dd class="field-even"><p>The size of ring buffer. </p>
+                                            </dd>
+                                            <dt class="field-odd">Returns</dt>
+                                            <dd class="field-odd"><p>0 if the ‘ring’ argument is null. </p>
                                             </dd>
                                         </dl>
                                     </dd>

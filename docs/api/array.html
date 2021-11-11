@@ -199,8 +199,11 @@
                                                 </ul>
                                             </dd>
                                             <dt class="field-even">Returns</dt>
-                                            <dd class="field-even"><p>A reference to the desired element, or NULL if the
-                                                index is out of range or the array argument is NULL. </p>
+                                            <dd class="field-even"><p>A reference to the desired element. </p>
+                                            </dd>
+                                            <dt class="field-odd">Returns</dt>
+                                            <dd class="field-odd"><p>NULL if the index is out of range or the ‘array’
+                                                argument is NULL. </p>
                                             </dd>
                                         </dl>
                                     </dd>
@@ -237,7 +240,14 @@
                                                 </ul>
                                             </dd>
                                             <dt class="field-even">Returns</dt>
-                                            <dd class="field-even"><p>0 on success, errno otherwise. </p>
+                                            <dd class="field-even"><p>0 on success. </p>
+                                            </dd>
+                                            <dt class="field-odd">Returns</dt>
+                                            <dd class="field-odd"><p>-ENODEV if the ‘array’ or the ‘el’ argument is
+                                                NULL. </p>
+                                            </dd>
+                                            <dt class="field-even">Returns</dt>
+                                            <dd class="field-even"><p>-ENOMEM if the array is full. </p>
                                             </dd>
                                         </dl>
                                     </dd>
@@ -274,7 +284,13 @@
                                                 </ul>
                                             </dd>
                                             <dt class="field-even">Returns</dt>
-                                            <dd class="field-even"><p>0 on success, errno otherwise. </p>
+                                            <dd class="field-even"><p>0 on success. </p>
+                                            </dd>
+                                            <dt class="field-odd">Returns</dt>
+                                            <dd class="field-odd"><p>-ENODEV if the ‘array’ argument is NULL. </p>
+                                            </dd>
+                                            <dt class="field-even">Returns</dt>
+                                            <dd class="field-even"><p>-EFAULT if the index ‘idx’ is out of range. </p>
                                             </dd>
                                         </dl>
                                     </dd>
@@ -329,9 +345,11 @@
                                                 </ul>
                                             </dd>
                                             <dt class="field-even">Returns</dt>
-                                            <dd class="field-even"><p>The index of found element, or
-                                                BP_ARRAY_INVALID_INDEX if the element wasn’t found or some mandatory
-                                                argument is null. </p>
+                                            <dd class="field-even"><p>The index of found element. </p>
+                                            </dd>
+                                            <dt class="field-odd">Returns</dt>
+                                            <dd class="field-odd"><p>BP_ARRAY_INVALID_INDEX if the element wasn’t found
+                                                or if the ‘array’ or the ‘param’ argument is NULL. </p>
                                             </dd>
                                         </dl>
                                     </dd>
@@ -387,8 +405,11 @@
                                                 </ul>
                                             </dd>
                                             <dt class="field-even">Returns</dt>
-                                            <dd class="field-even"><p>A reference to the found element, or NULL if the
-                                                element wasn’t found or some mandatory argument is null. </p>
+                                            <dd class="field-even"><p>A reference to the found element. </p>
+                                            </dd>
+                                            <dt class="field-odd">Returns</dt>
+                                            <dd class="field-odd"><p>NULL if the element wasn’t found or if the ‘array’
+                                                or the ‘param’ argument is NULL. </p>
                                             </dd>
                                         </dl>
                                     </dd>
@@ -411,8 +432,12 @@
                                             class="pre">array</span></span><span class="sig-paren">)</span><a
                                             class="headerlink" href="#_CPPv414bp_array_clearP10bp_array_t"
                                             title="Permalink to this definition"></a><br/></dt>
-                                    <dd><p>Drop all elements in the array. After this function the array size is zero,
-                                        but the elements stay in the buffer. </p>
+                                    <dd><p>Drop all elements in the array.</p>
+                                        <div class="admonition warning">
+                                            <p class="admonition-title">Warning</p>
+                                            <p>After this function the array size is zero, but the elements stay in the
+                                                buffer.</p>
+                                        </div>
                                         <dl class="field-list simple">
                                             <dt class="field-odd">Parameters</dt>
                                             <dd class="field-odd"><p><strong>array</strong> – Reference to bp_array.
@@ -420,6 +445,9 @@
                                             </dd>
                                             <dt class="field-even">Returns</dt>
                                             <dd class="field-even"><p>0 on success, errno otherwise. </p>
+                                            </dd>
+                                            <dt class="field-odd">Returns</dt>
+                                            <dd class="field-odd"><p>-ENODEV if the ‘array’ argument is NULL. </p>
                                             </dd>
                                         </dl>
                                     </dd>
@@ -449,8 +477,10 @@
                                             </p>
                                             </dd>
                                             <dt class="field-even">Returns</dt>
-                                            <dd class="field-even"><p>The size of array. Always return 0 if the argument
-                                                array is null. </p>
+                                            <dd class="field-even"><p>The size of array. </p>
+                                            </dd>
+                                            <dt class="field-odd">Returns</dt>
+                                            <dd class="field-odd"><p>0 if the ‘array’ argument is NULL. </p>
                                             </dd>
                                         </dl>
                                     </dd>

@@ -66,16 +66,20 @@ typedef struct {
 /*!
  * Get the root element of the Heap tree.
  * @param heap Reference to bp_heap.
- * @return A reference to the root element, or NULL if the heap is empty or the heap
- * argument is NULL.
+ * @return A reference to the root element.
+ * @return NULL if the 'heap' argument is NULL or if the heap is empty.
  */
 void *bp_heap_top(bp_heap_t *heap);
 
 /*!
- * Drop all elements in the heap. After this function the heap size is zero, but the
- * elements stay in the buffer.
+ * Drop all elements in the heap.
+ *
+ * @warning After this function the heap size is zero, but the elements stay in the
+ * buffer.
+ *
  * @param heap Reference to bp_heap.
- * @return 0 on success, errno otherwise.
+ * @return 0 on success.
+ * @retrun -ENODEV if the 'heap' argument is NULL.
  */
 int bp_heap_clear(bp_heap_t *heap);
 
@@ -83,7 +87,10 @@ int bp_heap_clear(bp_heap_t *heap);
  * Remove the root element of the Heap tree and put it in el argument variable.
  * @param heap Reference to bp_heap.
  * @param el [out] Reference to a variable, where the removed element will be put.
- * @return 0 on success, errno, otherwise.
+ * @return 0 on success.
+ * @return -ENODEV if the 'heap' or 'el' argument is NULL.
+ * @return -ENOENT if the stack size is zero.
+ * @return -EINVAL if the heap '_cmp' field is NULL.
  */
 int bp_heap_pop(bp_heap_t *heap, void *el);
 
@@ -91,7 +98,9 @@ int bp_heap_pop(bp_heap_t *heap, void *el);
  * Push an element on the Heap tree.
  * @param heap Reference to bp_heap.
  * @param el Reference to the element to be pushed.
- * @return 0 on success, errno otherwise.
+ * @return 0 on success.
+ * @return -ENODEV if the 'heap' or the 'el' argument is NULL.
+ * @return -EINVAL if the heap '_cmp' field is NULL.
  */
 int bp_heap_push(bp_heap_t *heap, void *el);
 
@@ -103,7 +112,10 @@ int bp_heap_push(bp_heap_t *heap, void *el);
  * @param heap Reference to bp_heap.
  * @param param Reference to the parameter used to compare elements.
  * @param cmp Function to compare an element with the parameter passed at argument param.
- * @return 0 on success, errno otherwise.
+ * @return 0 on success.
+ * @return -ENODEV if the 'heap' or the 'param' argument is NULL.
+ * @return -ENOENT if the element isn't in the heap.
+ * @return -EINVAL if the heap '_cmp' field is NULL.
  */
 int bp_heap_del(bp_heap_t *heap, void *param, bool (*cmp)(void *el, void *param));
 
@@ -115,8 +127,8 @@ int bp_heap_del(bp_heap_t *heap, void *param, bool (*cmp)(void *el, void *param)
  * @param heap Reference to bp_heap.
  * @param param Reference to the parameter used to compare elements.
  * @param cmp Function to compare an element with the parameter passed at argument param.
- * @return A reference to the found element, or NULL if the element wasn't found or some
- * mandatory argument is null.
+ * @return A reference to the found element.
+ * @return NULL if the element wasn't found or if the 'heap' or the 'el' argument is NULL.
  */
 void *bp_heap_find(bp_heap_t *heap, void *param, bool (*cmp)(void *el, void *param));
 

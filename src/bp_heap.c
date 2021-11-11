@@ -62,8 +62,8 @@ extern "C" {
  * @note The index starts by 1.
  * @param heap_ptr Reference to bp_heap
  * @param idx Index of the desired node.
- * @return Reference to the desired node, or NULL if the index is out of range or the
- * heap_ptr argument is NULL.
+ * @return Reference to the desired node.
+ * @return NULL if the index is out of range or the 'heap_ptr' argument is NULL.
  */
 #define BP_HEAP_GET(heap_ptr, idx) bp_array_get(&(heap_ptr)->_coll, (idx) -1)
 

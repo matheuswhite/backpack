@@ -53,15 +53,16 @@ typedef struct {
  * Get an element from the ring buffer, based on its position.
  * @param ring Reference to bp_ring.
  * @param idx Element index.
- * @return A reference to the desired element, or NULL if the index is out of range or the
- * ring argument is NULL.
+ * @return A reference to the desired element
+ * @return NULL if the index is out of range or the 'ring' argument is NULL.
  */
 void *bp_ring_get(bp_ring_t *ring, usize idx);
 
 /*!
  * Get the oldest element (at tail) in the ring buffer.
  * @param ring Reference to bp_ring.
- * @return A reference to the oldest element, or NULL if the ring argument is NULL.
+ * @return A reference to the oldest element.
+ * @return NULL if the 'ring' argument is NULL or if the ring is empty.
  */
 void *bp_ring_peek(bp_ring_t *ring);
 
@@ -70,7 +71,9 @@ void *bp_ring_peek(bp_ring_t *ring);
  * variable.
  * @param ring Reference to bp_ring.
  * @param el [out] Reference to a variable where the removed element will be put.
- * @return 0 on success, errno otherwise.
+ * @return 0 on success.
+ * @return -ENODEV if the 'ring' or the 'el' argument is NULL.
+ * @return -ENOENT if the ring is empty.
  */
 int bp_ring_pop(bp_ring_t *ring, void *el);
 
@@ -78,7 +81,8 @@ int bp_ring_pop(bp_ring_t *ring, void *el);
  * Push an element at the end (at head) of ring buffer.
  * @param ring Reference to bp_ring.
  * @param el Reference to the element to be pushed.
- * @return 0 on success, errno otherwise.
+ * @return 0 on success.
+ * @return -ENODEV if the 'ring' or the 'el' argument is NULL.
  */
 int bp_ring_push(bp_ring_t *ring, void *el);
 
@@ -90,8 +94,9 @@ int bp_ring_push(bp_ring_t *ring, void *el);
  * @param ring Reference to bp_ring.
  * @param param Reference to the parameter used to compare elements.
  * @param cmp Function to compare an element with the parameter passed at argument param.
- * @return The index of found element, or BP_RING_INVALID_INDEX if the element wasn't
- * found or some mandatory argument is null.
+ * @return The index of found element.
+ * @return BP_RING_INVALID_INDEX if the element wasn't found or if the 'ring' or the
+ * 'param' argument is NULL.
  */
 usize bp_ring_find_idx(bp_ring_t *ring, void *param, bool (*cmp)(void *el, void *param));
 
@@ -103,23 +108,29 @@ usize bp_ring_find_idx(bp_ring_t *ring, void *param, bool (*cmp)(void *el, void 
  * @param ring Reference to bp_ring.
  * @param param Reference to the parameter used to compare elements.
  * @param cmp Function to compare an element with the parameter passed at argument param.
- * @return A reference to the found element, or NULL if the element wasn't found or some
- * mandatory argument is null.
+ * @return A reference to the found element.
+ * @return NULL if the element wasn't found or if the 'ring' or the 'param' argument is
+ * NULL.
  */
 void *bp_ring_find(bp_ring_t *ring, void *param, bool (*cmp)(void *el, void *param));
 
 /*!
- * Drop all elements in the ring buffer. After this function the ring buffer size is zero,
- * but the elements stay in the buffer.
+ * Drop all elements in the ring buffer.
+ *
+ * @warning After this function the ring buffer size is zero, but the elements stay in the
+ * buffer.
+ *
  * @param ring Reference to bp_ring.
- * @return 0 on success, errno otherwise.
+ * @return 0 on success.
+ * @return -ENODEV if the 'ring' argument is NULL.
  */
 int bp_ring_clear(bp_ring_t *ring);
 
 /*!
  * Get the ring buffer size.
  * @param ring Reference to bp_ring.
- * @return The size of ring buffer. Always return 0 if the argument ring is null.
+ * @return The size of ring buffer.
+ * @return 0 if the 'ring' argument is null.
  */
 usize bp_ring_size(bp_ring_t *ring);
 

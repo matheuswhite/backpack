@@ -245,7 +245,10 @@
             </dl>
             <dl class="section return">
                 <dt>Returns</dt>
-                <dd>A reference to the desired element, or NULL if the stack argument is NULL.</dd>
+                <dd>A reference to the desired element.</dd>
+                <dd>
+                    NULL if the 'stack' argument is NULL.
+                </dd>
             </dl>
 
         </div>
@@ -296,7 +299,13 @@
             </dl>
             <dl class="section return">
                 <dt>Returns</dt>
-                <dd>0 on success, errno otherwise.</dd>
+                <dd>0 on success.</dd>
+                <dd>
+                    -ENODEV if the 'stack' or 'el' argument is NULL.
+                </dd>
+                <dd>
+                    -ENOENT if the stack is empty.
+                </dd>
             </dl>
 
         </div>

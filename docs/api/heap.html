@@ -263,8 +263,11 @@
                                             <dd class="field-odd"><p><strong>heap</strong> – Reference to bp_heap. </p>
                                             </dd>
                                             <dt class="field-even">Returns</dt>
-                                            <dd class="field-even"><p>A reference to the root element, or NULL if the
-                                                heap is empty or the heap argument is NULL. </p>
+                                            <dd class="field-even"><p>A reference to the root element. </p>
+                                            </dd>
+                                            <dt class="field-odd">Returns</dt>
+                                            <dd class="field-odd"><p>NULL if the ‘heap’ argument is NULL or if the heap
+                                                is empty. </p>
                                             </dd>
                                         </dl>
                                     </dd>
@@ -287,14 +290,19 @@
                                             class="pre">heap</span></span><span class="sig-paren">)</span><a
                                             class="headerlink" href="#_CPPv413bp_heap_clearP9bp_heap_t"
                                             title="Permalink to this definition"></a><br/></dt>
-                                    <dd><p>Drop all elements in the heap. After this function the heap size is zero, but
-                                        the elements stay in the buffer. </p>
+                                    <dd><p>Drop all elements in the heap.</p>
+                                        <div class="admonition warning">
+                                            <p class="admonition-title">Warning</p>
+                                            <p>After this function the heap size is zero, but the elements stay in the
+                                                buffer.</p>
+                                        </div>
                                         <dl class="field-list simple">
                                             <dt class="field-odd">Parameters</dt>
                                             <dd class="field-odd"><p><strong>heap</strong> – Reference to bp_heap. </p>
                                             </dd>
                                             <dt class="field-even">Returns</dt>
-                                            <dd class="field-even"><p>0 on success, errno otherwise. </p>
+                                            <dd class="field-even"><p>0 on success. &#64;retrun -ENODEV if the ‘heap’
+                                                argument is NULL. </p>
                                             </dd>
                                         </dl>
                                     </dd>
@@ -330,7 +338,17 @@
                                                 </ul>
                                             </dd>
                                             <dt class="field-even">Returns</dt>
-                                            <dd class="field-even"><p>0 on success, errno, otherwise. </p>
+                                            <dd class="field-even"><p>0 on success. </p>
+                                            </dd>
+                                            <dt class="field-odd">Returns</dt>
+                                            <dd class="field-odd"><p>-ENODEV if the ‘heap’ or ‘el’ argument is
+                                                NULL. </p>
+                                            </dd>
+                                            <dt class="field-even">Returns</dt>
+                                            <dd class="field-even"><p>-ENOENT if the stack size is zero. </p>
+                                            </dd>
+                                            <dt class="field-odd">Returns</dt>
+                                            <dd class="field-odd"><p>-EINVAL if the heap ‘_cmp’ field is NULL. </p>
                                             </dd>
                                         </dl>
                                     </dd>
@@ -367,7 +385,14 @@
                                                 </ul>
                                             </dd>
                                             <dt class="field-even">Returns</dt>
-                                            <dd class="field-even"><p>0 on success, errno otherwise. </p>
+                                            <dd class="field-even"><p>0 on success. </p>
+                                            </dd>
+                                            <dt class="field-odd">Returns</dt>
+                                            <dd class="field-odd"><p>-ENODEV if the ‘heap’ or the ‘el’ argument is
+                                                NULL. </p>
+                                            </dd>
+                                            <dt class="field-even">Returns</dt>
+                                            <dd class="field-even"><p>-EINVAL if the heap ‘_cmp’ field is NULL. </p>
                                             </dd>
                                         </dl>
                                     </dd>
@@ -418,7 +443,17 @@
                                                 </ul>
                                             </dd>
                                             <dt class="field-even">Returns</dt>
-                                            <dd class="field-even"><p>0 on success, errno otherwise. </p>
+                                            <dd class="field-even"><p>0 on success. </p>
+                                            </dd>
+                                            <dt class="field-odd">Returns</dt>
+                                            <dd class="field-odd"><p>-ENODEV if the ‘heap’ or the ‘param’ argument is
+                                                NULL. </p>
+                                            </dd>
+                                            <dt class="field-even">Returns</dt>
+                                            <dd class="field-even"><p>-ENOENT if the element isn’t in the heap. </p>
+                                            </dd>
+                                            <dt class="field-odd">Returns</dt>
+                                            <dd class="field-odd"><p>-EINVAL if the heap ‘_cmp’ field is NULL. </p>
                                             </dd>
                                         </dl>
                                     </dd>
@@ -473,8 +508,11 @@
                                                 </ul>
                                             </dd>
                                             <dt class="field-even">Returns</dt>
-                                            <dd class="field-even"><p>A reference to the found element, or NULL if the
-                                                element wasn’t found or some mandatory argument is null. </p>
+                                            <dd class="field-even"><p>A reference to the found element. </p>
+                                            </dd>
+                                            <dt class="field-odd">Returns</dt>
+                                            <dd class="field-odd"><p>NULL if the element wasn’t found or if the ‘heap’
+                                                or the ‘el’ argument is NULL. </p>
                                             </dd>
                                         </dl>
                                     </dd>
