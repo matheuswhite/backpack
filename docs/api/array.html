@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/"/>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Array &mdash; Backpack documentation</title>
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css"/>
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css"/>
+    <link rel="stylesheet" href="../_static/graphviz.css" type="text/css"/>
+    <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+    <![endif]-->
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html"/>
+    <link rel="search" title="Search" href="../search.html"/>
+    <link rel="next" title="Heap" href="heap.html"/>
+    <link rel="prev" title="API" href="index.html"/>
+</head>
+
+<body class="wy-body-for-nav">
+<div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+        <div class="wy-side-scroll">
+            <div class="wy-side-nav-search">
+                <a href="../index.html" class="icon icon-home"> Backpack
+                </a>
+                <div role="search">
+                    <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+                        <input type="text" name="q" placeholder="Search docs"/>
+                        <input type="hidden" name="check_keywords" value="yes"/>
+                        <input type="hidden" name="area" value="default"/>
+                    </form>
+                </div>
+            </div>
+            <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+                <ul class="current">
+                    <li class="toctree-l1 current"><a class="reference internal" href="index.html">API</a>
+                        <ul class="current">
+                            <li class="toctree-l2 current"><a class="current reference internal" href="#">Array</a></li>
+                            <li class="toctree-l2"><a class="reference internal" href="heap.html">Heap</a></li>
+                            <li class="toctree-l2"><a class="reference internal" href="ring.html">Ring</a></li>
+                            <li class="toctree-l2"><a class="reference internal" href="stack.html">Stack</a></li>
+                        </ul>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+        <nav class="wy-nav-top" aria-label="Mobile navigation menu">
+            <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+            <a href="../index.html">Backpack</a>
+        </nav>
+
+        <div class="wy-nav-content">
+            <div class="rst-content">
+                <div role="navigation" aria-label="Page navigation">
+                    <ul class="wy-breadcrumbs">
+                        <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+                        <li><a href="index.html">API</a> &raquo;</li>
+                        <li>Array</li>
+                        <li class="wy-breadcrumbs-aside">
+                            <a href="../_sources/api/array.rst.txt" rel="nofollow"> View page source</a>
+                        </li>
+                    </ul>
+                    <hr/>
+                </div>
+                <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+                    <div itemprop="articleBody">
+
+                        <section id="array">
+                            <span id="api-array"></span>
+                            <h1>Array<a class="headerlink" href="#array" title="Permalink to this headline"></a></h1>
+                            <p>Specifies the array structure. This structure works as a buffer, where the develop could
+                                insert the elements at the end and remove elements at any position. </p>
+                            <p>
+                            <dl class="simple">
+                                <dt><strong>Author</strong></dt>
+                                <dd><p>Matheus T. dos Santos (<a class="reference external"
+                                                                 href="mailto:tenoriomatheus0&#37;&#52;&#48;gmail&#46;com">tenoriomatheus0<span>&#64;</span>gmail<span>&#46;</span>com</a>)
+                                </p>
+                                </dd>
+                                <dt><strong>Version</strong></dt>
+                                <dd><p>0.1.0 </p>
+                                </dd>
+                                <dt><strong>Date</strong></dt>
+                                <dd><p>19/09/2021</p>
+                                </dd>
+                                <dt><strong>Copyright</strong></dt>
+                                <dd><p>Matheus T. dos Santos all rights reserved (c) 2021 </p>
+                                </dd>
+                            </dl>
+                            </p>
+                            <div class="breathe-sectiondef docutils container">
+                                <p class="breathe-sectiondef-title rubric" id="breathe-section-title-defines">
+                                    Defines</p>
+                                <dl class="cpp macro">
+                                    <dt class="sig sig-object cpp" id="c.BP_ARRAY_INVALID_INDEX">
+                                        <span class="target"
+                                              id="bp__array_8h_1ad261e2b92b4752b3872c4d05e60ad8da"></span><span
+                                            class="sig-name descname"><span class="n"><span class="pre">BP_ARRAY_INVALID_INDEX</span></span></span><a
+                                            class="headerlink" href="#c.BP_ARRAY_INVALID_INDEX"
+                                            title="Permalink to this definition"></a><br/></dt>
+                                    <dd><p>Value representing an invalid index </p>
+                                    </dd>
+                                </dl>
+
+                                <dl class="cpp macro">
+                                    <dt class="sig sig-object cpp" id="c.BP_ARRAY_INIT">
+                                        <span class="target"
+                                              id="bp__array_8h_1a14c990b783d8463e39b3452afb8d00c9"></span><span
+                                            class="sig-name descname"><span class="n"><span
+                                            class="pre">BP_ARRAY_INIT</span></span></span><span
+                                            class="sig-paren">(</span><span class="n"><span
+                                            class="pre">array_</span></span><span class="sig-paren">)</span><a
+                                            class="headerlink" href="#c.BP_ARRAY_INIT"
+                                            title="Permalink to this definition"></a><br/></dt>
+                                    <dd><p>Macro to initialize a bp_array. </p>
+                                        <dl class="field-list simple">
+                                            <dt class="field-odd">Parameters</dt>
+                                            <dd class="field-odd">
+                                                <ul class="simple">
+                                                    <li><p><strong>array_</strong> – buffer where the elements will be
+                                                        stored. </p></li>
+                                                </ul>
+                                            </dd>
+                                        </dl>
+                                    </dd>
+                                </dl>
+
+                                <dl class="cpp macro">
+                                    <dt class="sig sig-object cpp" id="c.BP_ARRAY_START">
+                                        <span class="target"
+                                              id="bp__array_8h_1a156d8270d99f086ce9ea1bb463c8b8ca"></span><span
+                                            class="sig-name descname"><span class="n"><span
+                                            class="pre">BP_ARRAY_START</span></span></span><span
+                                            class="sig-paren">(</span><span class="n"><span
+                                            class="pre">array_</span></span>, <span class="n"><span
+                                            class="pre">size_</span></span><span class="sig-paren">)</span><a
+                                            class="headerlink" href="#c.BP_ARRAY_START"
+                                            title="Permalink to this definition"></a><br/></dt>
+                                    <dd><p>Macro to initialize a bp_array, which have initials elements. </p>
+                                        <dl class="field-list simple">
+                                            <dt class="field-odd">Parameters</dt>
+                                            <dd class="field-odd">
+                                                <ul class="simple">
+                                                    <li><p><strong>array_</strong> – buffer where the elements will be
+                                                        stored. </p></li>
+                                                    <li><p><strong>size_</strong> – Number of elements already presents
+                                                        in the buffer. </p></li>
+                                                </ul>
+                                            </dd>
+                                        </dl>
+                                    </dd>
+                                </dl>
+
+                            </div>
+                            <div class="breathe-sectiondef docutils container">
+                                <p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">
+                                    Functions</p>
+                                <dl class="cpp function">
+                                    <dt class="sig sig-object cpp" id="_CPPv412bp_array_getP10bp_array_t5usize">
+                                        <span id="_CPPv312bp_array_getP10bp_array_t5usize"></span><span
+                                            id="_CPPv212bp_array_getP10bp_array_t5usize"></span><span
+                                            id="bp_array_get__bp_array_tP.usize"></span><span class="target"
+                                                                                              id="bp__array_8h_1aac6c8c099278a2f1229834c959e06b11"></span><span
+                                            class="kt"><span class="pre">void</span></span><span class="w"> </span><span
+                                            class="p"><span class="pre">*</span></span><span
+                                            class="sig-name descname"><span class="n"><span
+                                            class="pre">bp_array_get</span></span></span><span
+                                            class="sig-paren">(</span><a class="reference internal"
+                                                                         href="#_CPPv410bp_array_t"
+                                                                         title="bp_array_t"><span class="n"><span
+                                            class="pre">bp_array_t</span></span></a><span class="w"> </span><span
+                                            class="p"><span class="pre">*</span></span><span class="n sig-param"><span
+                                            class="pre">array</span></span>, <span class="n"><span
+                                            class="pre">usize</span></span><span class="w"> </span><span
+                                            class="n sig-param"><span class="pre">idx</span></span><span
+                                            class="sig-paren">)</span><a class="headerlink"
+                                                                         href="#_CPPv412bp_array_getP10bp_array_t5usize"
+                                                                         title="Permalink to this definition"></a><br/>
+                                    </dt>
+                                    <dd><p>Get an element from the array, based on its position. </p>
+                                        <dl class="field-list simple">
+                                            <dt class="field-odd">Parameters</dt>
+                                            <dd class="field-odd">
+                                                <ul class="simple">
+                                                    <li><p><strong>array</strong> – Reference to bp_array. </p></li>
+                                                    <li><p><strong>idx</strong> – Element index. </p></li>
+                                                </ul>
+                                            </dd>
+                                            <dt class="field-even">Returns</dt>
+                                            <dd class="field-even"><p>A reference to the desired element, or NULL if the
+                                                index is out of range or the array argument is NULL. </p>
+                                            </dd>
+                                        </dl>
+                                    </dd>
+                                </dl>
+
+                                <dl class="cpp function">
+                                    <dt class="sig sig-object cpp" id="_CPPv413bp_array_pushP10bp_array_tPv">
+                                        <span id="_CPPv313bp_array_pushP10bp_array_tPv"></span><span
+                                            id="_CPPv213bp_array_pushP10bp_array_tPv"></span><span
+                                            id="bp_array_push__bp_array_tP.voidP"></span><span class="target"
+                                                                                               id="bp__array_8h_1a91287cfddb179ae135afb45ecb7b27ac"></span><span
+                                            class="kt"><span class="pre">int</span></span><span class="w"> </span><span
+                                            class="sig-name descname"><span class="n"><span
+                                            class="pre">bp_array_push</span></span></span><span
+                                            class="sig-paren">(</span><a class="reference internal"
+                                                                         href="#_CPPv410bp_array_t"
+                                                                         title="bp_array_t"><span class="n"><span
+                                            class="pre">bp_array_t</span></span></a><span class="w"> </span><span
+                                            class="p"><span class="pre">*</span></span><span class="n sig-param"><span
+                                            class="pre">array</span></span>, <span class="kt"><span
+                                            class="pre">void</span></span><span class="w"> </span><span class="p"><span
+                                            class="pre">*</span></span><span class="n sig-param"><span
+                                            class="pre">el</span></span><span class="sig-paren">)</span><a
+                                            class="headerlink" href="#_CPPv413bp_array_pushP10bp_array_tPv"
+                                            title="Permalink to this definition"></a><br/></dt>
+                                    <dd><p>Push an element at the end of array. </p>
+                                        <dl class="field-list simple">
+                                            <dt class="field-odd">Parameters</dt>
+                                            <dd class="field-odd">
+                                                <ul class="simple">
+                                                    <li><p><strong>array</strong> – Reference to bp_array. </p></li>
+                                                    <li><p><strong>el</strong> – Reference to the element to be pushed.
+                                                    </p></li>
+                                                </ul>
+                                            </dd>
+                                            <dt class="field-even">Returns</dt>
+                                            <dd class="field-even"><p>0 on success, errno otherwise. </p>
+                                            </dd>
+                                        </dl>
+                                    </dd>
+                                </dl>
+
+                                <dl class="cpp function">
+                                    <dt class="sig sig-object cpp" id="_CPPv412bp_array_delP10bp_array_t5usize">
+                                        <span id="_CPPv312bp_array_delP10bp_array_t5usize"></span><span
+                                            id="_CPPv212bp_array_delP10bp_array_t5usize"></span><span
+                                            id="bp_array_del__bp_array_tP.usize"></span><span class="target"
+                                                                                              id="bp__array_8h_1a9f7514a29b57dab68d98c2ce2489179f"></span><span
+                                            class="kt"><span class="pre">int</span></span><span class="w"> </span><span
+                                            class="sig-name descname"><span class="n"><span
+                                            class="pre">bp_array_del</span></span></span><span
+                                            class="sig-paren">(</span><a class="reference internal"
+                                                                         href="#_CPPv410bp_array_t"
+                                                                         title="bp_array_t"><span class="n"><span
+                                            class="pre">bp_array_t</span></span></a><span class="w"> </span><span
+                                            class="p"><span class="pre">*</span></span><span class="n sig-param"><span
+                                            class="pre">array</span></span>, <span class="n"><span
+                                            class="pre">usize</span></span><span class="w"> </span><span
+                                            class="n sig-param"><span class="pre">idx</span></span><span
+                                            class="sig-paren">)</span><a class="headerlink"
+                                                                         href="#_CPPv412bp_array_delP10bp_array_t5usize"
+                                                                         title="Permalink to this definition"></a><br/>
+                                    </dt>
+                                    <dd><p>Delete an array element, based on its position. </p>
+                                        <dl class="field-list simple">
+                                            <dt class="field-odd">Parameters</dt>
+                                            <dd class="field-odd">
+                                                <ul class="simple">
+                                                    <li><p><strong>array</strong> – Reference to bp_array. </p></li>
+                                                    <li><p><strong>idx</strong> – Element idx. </p></li>
+                                                </ul>
+                                            </dd>
+                                            <dt class="field-even">Returns</dt>
+                                            <dd class="field-even"><p>0 on success, errno otherwise. </p>
+                                            </dd>
+                                        </dl>
+                                    </dd>
+                                </dl>
+
+                                <dl class="cpp function">
+                                    <dt class="sig sig-object cpp"
+                                        id="_CPPv417bp_array_find_idxP10bp_array_tPvPFbPvPvE">
+                                        <span id="_CPPv317bp_array_find_idxP10bp_array_tPvPFbPvPvE"></span><span
+                                            id="_CPPv217bp_array_find_idxP10bp_array_tPvPFbPvPvE"></span><span
+                                            class="target"
+                                            id="bp__array_8h_1abf5690bfd309b022c187b7b19c69f29f"></span><span class="n"><span
+                                            class="pre">usize</span></span><span class="w"> </span><span
+                                            class="sig-name descname"><span class="n"><span class="pre">bp_array_find_idx</span></span></span><span
+                                            class="sig-paren">(</span><a class="reference internal"
+                                                                         href="#_CPPv410bp_array_t"
+                                                                         title="bp_array_t"><span class="n"><span
+                                            class="pre">bp_array_t</span></span></a><span class="w"> </span><span
+                                            class="p"><span class="pre">*</span></span><span class="n sig-param"><span
+                                            class="pre">array</span></span>, <span class="kt"><span
+                                            class="pre">void</span></span><span class="w"> </span><span class="p"><span
+                                            class="pre">*</span></span><span class="n sig-param"><span
+                                            class="pre">param</span></span>, <span class="kt"><span
+                                            class="pre">bool</span></span><span class="w"> </span><span class="p"><span
+                                            class="pre">(</span></span><span class="p"><span class="pre">*</span></span><span
+                                            class="n sig-param"><span class="pre">cmp</span></span><span class="p"><span
+                                            class="pre">)</span></span><span class="p"><span class="pre">(</span></span><span
+                                            class="kt"><span class="pre">void</span></span><span class="w"> </span><span
+                                            class="p"><span class="pre">*</span></span><span class="n"><span
+                                            class="pre">el</span></span><span class="p"><span
+                                            class="pre">,</span></span><span class="w"> </span><span class="kt"><span
+                                            class="pre">void</span></span><span class="w"> </span><span class="p"><span
+                                            class="pre">*</span></span><span class="n"><span
+                                            class="pre">param</span></span><span class="p"><span
+                                            class="pre">)</span></span><span class="sig-paren">)</span><a
+                                            class="headerlink" href="#_CPPv417bp_array_find_idxP10bp_array_tPvPFbPvPvE"
+                                            title="Permalink to this definition"></a><br/></dt>
+                                    <dd><p>Find the index of an element, based at some parameter related to the element.
+                                        This parameter could be the element itself, or some field of its type. The match
+                                        will be done based on cmp function pointer. If the cmp function pointer argument
+                                        is null, then the elements will be compared with the parameter byte by
+                                        byte. </p>
+                                        <dl class="field-list simple">
+                                            <dt class="field-odd">Parameters</dt>
+                                            <dd class="field-odd">
+                                                <ul class="simple">
+                                                    <li><p><strong>array</strong> – Reference to bp_array. </p></li>
+                                                    <li><p><strong>param</strong> – Reference to the parameter used to
+                                                        compare elements. </p></li>
+                                                    <li><p><strong>cmp</strong> – Function to compare an element with
+                                                        the parameter passed at argument param. </p></li>
+                                                </ul>
+                                            </dd>
+                                            <dt class="field-even">Returns</dt>
+                                            <dd class="field-even"><p>The index of found element, or
+                                                BP_ARRAY_INVALID_INDEX if the element wasn’t found or some mandatory
+                                                argument is null. </p>
+                                            </dd>
+                                        </dl>
+                                    </dd>
+                                </dl>
+
+                                <dl class="cpp function">
+                                    <dt class="sig sig-object cpp" id="_CPPv413bp_array_findP10bp_array_tPvPFbPvPvE">
+                                        <span id="_CPPv313bp_array_findP10bp_array_tPvPFbPvPvE"></span><span
+                                            id="_CPPv213bp_array_findP10bp_array_tPvPFbPvPvE"></span><span
+                                            class="target"
+                                            id="bp__array_8h_1a8fbf06a68528f41eef4e953161889969"></span><span
+                                            class="kt"><span class="pre">void</span></span><span class="w"> </span><span
+                                            class="p"><span class="pre">*</span></span><span
+                                            class="sig-name descname"><span class="n"><span
+                                            class="pre">bp_array_find</span></span></span><span
+                                            class="sig-paren">(</span><a class="reference internal"
+                                                                         href="#_CPPv410bp_array_t"
+                                                                         title="bp_array_t"><span class="n"><span
+                                            class="pre">bp_array_t</span></span></a><span class="w"> </span><span
+                                            class="p"><span class="pre">*</span></span><span class="n sig-param"><span
+                                            class="pre">array</span></span>, <span class="kt"><span
+                                            class="pre">void</span></span><span class="w"> </span><span class="p"><span
+                                            class="pre">*</span></span><span class="n sig-param"><span
+                                            class="pre">param</span></span>, <span class="kt"><span
+                                            class="pre">bool</span></span><span class="w"> </span><span class="p"><span
+                                            class="pre">(</span></span><span class="p"><span class="pre">*</span></span><span
+                                            class="n sig-param"><span class="pre">cmp</span></span><span class="p"><span
+                                            class="pre">)</span></span><span class="p"><span class="pre">(</span></span><span
+                                            class="kt"><span class="pre">void</span></span><span class="w"> </span><span
+                                            class="p"><span class="pre">*</span></span><span class="n"><span
+                                            class="pre">el</span></span><span class="p"><span
+                                            class="pre">,</span></span><span class="w"> </span><span class="kt"><span
+                                            class="pre">void</span></span><span class="w"> </span><span class="p"><span
+                                            class="pre">*</span></span><span class="n"><span
+                                            class="pre">param</span></span><span class="p"><span
+                                            class="pre">)</span></span><span class="sig-paren">)</span><a
+                                            class="headerlink" href="#_CPPv413bp_array_findP10bp_array_tPvPFbPvPvE"
+                                            title="Permalink to this definition"></a><br/></dt>
+                                    <dd><p>Find the element in the array, based at some parameter related to the
+                                        element. This parameter could be the element itself, or some field of its type.
+                                        The match will be done based on cmp function pointer. If the cmp function point
+                                        argument is null, then the elements will be compared with the parameter byte by
+                                        byte. </p>
+                                        <dl class="field-list simple">
+                                            <dt class="field-odd">Parameters</dt>
+                                            <dd class="field-odd">
+                                                <ul class="simple">
+                                                    <li><p><strong>array</strong> – Reference to bp_array. </p></li>
+                                                    <li><p><strong>param</strong> – Reference to the parameter used to
+                                                        compare elements. </p></li>
+                                                    <li><p><strong>cmp</strong> – Function to compare an element with
+                                                        the parameter passed at argument param. </p></li>
+                                                </ul>
+                                            </dd>
+                                            <dt class="field-even">Returns</dt>
+                                            <dd class="field-even"><p>A reference to the found element, or NULL if the
+                                                element wasn’t found or some mandatory argument is null. </p>
+                                            </dd>
+                                        </dl>
+                                    </dd>
+                                </dl>
+
+                                <dl class="cpp function">
+                                    <dt class="sig sig-object cpp" id="_CPPv414bp_array_clearP10bp_array_t">
+                                        <span id="_CPPv314bp_array_clearP10bp_array_t"></span><span
+                                            id="_CPPv214bp_array_clearP10bp_array_t"></span><span
+                                            id="bp_array_clear__bp_array_tP"></span><span class="target"
+                                                                                          id="bp__array_8h_1a3034a2c60f4c88b624d49e331c2b2e59"></span><span
+                                            class="kt"><span class="pre">int</span></span><span class="w"> </span><span
+                                            class="sig-name descname"><span class="n"><span
+                                            class="pre">bp_array_clear</span></span></span><span
+                                            class="sig-paren">(</span><a class="reference internal"
+                                                                         href="#_CPPv410bp_array_t"
+                                                                         title="bp_array_t"><span class="n"><span
+                                            class="pre">bp_array_t</span></span></a><span class="w"> </span><span
+                                            class="p"><span class="pre">*</span></span><span class="n sig-param"><span
+                                            class="pre">array</span></span><span class="sig-paren">)</span><a
+                                            class="headerlink" href="#_CPPv414bp_array_clearP10bp_array_t"
+                                            title="Permalink to this definition"></a><br/></dt>
+                                    <dd><p>Drop all elements in the array. After this function the array size is zero,
+                                        but the elements stay in the buffer. </p>
+                                        <dl class="field-list simple">
+                                            <dt class="field-odd">Parameters</dt>
+                                            <dd class="field-odd"><p><strong>array</strong> – Reference to bp_array.
+                                            </p>
+                                            </dd>
+                                            <dt class="field-even">Returns</dt>
+                                            <dd class="field-even"><p>0 on success, errno otherwise. </p>
+                                            </dd>
+                                        </dl>
+                                    </dd>
+                                </dl>
+
+                                <dl class="cpp function">
+                                    <dt class="sig sig-object cpp" id="_CPPv413bp_array_sizeP10bp_array_t">
+                                        <span id="_CPPv313bp_array_sizeP10bp_array_t"></span><span
+                                            id="_CPPv213bp_array_sizeP10bp_array_t"></span><span
+                                            id="bp_array_size__bp_array_tP"></span><span class="target"
+                                                                                         id="bp__array_8h_1a1ba3e67c52ea5cc906bdc782f69f8bbc"></span><span
+                                            class="n"><span class="pre">usize</span></span><span class="w"> </span><span
+                                            class="sig-name descname"><span class="n"><span
+                                            class="pre">bp_array_size</span></span></span><span
+                                            class="sig-paren">(</span><a class="reference internal"
+                                                                         href="#_CPPv410bp_array_t"
+                                                                         title="bp_array_t"><span class="n"><span
+                                            class="pre">bp_array_t</span></span></a><span class="w"> </span><span
+                                            class="p"><span class="pre">*</span></span><span class="n sig-param"><span
+                                            class="pre">array</span></span><span class="sig-paren">)</span><a
+                                            class="headerlink" href="#_CPPv413bp_array_sizeP10bp_array_t"
+                                            title="Permalink to this definition"></a><br/></dt>
+                                    <dd><p>Get the array size. </p>
+                                        <dl class="field-list simple">
+                                            <dt class="field-odd">Parameters</dt>
+                                            <dd class="field-odd"><p><strong>array</strong> – Reference to bp_array.
+                                            </p>
+                                            </dd>
+                                            <dt class="field-even">Returns</dt>
+                                            <dd class="field-even"><p>The size of array. Always return 0 if the argument
+                                                array is null. </p>
+                                            </dd>
+                                        </dl>
+                                    </dd>
+                                </dl>
+
+                                <dl class="cpp function">
+                                    <dt class="sig sig-object cpp" id="_CPPv413bp_array_iterP10bp_array_t">
+                                        <span id="_CPPv313bp_array_iterP10bp_array_t"></span><span
+                                            id="_CPPv213bp_array_iterP10bp_array_t"></span><span
+                                            id="bp_array_iter__bp_array_tP"></span><span class="target"
+                                                                                         id="bp__array_8h_1ac4c980a589d349beecc8cf80c00386d7"></span><span
+                                            class="n"><span class="pre">bp_iter_t</span></span><span
+                                            class="w"> </span><span class="sig-name descname"><span class="n"><span
+                                            class="pre">bp_array_iter</span></span></span><span
+                                            class="sig-paren">(</span><a class="reference internal"
+                                                                         href="#_CPPv410bp_array_t"
+                                                                         title="bp_array_t"><span class="n"><span
+                                            class="pre">bp_array_t</span></span></a><span class="w"> </span><span
+                                            class="p"><span class="pre">*</span></span><span class="n sig-param"><span
+                                            class="pre">array</span></span><span class="sig-paren">)</span><a
+                                            class="headerlink" href="#_CPPv413bp_array_iterP10bp_array_t"
+                                            title="Permalink to this definition"></a><br/></dt>
+                                    <dd><p>Get a iterator to walk through the bp_array.</p>
+                                        <div class="admonition warning">
+                                            <p class="admonition-title">Warning</p>
+                                            <p>This function doesn’t check if the array argument is null. So if this
+                                                argument is null, a crash will occur. That check must be done outside
+                                                the function.</p>
+                                        </div>
+                                        <dl class="field-list simple">
+                                            <dt class="field-odd">Parameters</dt>
+                                            <dd class="field-odd"><p><strong>array</strong> – Reference to bp_array.
+                                            </p>
+                                            </dd>
+                                            <dt class="field-even">Returns</dt>
+                                            <dd class="field-even"><p>A new iterator instance for the bp_array. </p>
+                                            </dd>
+                                        </dl>
+                                    </dd>
+                                </dl>
+
+                            </div>
+                            <dl class="cpp struct">
+                                <dt class="sig sig-object cpp" id="_CPPv410bp_array_t">
+                                    <span id="_CPPv310bp_array_t"></span><span id="_CPPv210bp_array_t"></span><span
+                                        id="bp_array_t"></span><span class="target" id="structbp__array__t"></span><span
+                                        class="k"><span class="pre">struct</span></span><span class="w"> </span><span
+                                        class="sig-name descname"><span class="n"><span
+                                        class="pre">bp_array_t</span></span></span><a class="headerlink"
+                                                                                      href="#_CPPv410bp_array_t"
+                                                                                      title="Permalink to this definition"></a><br/>
+                                </dt>
+                                <dd><em>#include &lt;bp_array.h&gt;</em>
+                                    <p>Struct with metadata about an external buffer.</p>
+                                    <p>
+                                    <div class="admonition note">
+                                        <p class="admonition-title">Note</p>
+                                        <p>This struct need an external buffer to work properly. </p>
+                                    </div>
+                                    </p>
+                                    <div class="breathe-sectiondef docutils container">
+                                        <p class="breathe-sectiondef-title rubric"
+                                           id="breathe-section-title-public-members">Public Members</p>
+                                        <dl class="cpp var">
+                                            <dt class="sig sig-object cpp" id="_CPPv4N10bp_array_t13_element_sizeE">
+                                                <span id="_CPPv3N10bp_array_t13_element_sizeE"></span><span
+                                                    id="_CPPv2N10bp_array_t13_element_sizeE"></span><span
+                                                    id="bp_array_t::_element_size__usize"></span><span class="target"
+                                                                                                       id="structbp__array__t_1aeff44a546d51ecba75816f3bd9ee23a9"></span><span
+                                                    class="n"><span class="pre">usize</span></span><span
+                                                    class="w"> </span><span class="sig-name descname"><span
+                                                    class="n"><span class="pre">_element_size</span></span></span><a
+                                                    class="headerlink" href="#_CPPv4N10bp_array_t13_element_sizeE"
+                                                    title="Permalink to this definition"></a><br/></dt>
+                                            <dd><p>Size (in bytes) of a single element in the array. </p>
+                                            </dd>
+                                        </dl>
+
+                                        <dl class="cpp var">
+                                            <dt class="sig sig-object cpp" id="_CPPv4N10bp_array_t9_max_sizeE">
+                                                <span id="_CPPv3N10bp_array_t9_max_sizeE"></span><span
+                                                    id="_CPPv2N10bp_array_t9_max_sizeE"></span><span
+                                                    id="bp_array_t::_max_size__usize"></span><span class="target"
+                                                                                                   id="structbp__array__t_1a06ea22ccdaaa3cdaffe4aa37bdb04103"></span><span
+                                                    class="n"><span class="pre">usize</span></span><span
+                                                    class="w"> </span><span class="sig-name descname"><span
+                                                    class="n"><span class="pre">_max_size</span></span></span><a
+                                                    class="headerlink" href="#_CPPv4N10bp_array_t9_max_sizeE"
+                                                    title="Permalink to this definition"></a><br/></dt>
+                                            <dd><p>Maximum number of elements in the array. </p>
+                                            </dd>
+                                        </dl>
+
+                                        <dl class="cpp var">
+                                            <dt class="sig sig-object cpp" id="_CPPv4N10bp_array_t5_sizeE">
+                                                <span id="_CPPv3N10bp_array_t5_sizeE"></span><span
+                                                    id="_CPPv2N10bp_array_t5_sizeE"></span><span
+                                                    id="bp_array_t::_size__usize"></span><span class="target"
+                                                                                               id="structbp__array__t_1a44569435e38a8de3a11ebd04daf9c0a4"></span><span
+                                                    class="n"><span class="pre">usize</span></span><span
+                                                    class="w"> </span><span class="sig-name descname"><span
+                                                    class="n"><span class="pre">_size</span></span></span><a
+                                                    class="headerlink" href="#_CPPv4N10bp_array_t5_sizeE"
+                                                    title="Permalink to this definition"></a><br/></dt>
+                                            <dd><p>Current number of elements in the array. </p>
+                                            </dd>
+                                        </dl>
+
+                                        <dl class="cpp var">
+                                            <dt class="sig sig-object cpp" id="_CPPv4N10bp_array_t6_arrayE">
+                                                <span id="_CPPv3N10bp_array_t6_arrayE"></span><span
+                                                    id="_CPPv2N10bp_array_t6_arrayE"></span><span
+                                                    id="bp_array_t::_array__u8_tP"></span><span class="target"
+                                                                                                id="structbp__array__t_1a738ab68d823091ee3f9fd0c027644b33"></span><span
+                                                    class="n"><span class="pre">u8_t</span></span><span
+                                                    class="w"> </span><span class="p"><span
+                                                    class="pre">*</span></span><span class="sig-name descname"><span
+                                                    class="n"><span class="pre">_array</span></span></span><a
+                                                    class="headerlink" href="#_CPPv4N10bp_array_t6_arrayE"
+                                                    title="Permalink to this definition"></a><br/></dt>
+                                            <dd><p>Reference to the buffer, where the elements will be stored. </p>
+                                            </dd>
+                                        </dl>
+
+                                    </div>
+                                </dd>
+                            </dl>
+
+                        </section>
+
+
+                    </div>
+                </div>
+                <footer>
+                    <div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+                        <a href="index.html" class="btn btn-neutral float-left" title="API" accesskey="p"
+                           rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+                        <a href="heap.html" class="btn btn-neutral float-right" title="Heap" accesskey="n" rel="next">Next
+                            <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+                    </div>
+
+                    <hr/>
+
+                    <div role="contentinfo">
+                        <p>&#169; Copyright 2021, Matheus T. dos Santos.</p>
+                    </div>
+
+                    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+                    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+                    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+
+
+                </footer>
+            </div>
+        </div>
+    </section>
+</div>
+<script>
+    jQuery(function () {
+        SphinxRtdTheme.Navigation.enable(true);
+    });
+</script>
+
+</body>
+</html>

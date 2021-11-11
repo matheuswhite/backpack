@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/"/>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Heap &mdash; Backpack documentation</title>
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css"/>
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css"/>
+    <link rel="stylesheet" href="../_static/graphviz.css" type="text/css"/>
+    <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+    <![endif]-->
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html"/>
+    <link rel="search" title="Search" href="../search.html"/>
+    <link rel="next" title="Ring" href="ring.html"/>
+    <link rel="prev" title="Array" href="array.html"/>
+</head>
+
+<body class="wy-body-for-nav">
+<div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+        <div class="wy-side-scroll">
+            <div class="wy-side-nav-search">
+                <a href="../index.html" class="icon icon-home"> Backpack
+                </a>
+                <div role="search">
+                    <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+                        <input type="text" name="q" placeholder="Search docs"/>
+                        <input type="hidden" name="check_keywords" value="yes"/>
+                        <input type="hidden" name="area" value="default"/>
+                    </form>
+                </div>
+            </div>
+            <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+                <ul class="current">
+                    <li class="toctree-l1 current"><a class="reference internal" href="index.html">API</a>
+                        <ul class="current">
+                            <li class="toctree-l2"><a class="reference internal" href="array.html">Array</a></li>
+                            <li class="toctree-l2 current"><a class="current reference internal" href="#">Heap</a></li>
+                            <li class="toctree-l2"><a class="reference internal" href="ring.html">Ring</a></li>
+                            <li class="toctree-l2"><a class="reference internal" href="stack.html">Stack</a></li>
+                        </ul>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+        <nav class="wy-nav-top" aria-label="Mobile navigation menu">
+            <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+            <a href="../index.html">Backpack</a>
+        </nav>
+
+        <div class="wy-nav-content">
+            <div class="rst-content">
+                <div role="navigation" aria-label="Page navigation">
+                    <ul class="wy-breadcrumbs">
+                        <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+                        <li><a href="index.html">API</a> &raquo;</li>
+                        <li>Heap</li>
+                        <li class="wy-breadcrumbs-aside">
+                            <a href="../_sources/api/heap.rst.txt" rel="nofollow"> View page source</a>
+                        </li>
+                    </ul>
+                    <hr/>
+                </div>
+                <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+                    <div itemprop="articleBody">
+
+                        <section id="heap">
+                            <span id="api-heap"></span>
+                            <h1>Heap<a class="headerlink" href="#heap" title="Permalink to this headline"></a></h1>
+                            <p>Specifies the heap structure. the heap could be a Min-Heap or a Max-Heap. </p>
+                            <p>
+                            <dl class="simple">
+                                <dt><strong>Author</strong></dt>
+                                <dd><p>Matheus T. dos Santos (<a class="reference external"
+                                                                 href="mailto:tenoriomatheus0&#37;&#52;&#48;gmail&#46;com">tenoriomatheus0<span>&#64;</span>gmail<span>&#46;</span>com</a>)
+                                </p>
+                                </dd>
+                                <dt><strong>Version</strong></dt>
+                                <dd><p>0.1.0 </p>
+                                </dd>
+                                <dt><strong>Date</strong></dt>
+                                <dd><p>19/09/2021</p>
+                                </dd>
+                                <dt><strong>Copyright</strong></dt>
+                                <dd><p>Matheus T. dos Santos todos os direitos reservados (c) 2021 </p>
+                                </dd>
+                            </dl>
+                            </p>
+                            <div class="breathe-sectiondef docutils container">
+                                <p class="breathe-sectiondef-title rubric" id="breathe-section-title-defines">
+                                    Defines</p>
+                                <dl class="cpp macro">
+                                    <dt class="sig sig-object cpp" id="c.BP_MIN_HEAP_INIT">
+                                        <span class="target" id="bp__heap_8h_1a8281eafd1bf64aeee89d3d330e066480"></span><span
+                                            class="sig-name descname"><span class="n"><span
+                                            class="pre">BP_MIN_HEAP_INIT</span></span></span><span
+                                            class="sig-paren">(</span><span class="n"><span
+                                            class="pre">array_</span></span>, <span class="n"><span
+                                            class="pre">cmp_</span></span><span class="sig-paren">)</span><a
+                                            class="headerlink" href="#c.BP_MIN_HEAP_INIT"
+                                            title="Permalink to this definition"></a><br/></dt>
+                                    <dd><p>Macro to initialize a Min-Heap. </p>
+                                        <dl class="field-list simple">
+                                            <dt class="field-odd">Parameters</dt>
+                                            <dd class="field-odd">
+                                                <ul class="simple">
+                                                    <li><p><strong>array_</strong> – Buffer where the elements will be
+                                                        stored. </p></li>
+                                                    <li><p><strong>cmp_</strong> – Function to compare the heap
+                                                        elements. </p></li>
+                                                </ul>
+                                            </dd>
+                                        </dl>
+                                    </dd>
+                                </dl>
+
+                                <dl class="cpp macro">
+                                    <dt class="sig sig-object cpp" id="c.BP_MAX_HEAP_INIT">
+                                        <span class="target" id="bp__heap_8h_1a80f7622891e275a07a3c8e642da44e75"></span><span
+                                            class="sig-name descname"><span class="n"><span
+                                            class="pre">BP_MAX_HEAP_INIT</span></span></span><span
+                                            class="sig-paren">(</span><span class="n"><span
+                                            class="pre">array_</span></span>, <span class="n"><span
+                                            class="pre">cmp_</span></span><span class="sig-paren">)</span><a
+                                            class="headerlink" href="#c.BP_MAX_HEAP_INIT"
+                                            title="Permalink to this definition"></a><br/></dt>
+                                    <dd><p>Macro to initialize a Max-Heap. </p>
+                                        <dl class="field-list simple">
+                                            <dt class="field-odd">Parameters</dt>
+                                            <dd class="field-odd">
+                                                <ul class="simple">
+                                                    <li><p><strong>array_</strong> – Buffer where the elements will be
+                                                        stored. </p></li>
+                                                    <li><p><strong>cmp_</strong> – Function to compare the heap
+                                                        elements. </p></li>
+                                                </ul>
+                                            </dd>
+                                        </dl>
+                                    </dd>
+                                </dl>
+
+                            </div>
+                            <div class="breathe-sectiondef docutils container">
+                                <p class="breathe-sectiondef-title rubric" id="breathe-section-title-typedefs">
+                                    Typedefs</p>
+                                <dl class="cpp type">
+                                    <dt class="sig sig-object cpp" id="_CPPv413bp_heap_cmp_t">
+                                        <span id="_CPPv313bp_heap_cmp_t"></span><span id="_CPPv213bp_heap_cmp_t"></span><span
+                                            id="bp_heap_cmp_t"></span><span class="target"
+                                                                            id="bp__heap_8h_1a71c75552b401fb9fee00fe36548285be"></span><span
+                                            class="k"><span class="pre">typedef</span></span><span
+                                            class="w"> </span><span class="kt"><span class="pre">int</span></span><span
+                                            class="w"> </span><span class="p"><span class="pre">(</span></span><span
+                                            class="p"><span class="pre">*</span></span><span
+                                            class="sig-name descname"><span class="n"><span
+                                            class="pre">bp_heap_cmp_t</span></span></span><span class="p"><span
+                                            class="pre">)</span></span><span class="p"><span class="pre">(</span></span><span
+                                            class="kt"><span class="pre">void</span></span><span class="w"> </span><span
+                                            class="p"><span class="pre">*</span></span><span class="n"><span
+                                            class="pre">left</span></span><span class="p"><span
+                                            class="pre">,</span></span><span class="w"> </span><span class="kt"><span
+                                            class="pre">void</span></span><span class="w"> </span><span class="p"><span
+                                            class="pre">*</span></span><span class="n"><span
+                                            class="pre">right</span></span><span class="p"><span
+                                            class="pre">)</span></span><a class="headerlink"
+                                                                          href="#_CPPv413bp_heap_cmp_t"
+                                                                          title="Permalink to this definition"></a><br/>
+                                    </dt>
+                                    <dd><p>Type for heap compare function. The return must be 0 for equals values, less
+                                        than 0 if (&lt;= 0) the left is less than the right, and greater than 0 (&gt;=
+                                        0) if the left is greater than the right. </p>
+                                    </dd>
+                                </dl>
+
+                            </div>
+                            <div class="breathe-sectiondef docutils container">
+                                <p class="breathe-sectiondef-title rubric" id="breathe-section-title-enums">Enums</p>
+                                <dl class="cpp enum">
+                                    <dt class="sig sig-object cpp" id="_CPPv414bp_heap_kind_t">
+                                        <span id="_CPPv314bp_heap_kind_t"></span><span
+                                            id="_CPPv214bp_heap_kind_t"></span><span class="target"
+                                                                                     id="bp__heap_8h_1a87e69e892b03e5f24d095af0755328fc"></span><span
+                                            class="k"><span class="pre">enum</span></span><span class="w"> </span><span
+                                            class="sig-name descname"><span class="n"><span
+                                            class="pre">bp_heap_kind_t</span></span></span><a class="headerlink"
+                                                                                              href="#_CPPv414bp_heap_kind_t"
+                                                                                              title="Permalink to this definition"></a><br/>
+                                    </dt>
+                                    <dd><p>Enumerate the kinds of heap. The available options are Min-Heap or
+                                        Max-Heap. </p>
+                                        <p><em>Values:</em></p>
+                                        <dl class="cpp enumerator">
+                                            <dt class="sig sig-object cpp" id="_CPPv4N14bp_heap_kind_t11BP_MIN_HEAPE">
+                                                <span id="_CPPv3N14bp_heap_kind_t11BP_MIN_HEAPE"></span><span
+                                                    id="_CPPv2N14bp_heap_kind_t11BP_MIN_HEAPE"></span><span
+                                                    class="target"
+                                                    id="bp__heap_8h_1a87e69e892b03e5f24d095af0755328fcaa35aa0ba56f155f1bb9d4ee8f3fc045b"></span><span
+                                                    class="k"><span class="pre">enumerator</span></span><span
+                                                    class="w"> </span><span class="sig-name descname"><span
+                                                    class="n"><span class="pre">BP_MIN_HEAP</span></span></span><a
+                                                    class="headerlink" href="#_CPPv4N14bp_heap_kind_t11BP_MIN_HEAPE"
+                                                    title="Permalink to this definition"></a><br/></dt>
+                                            <dd><p>Option for Min-Heap. </p>
+                                            </dd>
+                                        </dl>
+
+                                        <dl class="cpp enumerator">
+                                            <dt class="sig sig-object cpp" id="_CPPv4N14bp_heap_kind_t11BP_MAX_HEAPE">
+                                                <span id="_CPPv3N14bp_heap_kind_t11BP_MAX_HEAPE"></span><span
+                                                    id="_CPPv2N14bp_heap_kind_t11BP_MAX_HEAPE"></span><span
+                                                    class="target"
+                                                    id="bp__heap_8h_1a87e69e892b03e5f24d095af0755328fcadbc9a549c66e35d1f05d0bb163763207"></span><span
+                                                    class="k"><span class="pre">enumerator</span></span><span
+                                                    class="w"> </span><span class="sig-name descname"><span
+                                                    class="n"><span class="pre">BP_MAX_HEAP</span></span></span><a
+                                                    class="headerlink" href="#_CPPv4N14bp_heap_kind_t11BP_MAX_HEAPE"
+                                                    title="Permalink to this definition"></a><br/></dt>
+                                            <dd><p>Option for Max-Heap. </p>
+                                            </dd>
+                                        </dl>
+
+                                    </dd>
+                                </dl>
+
+                            </div>
+                            <div class="breathe-sectiondef docutils container">
+                                <p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">
+                                    Functions</p>
+                                <dl class="cpp function">
+                                    <dt class="sig sig-object cpp" id="_CPPv411bp_heap_topP9bp_heap_t">
+                                        <span id="_CPPv311bp_heap_topP9bp_heap_t"></span><span
+                                            id="_CPPv211bp_heap_topP9bp_heap_t"></span><span
+                                            id="bp_heap_top__bp_heap_tP"></span><span class="target"
+                                                                                      id="bp__heap_8h_1ae0d205498f6ecc867abd7fcc6b7928d0"></span><span
+                                            class="kt"><span class="pre">void</span></span><span class="w"> </span><span
+                                            class="p"><span class="pre">*</span></span><span
+                                            class="sig-name descname"><span class="n"><span
+                                            class="pre">bp_heap_top</span></span></span><span class="sig-paren">(</span><a
+                                            class="reference internal" href="#_CPPv49bp_heap_t" title="bp_heap_t"><span
+                                            class="n"><span class="pre">bp_heap_t</span></span></a><span
+                                            class="w"> </span><span class="p"><span class="pre">*</span></span><span
+                                            class="n sig-param"><span class="pre">heap</span></span><span
+                                            class="sig-paren">)</span><a class="headerlink"
+                                                                         href="#_CPPv411bp_heap_topP9bp_heap_t"
+                                                                         title="Permalink to this definition"></a><br/>
+                                    </dt>
+                                    <dd><p>Get the root element of the Heap tree. </p>
+                                        <dl class="field-list simple">
+                                            <dt class="field-odd">Parameters</dt>
+                                            <dd class="field-odd"><p><strong>heap</strong> – Reference to bp_heap. </p>
+                                            </dd>
+                                            <dt class="field-even">Returns</dt>
+                                            <dd class="field-even"><p>A reference to the root element, or NULL if the
+                                                heap is empty or the heap argument is NULL. </p>
+                                            </dd>
+                                        </dl>
+                                    </dd>
+                                </dl>
+
+                                <dl class="cpp function">
+                                    <dt class="sig sig-object cpp" id="_CPPv413bp_heap_clearP9bp_heap_t">
+                                        <span id="_CPPv313bp_heap_clearP9bp_heap_t"></span><span
+                                            id="_CPPv213bp_heap_clearP9bp_heap_t"></span><span
+                                            id="bp_heap_clear__bp_heap_tP"></span><span class="target"
+                                                                                        id="bp__heap_8h_1ab8df408ea7b7dad1afbac77bff659856"></span><span
+                                            class="kt"><span class="pre">int</span></span><span class="w"> </span><span
+                                            class="sig-name descname"><span class="n"><span
+                                            class="pre">bp_heap_clear</span></span></span><span
+                                            class="sig-paren">(</span><a class="reference internal"
+                                                                         href="#_CPPv49bp_heap_t"
+                                                                         title="bp_heap_t"><span class="n"><span
+                                            class="pre">bp_heap_t</span></span></a><span class="w"> </span><span
+                                            class="p"><span class="pre">*</span></span><span class="n sig-param"><span
+                                            class="pre">heap</span></span><span class="sig-paren">)</span><a
+                                            class="headerlink" href="#_CPPv413bp_heap_clearP9bp_heap_t"
+                                            title="Permalink to this definition"></a><br/></dt>
+                                    <dd><p>Drop all elements in the heap. After this function the heap size is zero, but
+                                        the elements stay in the buffer. </p>
+                                        <dl class="field-list simple">
+                                            <dt class="field-odd">Parameters</dt>
+                                            <dd class="field-odd"><p><strong>heap</strong> – Reference to bp_heap. </p>
+                                            </dd>
+                                            <dt class="field-even">Returns</dt>
+                                            <dd class="field-even"><p>0 on success, errno otherwise. </p>
+                                            </dd>
+                                        </dl>
+                                    </dd>
+                                </dl>
+
+                                <dl class="cpp function">
+                                    <dt class="sig sig-object cpp" id="_CPPv411bp_heap_popP9bp_heap_tPv">
+                                        <span id="_CPPv311bp_heap_popP9bp_heap_tPv"></span><span
+                                            id="_CPPv211bp_heap_popP9bp_heap_tPv"></span><span
+                                            id="bp_heap_pop__bp_heap_tP.voidP"></span><span class="target"
+                                                                                            id="bp__heap_8h_1aee100aca64b3ffbda109456d000645a8"></span><span
+                                            class="kt"><span class="pre">int</span></span><span class="w"> </span><span
+                                            class="sig-name descname"><span class="n"><span
+                                            class="pre">bp_heap_pop</span></span></span><span class="sig-paren">(</span><a
+                                            class="reference internal" href="#_CPPv49bp_heap_t" title="bp_heap_t"><span
+                                            class="n"><span class="pre">bp_heap_t</span></span></a><span
+                                            class="w"> </span><span class="p"><span class="pre">*</span></span><span
+                                            class="n sig-param"><span class="pre">heap</span></span>, <span
+                                            class="kt"><span class="pre">void</span></span><span class="w"> </span><span
+                                            class="p"><span class="pre">*</span></span><span class="n sig-param"><span
+                                            class="pre">el</span></span><span class="sig-paren">)</span><a
+                                            class="headerlink" href="#_CPPv411bp_heap_popP9bp_heap_tPv"
+                                            title="Permalink to this definition"></a><br/></dt>
+                                    <dd><p>Remove the root element of the Heap tree and put it in el argument
+                                        variable. </p>
+                                        <dl class="field-list simple">
+                                            <dt class="field-odd">Parameters</dt>
+                                            <dd class="field-odd">
+                                                <ul class="simple">
+                                                    <li><p><strong>heap</strong> – Reference to bp_heap. </p></li>
+                                                    <li><p><strong>el</strong> – [out] Reference to a variable, where
+                                                        the removed element will be put. </p></li>
+                                                </ul>
+                                            </dd>
+                                            <dt class="field-even">Returns</dt>
+                                            <dd class="field-even"><p>0 on success, errno, otherwise. </p>
+                                            </dd>
+                                        </dl>
+                                    </dd>
+                                </dl>
+
+                                <dl class="cpp function">
+                                    <dt class="sig sig-object cpp" id="_CPPv412bp_heap_pushP9bp_heap_tPv">
+                                        <span id="_CPPv312bp_heap_pushP9bp_heap_tPv"></span><span
+                                            id="_CPPv212bp_heap_pushP9bp_heap_tPv"></span><span
+                                            id="bp_heap_push__bp_heap_tP.voidP"></span><span class="target"
+                                                                                             id="bp__heap_8h_1acc442d8d32415c424631bdf01badd285"></span><span
+                                            class="kt"><span class="pre">int</span></span><span class="w"> </span><span
+                                            class="sig-name descname"><span class="n"><span
+                                            class="pre">bp_heap_push</span></span></span><span
+                                            class="sig-paren">(</span><a class="reference internal"
+                                                                         href="#_CPPv49bp_heap_t"
+                                                                         title="bp_heap_t"><span class="n"><span
+                                            class="pre">bp_heap_t</span></span></a><span class="w"> </span><span
+                                            class="p"><span class="pre">*</span></span><span class="n sig-param"><span
+                                            class="pre">heap</span></span>, <span class="kt"><span
+                                            class="pre">void</span></span><span class="w"> </span><span class="p"><span
+                                            class="pre">*</span></span><span class="n sig-param"><span
+                                            class="pre">el</span></span><span class="sig-paren">)</span><a
+                                            class="headerlink" href="#_CPPv412bp_heap_pushP9bp_heap_tPv"
+                                            title="Permalink to this definition"></a><br/></dt>
+                                    <dd><p>Push an element on the Heap tree. </p>
+                                        <dl class="field-list simple">
+                                            <dt class="field-odd">Parameters</dt>
+                                            <dd class="field-odd">
+                                                <ul class="simple">
+                                                    <li><p><strong>heap</strong> – Reference to bp_heap. </p></li>
+                                                    <li><p><strong>el</strong> – Reference to the element to be pushed.
+                                                    </p></li>
+                                                </ul>
+                                            </dd>
+                                            <dt class="field-even">Returns</dt>
+                                            <dd class="field-even"><p>0 on success, errno otherwise. </p>
+                                            </dd>
+                                        </dl>
+                                    </dd>
+                                </dl>
+
+                                <dl class="cpp function">
+                                    <dt class="sig sig-object cpp" id="_CPPv411bp_heap_delP9bp_heap_tPvPFbPvPvE">
+                                        <span id="_CPPv311bp_heap_delP9bp_heap_tPvPFbPvPvE"></span><span
+                                            id="_CPPv211bp_heap_delP9bp_heap_tPvPFbPvPvE"></span><span class="target"
+                                                                                                       id="bp__heap_8h_1a8ff1193a48d35c92bd6549dad9d9c449"></span><span
+                                            class="kt"><span class="pre">int</span></span><span class="w"> </span><span
+                                            class="sig-name descname"><span class="n"><span
+                                            class="pre">bp_heap_del</span></span></span><span class="sig-paren">(</span><a
+                                            class="reference internal" href="#_CPPv49bp_heap_t" title="bp_heap_t"><span
+                                            class="n"><span class="pre">bp_heap_t</span></span></a><span
+                                            class="w"> </span><span class="p"><span class="pre">*</span></span><span
+                                            class="n sig-param"><span class="pre">heap</span></span>, <span
+                                            class="kt"><span class="pre">void</span></span><span class="w"> </span><span
+                                            class="p"><span class="pre">*</span></span><span class="n sig-param"><span
+                                            class="pre">param</span></span>, <span class="kt"><span
+                                            class="pre">bool</span></span><span class="w"> </span><span class="p"><span
+                                            class="pre">(</span></span><span class="p"><span class="pre">*</span></span><span
+                                            class="n sig-param"><span class="pre">cmp</span></span><span class="p"><span
+                                            class="pre">)</span></span><span class="p"><span class="pre">(</span></span><span
+                                            class="kt"><span class="pre">void</span></span><span class="w"> </span><span
+                                            class="p"><span class="pre">*</span></span><span class="n"><span
+                                            class="pre">el</span></span><span class="p"><span
+                                            class="pre">,</span></span><span class="w"> </span><span class="kt"><span
+                                            class="pre">void</span></span><span class="w"> </span><span class="p"><span
+                                            class="pre">*</span></span><span class="n"><span
+                                            class="pre">param</span></span><span class="p"><span
+                                            class="pre">)</span></span><span class="sig-paren">)</span><a
+                                            class="headerlink" href="#_CPPv411bp_heap_delP9bp_heap_tPvPFbPvPvE"
+                                            title="Permalink to this definition"></a><br/></dt>
+                                    <dd><p>Delete an array element, based at some parameter related to the element. This
+                                        parameter could be the element itself, or some field of its type. The match will
+                                        be done based on cmp function pointer. If the cmp function point argument is
+                                        null, then the elements will be compared with the parameter byte by byte. </p>
+                                        <dl class="field-list simple">
+                                            <dt class="field-odd">Parameters</dt>
+                                            <dd class="field-odd">
+                                                <ul class="simple">
+                                                    <li><p><strong>heap</strong> – Reference to bp_heap. </p></li>
+                                                    <li><p><strong>param</strong> – Reference to the parameter used to
+                                                        compare elements. </p></li>
+                                                    <li><p><strong>cmp</strong> – Function to compare an element with
+                                                        the parameter passed at argument param. </p></li>
+                                                </ul>
+                                            </dd>
+                                            <dt class="field-even">Returns</dt>
+                                            <dd class="field-even"><p>0 on success, errno otherwise. </p>
+                                            </dd>
+                                        </dl>
+                                    </dd>
+                                </dl>
+
+                                <dl class="cpp function">
+                                    <dt class="sig sig-object cpp" id="_CPPv412bp_heap_findP9bp_heap_tPvPFbPvPvE">
+                                        <span id="_CPPv312bp_heap_findP9bp_heap_tPvPFbPvPvE"></span><span
+                                            id="_CPPv212bp_heap_findP9bp_heap_tPvPFbPvPvE"></span><span class="target"
+                                                                                                        id="bp__heap_8h_1a0757954b837091a673b30da158a64f3d"></span><span
+                                            class="kt"><span class="pre">void</span></span><span class="w"> </span><span
+                                            class="p"><span class="pre">*</span></span><span
+                                            class="sig-name descname"><span class="n"><span
+                                            class="pre">bp_heap_find</span></span></span><span
+                                            class="sig-paren">(</span><a class="reference internal"
+                                                                         href="#_CPPv49bp_heap_t"
+                                                                         title="bp_heap_t"><span class="n"><span
+                                            class="pre">bp_heap_t</span></span></a><span class="w"> </span><span
+                                            class="p"><span class="pre">*</span></span><span class="n sig-param"><span
+                                            class="pre">heap</span></span>, <span class="kt"><span
+                                            class="pre">void</span></span><span class="w"> </span><span class="p"><span
+                                            class="pre">*</span></span><span class="n sig-param"><span
+                                            class="pre">param</span></span>, <span class="kt"><span
+                                            class="pre">bool</span></span><span class="w"> </span><span class="p"><span
+                                            class="pre">(</span></span><span class="p"><span class="pre">*</span></span><span
+                                            class="n sig-param"><span class="pre">cmp</span></span><span class="p"><span
+                                            class="pre">)</span></span><span class="p"><span class="pre">(</span></span><span
+                                            class="kt"><span class="pre">void</span></span><span class="w"> </span><span
+                                            class="p"><span class="pre">*</span></span><span class="n"><span
+                                            class="pre">el</span></span><span class="p"><span
+                                            class="pre">,</span></span><span class="w"> </span><span class="kt"><span
+                                            class="pre">void</span></span><span class="w"> </span><span class="p"><span
+                                            class="pre">*</span></span><span class="n"><span
+                                            class="pre">param</span></span><span class="p"><span
+                                            class="pre">)</span></span><span class="sig-paren">)</span><a
+                                            class="headerlink" href="#_CPPv412bp_heap_findP9bp_heap_tPvPFbPvPvE"
+                                            title="Permalink to this definition"></a><br/></dt>
+                                    <dd><p>Find the element in the heap, based at some parameter related to the element.
+                                        This parameter could be the element itself, or some field of its type. The match
+                                        will be done based on cmp function pointer. If the cmp function point argument
+                                        is null, then the elements will be compared with the parameter byte by
+                                        byte. </p>
+                                        <dl class="field-list simple">
+                                            <dt class="field-odd">Parameters</dt>
+                                            <dd class="field-odd">
+                                                <ul class="simple">
+                                                    <li><p><strong>heap</strong> – Reference to bp_heap. </p></li>
+                                                    <li><p><strong>param</strong> – Reference to the parameter used to
+                                                        compare elements. </p></li>
+                                                    <li><p><strong>cmp</strong> – Function to compare an element with
+                                                        the parameter passed at argument param. </p></li>
+                                                </ul>
+                                            </dd>
+                                            <dt class="field-even">Returns</dt>
+                                            <dd class="field-even"><p>A reference to the found element, or NULL if the
+                                                element wasn’t found or some mandatory argument is null. </p>
+                                            </dd>
+                                        </dl>
+                                    </dd>
+                                </dl>
+
+                                <dl class="cpp function">
+                                    <dt class="sig sig-object cpp" id="_CPPv416bp_heap_bfs_iterP9bp_heap_t">
+                                        <span id="_CPPv316bp_heap_bfs_iterP9bp_heap_t"></span><span
+                                            id="_CPPv216bp_heap_bfs_iterP9bp_heap_t"></span><span
+                                            id="bp_heap_bfs_iter__bp_heap_tP"></span><span class="target"
+                                                                                           id="bp__heap_8h_1a71e04113d5c6e6d4aec644d7e1e41b56"></span><span
+                                            class="n"><span class="pre">bp_iter_t</span></span><span
+                                            class="w"> </span><span class="sig-name descname"><span class="n"><span
+                                            class="pre">bp_heap_bfs_iter</span></span></span><span
+                                            class="sig-paren">(</span><a class="reference internal"
+                                                                         href="#_CPPv49bp_heap_t"
+                                                                         title="bp_heap_t"><span class="n"><span
+                                            class="pre">bp_heap_t</span></span></a><span class="w"> </span><span
+                                            class="p"><span class="pre">*</span></span><span class="n sig-param"><span
+                                            class="pre">heap</span></span><span class="sig-paren">)</span><a
+                                            class="headerlink" href="#_CPPv416bp_heap_bfs_iterP9bp_heap_t"
+                                            title="Permalink to this definition"></a><br/></dt>
+                                    <dd><p>Get a iterator to walk through the bp_heap, in Breadth-First-Search (BFS)
+                                        sequence.</p>
+                                        <div class="admonition warning">
+                                            <p class="admonition-title">Warning</p>
+                                            <p>This function doesn’t check if the heap argument is null. So if this
+                                                argument is null, a crash will occur. That check must be done outside
+                                                the function.</p>
+                                        </div>
+                                        <dl class="field-list simple">
+                                            <dt class="field-odd">Parameters</dt>
+                                            <dd class="field-odd"><p><strong>heap</strong> – Reference to bp_heap. </p>
+                                            </dd>
+                                            <dt class="field-even">Returns</dt>
+                                            <dd class="field-even"><p>A new iterator instance for the bp_heap, using BFS
+                                                sequence. </p>
+                                            </dd>
+                                        </dl>
+                                    </dd>
+                                </dl>
+
+                                <dl class="cpp function">
+                                    <dt class="sig sig-object cpp" id="_CPPv416bp_heap_dfs_iterP9bp_heap_t">
+                                        <span id="_CPPv316bp_heap_dfs_iterP9bp_heap_t"></span><span
+                                            id="_CPPv216bp_heap_dfs_iterP9bp_heap_t"></span><span
+                                            id="bp_heap_dfs_iter__bp_heap_tP"></span><span class="target"
+                                                                                           id="bp__heap_8h_1a4170aa94beab51f88dc0f6d864405a27"></span><span
+                                            class="n"><span class="pre">bp_iter_t</span></span><span
+                                            class="w"> </span><span class="sig-name descname"><span class="n"><span
+                                            class="pre">bp_heap_dfs_iter</span></span></span><span
+                                            class="sig-paren">(</span><a class="reference internal"
+                                                                         href="#_CPPv49bp_heap_t"
+                                                                         title="bp_heap_t"><span class="n"><span
+                                            class="pre">bp_heap_t</span></span></a><span class="w"> </span><span
+                                            class="p"><span class="pre">*</span></span><span class="n sig-param"><span
+                                            class="pre">heap</span></span><span class="sig-paren">)</span><a
+                                            class="headerlink" href="#_CPPv416bp_heap_dfs_iterP9bp_heap_t"
+                                            title="Permalink to this definition"></a><br/></dt>
+                                    <dd><p>Get a iterator to walk through the bp_heap, in Depth-First-Search (DFS)
+                                        sequence.</p>
+                                        <div class="admonition warning">
+                                            <p class="admonition-title">Warning</p>
+                                            <p>This function doesn’t check if the heap argument is null. So if this
+                                                argument is null, a crash will occur. That check must be done outside
+                                                the function.</p>
+                                        </div>
+                                        <dl class="field-list simple">
+                                            <dt class="field-odd">Parameters</dt>
+                                            <dd class="field-odd"><p><strong>heap</strong> – Reference to bp_heap. </p>
+                                            </dd>
+                                            <dt class="field-even">Returns</dt>
+                                            <dd class="field-even"><p>A new iterator instance for the bp_heap, using DFS
+                                                sequence. </p>
+                                            </dd>
+                                        </dl>
+                                    </dd>
+                                </dl>
+
+                            </div>
+                            <dl class="cpp struct">
+                                <dt class="sig sig-object cpp" id="_CPPv49bp_heap_t">
+                                    <span id="_CPPv39bp_heap_t"></span><span id="_CPPv29bp_heap_t"></span><span
+                                        id="bp_heap_t"></span><span class="target" id="structbp__heap__t"></span><span
+                                        class="k"><span class="pre">struct</span></span><span class="w"> </span><span
+                                        class="sig-name descname"><span class="n"><span
+                                        class="pre">bp_heap_t</span></span></span><a class="headerlink"
+                                                                                     href="#_CPPv49bp_heap_t"
+                                                                                     title="Permalink to this definition"></a><br/>
+                                </dt>
+                                <dd><em>#include &lt;bp_heap.h&gt;</em>
+                                    <p>Structure with metadata about the heap.</p>
+                                    <p>
+                                    <div class="admonition note">
+                                        <p class="admonition-title">Note</p>
+                                        <p>This struct need an external buffer to work properly. </p>
+                                    </div>
+                                    </p>
+                                    <div class="breathe-sectiondef docutils container">
+                                        <p class="breathe-sectiondef-title rubric"
+                                           id="breathe-section-title-public-members">Public Members</p>
+                                        <dl class="cpp var">
+                                            <dt class="sig sig-object cpp" id="_CPPv4N9bp_heap_t5_collE">
+                                                <span id="_CPPv3N9bp_heap_t5_collE"></span><span
+                                                    id="_CPPv2N9bp_heap_t5_collE"></span><span
+                                                    id="bp_heap_t::_coll__bp_array_t"></span><span class="target"
+                                                                                                   id="structbp__heap__t_1acd8d67af59643fd56e26d3811b6a970d"></span><a
+                                                    class="reference internal" href="array.html#_CPPv410bp_array_t"
+                                                    title="bp_array_t"><span class="n"><span
+                                                    class="pre">bp_array_t</span></span></a><span
+                                                    class="w"> </span><span class="sig-name descname"><span
+                                                    class="n"><span class="pre">_coll</span></span></span><a
+                                                    class="headerlink" href="#_CPPv4N9bp_heap_t5_collE"
+                                                    title="Permalink to this definition"></a><br/></dt>
+                                            <dd><p>Array that holds the heap elements. </p>
+                                            </dd>
+                                        </dl>
+
+                                        <dl class="cpp var">
+                                            <dt class="sig sig-object cpp" id="_CPPv4N9bp_heap_t5_kindE">
+                                                <span id="_CPPv3N9bp_heap_t5_kindE"></span><span
+                                                    id="_CPPv2N9bp_heap_t5_kindE"></span><span
+                                                    id="bp_heap_t::_kind__bp_heap_kind_t"></span><span class="target"
+                                                                                                       id="structbp__heap__t_1a9e0d140c5a606490461b931b966257b9"></span><a
+                                                    class="reference internal" href="#_CPPv414bp_heap_kind_t"
+                                                    title="bp_heap_kind_t"><span class="n"><span class="pre">bp_heap_kind_t</span></span></a><span
+                                                    class="w"> </span><span class="sig-name descname"><span
+                                                    class="n"><span class="pre">_kind</span></span></span><a
+                                                    class="headerlink" href="#_CPPv4N9bp_heap_t5_kindE"
+                                                    title="Permalink to this definition"></a><br/></dt>
+                                            <dd><p>Kind of the heap. </p>
+                                            </dd>
+                                        </dl>
+
+                                        <dl class="cpp var">
+                                            <dt class="sig sig-object cpp" id="_CPPv4N9bp_heap_t4_cmpE">
+                                                <span id="_CPPv3N9bp_heap_t4_cmpE"></span><span
+                                                    id="_CPPv2N9bp_heap_t4_cmpE"></span><span
+                                                    id="bp_heap_t::_cmp__bp_heap_cmp_t"></span><span class="target"
+                                                                                                     id="structbp__heap__t_1ad8ec3d4b3f31ac726624b92626962737"></span><a
+                                                    class="reference internal" href="#_CPPv413bp_heap_cmp_t"
+                                                    title="bp_heap_cmp_t"><span class="n"><span class="pre">bp_heap_cmp_t</span></span></a><span
+                                                    class="w"> </span><span class="sig-name descname"><span
+                                                    class="n"><span class="pre">_cmp</span></span></span><a
+                                                    class="headerlink" href="#_CPPv4N9bp_heap_t4_cmpE"
+                                                    title="Permalink to this definition"></a><br/></dt>
+                                            <dd><p>Function to compare two elements of the heap. </p>
+                                            </dd>
+                                        </dl>
+
+                                    </div>
+                                </dd>
+                            </dl>
+
+                        </section>
+
+
+                    </div>
+                </div>
+                <footer>
+                    <div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+                        <a href="array.html" class="btn btn-neutral float-left" title="Array" accesskey="p"
+                           rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+                        <a href="ring.html" class="btn btn-neutral float-right" title="Ring" accesskey="n" rel="next">Next
+                            <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+                    </div>
+
+                    <hr/>
+
+                    <div role="contentinfo">
+                        <p>&#169; Copyright 2021, Matheus T. dos Santos.</p>
+                    </div>
+
+                    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+                    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+                    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+
+
+                </footer>
+            </div>
+        </div>
+    </section>
+</div>
+<script>
+    jQuery(function () {
+        SphinxRtdTheme.Navigation.enable(true);
+    });
+</script>
+
+</body>
+</html>

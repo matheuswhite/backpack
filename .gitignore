@@ -1,5 +1,3 @@
 **/build
 **/.idea
-**/docs/*
 **/docsrc/_build/
-!**/docs/.nojekyll

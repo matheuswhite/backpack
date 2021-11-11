@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/"/>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Ring &mdash; Backpack documentation</title>
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css"/>
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css"/>
+    <link rel="stylesheet" href="../_static/graphviz.css" type="text/css"/>
+    <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+    <![endif]-->
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html"/>
+    <link rel="search" title="Search" href="../search.html"/>
+    <link rel="next" title="Stack" href="stack.html"/>
+    <link rel="prev" title="Heap" href="heap.html"/>
+</head>
+
+<body class="wy-body-for-nav">
+<div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+        <div class="wy-side-scroll">
+            <div class="wy-side-nav-search">
+                <a href="../index.html" class="icon icon-home"> Backpack
+                </a>
+                <div role="search">
+                    <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+                        <input type="text" name="q" placeholder="Search docs"/>
+                        <input type="hidden" name="check_keywords" value="yes"/>
+                        <input type="hidden" name="area" value="default"/>
+                    </form>
+                </div>
+            </div>
+            <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+                <ul class="current">
+                    <li class="toctree-l1 current"><a class="reference internal" href="index.html">API</a>
+                        <ul class="current">
+                            <li class="toctree-l2"><a class="reference internal" href="array.html">Array</a></li>
+                            <li class="toctree-l2"><a class="reference internal" href="heap.html">Heap</a></li>
+                            <li class="toctree-l2 current"><a class="current reference internal" href="#">Ring</a></li>
+                            <li class="toctree-l2"><a class="reference internal" href="stack.html">Stack</a></li>
+                        </ul>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+        <nav class="wy-nav-top" aria-label="Mobile navigation menu">
+            <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+            <a href="../index.html">Backpack</a>
+        </nav>
+
+        <div class="wy-nav-content">
+            <div class="rst-content">
+                <div role="navigation" aria-label="Page navigation">
+                    <ul class="wy-breadcrumbs">
+                        <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+                        <li><a href="index.html">API</a> &raquo;</li>
+                        <li>Ring</li>
+                        <li class="wy-breadcrumbs-aside">
+                            <a href="../_sources/api/ring.rst.txt" rel="nofollow"> View page source</a>
+                        </li>
+                    </ul>
+                    <hr/>
+                </div>
+                <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+                    <div itemprop="articleBody">
+
+                        <section id="ring">
+                            <span id="api-ring"></span>
+                            <h1>Ring<a class="headerlink" href="#ring" title="Permalink to this headline"></a></h1>
+                            <p>Specifies the ring structure. This structure works as a circular buffer. When the buffer
+                                is in its maximum capacity, and a new element need be pushed into the buffer, the oldest
+                                element is replaced by the new element. </p>
+                            <p>
+                            <dl class="simple">
+                                <dt><strong>Author</strong></dt>
+                                <dd><p>Matheus T. dos Santos (<a class="reference external"
+                                                                 href="mailto:tenoriomatheus0&#37;&#52;&#48;gmail&#46;com">tenoriomatheus0<span>&#64;</span>gmail<span>&#46;</span>com</a>)
+                                </p>
+                                </dd>
+                                <dt><strong>Version</strong></dt>
+                                <dd><p>0.1.0 </p>
+                                </dd>
+                                <dt><strong>Date</strong></dt>
+                                <dd><p>19/09/2021</p>
+                                </dd>
+                                <dt><strong>Copyright</strong></dt>
+                                <dd><p>Matheus T. dos Santos todos os direitos reservados (c) 2021 </p>
+                                </dd>
+                            </dl>
+                            </p>
+                            <div class="breathe-sectiondef docutils container">
+                                <p class="breathe-sectiondef-title rubric" id="breathe-section-title-defines">
+                                    Defines</p>
+                                <dl class="cpp macro">
+                                    <dt class="sig sig-object cpp" id="c.BP_RING_INVALID_INDEX">
+                                        <span class="target" id="bp__ring_8h_1a5896f18f2b6c2851c0aa37e11946c202"></span><span
+                                            class="sig-name descname"><span class="n"><span class="pre">BP_RING_INVALID_INDEX</span></span></span><a
+                                            class="headerlink" href="#c.BP_RING_INVALID_INDEX"
+                                            title="Permalink to this definition"></a><br/></dt>
+                                    <dd><p>Value representing an invalid index </p>
+                                    </dd>
+                                </dl>
+
+                                <dl class="cpp macro">
+                                    <dt class="sig sig-object cpp" id="c.BP_RING_INIT">
+                                        <span class="target" id="bp__ring_8h_1abaad1cae3438c252ba69de8a2716087a"></span><span
+                                            class="sig-name descname"><span class="n"><span
+                                            class="pre">BP_RING_INIT</span></span></span><span
+                                            class="sig-paren">(</span><span class="n"><span
+                                            class="pre">array_</span></span><span class="sig-paren">)</span><a
+                                            class="headerlink" href="#c.BP_RING_INIT"
+                                            title="Permalink to this definition"></a><br/></dt>
+                                    <dd><p>Macro to initialize a bp_ring </p>
+                                        <dl class="field-list simple">
+                                            <dt class="field-odd">Parameters</dt>
+                                            <dd class="field-odd">
+                                                <ul class="simple">
+                                                    <li><p><strong>array_</strong> – Buffer where the elements will be
+                                                        stored. </p></li>
+                                                </ul>
+                                            </dd>
+                                        </dl>
+                                    </dd>
+                                </dl>
+
+                            </div>
+                            <div class="breathe-sectiondef docutils container">
+                                <p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">
+                                    Functions</p>
+                                <dl class="cpp function">
+                                    <dt class="sig sig-object cpp" id="_CPPv411bp_ring_getP9bp_ring_t5usize">
+                                        <span id="_CPPv311bp_ring_getP9bp_ring_t5usize"></span><span
+                                            id="_CPPv211bp_ring_getP9bp_ring_t5usize"></span><span
+                                            id="bp_ring_get__bp_ring_tP.usize"></span><span class="target"
+                                                                                            id="bp__ring_8h_1a6c1132c0368d52accfb47d2bfb999039"></span><span
+                                            class="kt"><span class="pre">void</span></span><span class="w"> </span><span
+                                            class="p"><span class="pre">*</span></span><span
+                                            class="sig-name descname"><span class="n"><span
+                                            class="pre">bp_ring_get</span></span></span><span class="sig-paren">(</span><a
+                                            class="reference internal" href="#_CPPv49bp_ring_t" title="bp_ring_t"><span
+                                            class="n"><span class="pre">bp_ring_t</span></span></a><span
+                                            class="w"> </span><span class="p"><span class="pre">*</span></span><span
+                                            class="n sig-param"><span class="pre">ring</span></span>, <span
+                                            class="n"><span class="pre">usize</span></span><span class="w"> </span><span
+                                            class="n sig-param"><span class="pre">idx</span></span><span
+                                            class="sig-paren">)</span><a class="headerlink"
+                                                                         href="#_CPPv411bp_ring_getP9bp_ring_t5usize"
+                                                                         title="Permalink to this definition"></a><br/>
+                                    </dt>
+                                    <dd><p>Get an element from the ring buffer, based on its position. </p>
+                                        <dl class="field-list simple">
+                                            <dt class="field-odd">Parameters</dt>
+                                            <dd class="field-odd">
+                                                <ul class="simple">
+                                                    <li><p><strong>ring</strong> – Reference to bp_ring. </p></li>
+                                                    <li><p><strong>idx</strong> – Element index. </p></li>
+                                                </ul>
+                                            </dd>
+                                            <dt class="field-even">Returns</dt>
+                                            <dd class="field-even"><p>A reference to the desired element, or NULL if the
+                                                index is out of range or the ring argument is NULL. </p>
+                                            </dd>
+                                        </dl>
+                                    </dd>
+                                </dl>
+
+                                <dl class="cpp function">
+                                    <dt class="sig sig-object cpp" id="_CPPv412bp_ring_peekP9bp_ring_t">
+                                        <span id="_CPPv312bp_ring_peekP9bp_ring_t"></span><span
+                                            id="_CPPv212bp_ring_peekP9bp_ring_t"></span><span
+                                            id="bp_ring_peek__bp_ring_tP"></span><span class="target"
+                                                                                       id="bp__ring_8h_1ac8dcad7fb9852806e9bbae72fb68e0c7"></span><span
+                                            class="kt"><span class="pre">void</span></span><span class="w"> </span><span
+                                            class="p"><span class="pre">*</span></span><span
+                                            class="sig-name descname"><span class="n"><span
+                                            class="pre">bp_ring_peek</span></span></span><span
+                                            class="sig-paren">(</span><a class="reference internal"
+                                                                         href="#_CPPv49bp_ring_t"
+                                                                         title="bp_ring_t"><span class="n"><span
+                                            class="pre">bp_ring_t</span></span></a><span class="w"> </span><span
+                                            class="p"><span class="pre">*</span></span><span class="n sig-param"><span
+                                            class="pre">ring</span></span><span class="sig-paren">)</span><a
+                                            class="headerlink" href="#_CPPv412bp_ring_peekP9bp_ring_t"
+                                            title="Permalink to this definition"></a><br/></dt>
+                                    <dd><p>Get the oldest element (at tail) in the ring buffer. </p>
+                                        <dl class="field-list simple">
+                                            <dt class="field-odd">Parameters</dt>
+                                            <dd class="field-odd"><p><strong>ring</strong> – Reference to bp_ring. </p>
+                                            </dd>
+                                            <dt class="field-even">Returns</dt>
+                                            <dd class="field-even"><p>A reference to the oldest element, or NULL if the
+                                                ring argument is NULL. </p>
+                                            </dd>
+                                        </dl>
+                                    </dd>
+                                </dl>
+
+                                <dl class="cpp function">
+                                    <dt class="sig sig-object cpp" id="_CPPv411bp_ring_popP9bp_ring_tPv">
+                                        <span id="_CPPv311bp_ring_popP9bp_ring_tPv"></span><span
+                                            id="_CPPv211bp_ring_popP9bp_ring_tPv"></span><span
+                                            id="bp_ring_pop__bp_ring_tP.voidP"></span><span class="target"
+                                                                                            id="bp__ring_8h_1ad5455daeb6a66383bed0090e49f18599"></span><span
+                                            class="kt"><span class="pre">int</span></span><span class="w"> </span><span
+                                            class="sig-name descname"><span class="n"><span
+                                            class="pre">bp_ring_pop</span></span></span><span class="sig-paren">(</span><a
+                                            class="reference internal" href="#_CPPv49bp_ring_t" title="bp_ring_t"><span
+                                            class="n"><span class="pre">bp_ring_t</span></span></a><span
+                                            class="w"> </span><span class="p"><span class="pre">*</span></span><span
+                                            class="n sig-param"><span class="pre">ring</span></span>, <span
+                                            class="kt"><span class="pre">void</span></span><span class="w"> </span><span
+                                            class="p"><span class="pre">*</span></span><span class="n sig-param"><span
+                                            class="pre">el</span></span><span class="sig-paren">)</span><a
+                                            class="headerlink" href="#_CPPv411bp_ring_popP9bp_ring_tPv"
+                                            title="Permalink to this definition"></a><br/></dt>
+                                    <dd><p>Remove the oldest element (at tail) of the ring buffer and put it in el
+                                        argument variable. </p>
+                                        <dl class="field-list simple">
+                                            <dt class="field-odd">Parameters</dt>
+                                            <dd class="field-odd">
+                                                <ul class="simple">
+                                                    <li><p><strong>ring</strong> – Reference to bp_ring. </p></li>
+                                                    <li><p><strong>el</strong> – [out] Reference to a variable where the
+                                                        removed element will be put. </p></li>
+                                                </ul>
+                                            </dd>
+                                            <dt class="field-even">Returns</dt>
+                                            <dd class="field-even"><p>0 on success, errno otherwise. </p>
+                                            </dd>
+                                        </dl>
+                                    </dd>
+                                </dl>
+
+                                <dl class="cpp function">
+                                    <dt class="sig sig-object cpp" id="_CPPv412bp_ring_pushP9bp_ring_tPv">
+                                        <span id="_CPPv312bp_ring_pushP9bp_ring_tPv"></span><span
+                                            id="_CPPv212bp_ring_pushP9bp_ring_tPv"></span><span
+                                            id="bp_ring_push__bp_ring_tP.voidP"></span><span class="target"
+                                                                                             id="bp__ring_8h_1a815e7e9af40f4c69a2aa3306ca8e0998"></span><span
+                                            class="kt"><span class="pre">int</span></span><span class="w"> </span><span
+                                            class="sig-name descname"><span class="n"><span
+                                            class="pre">bp_ring_push</span></span></span><span
+                                            class="sig-paren">(</span><a class="reference internal"
+                                                                         href="#_CPPv49bp_ring_t"
+                                                                         title="bp_ring_t"><span class="n"><span
+                                            class="pre">bp_ring_t</span></span></a><span class="w"> </span><span
+                                            class="p"><span class="pre">*</span></span><span class="n sig-param"><span
+                                            class="pre">ring</span></span>, <span class="kt"><span
+                                            class="pre">void</span></span><span class="w"> </span><span class="p"><span
+                                            class="pre">*</span></span><span class="n sig-param"><span
+                                            class="pre">el</span></span><span class="sig-paren">)</span><a
+                                            class="headerlink" href="#_CPPv412bp_ring_pushP9bp_ring_tPv"
+                                            title="Permalink to this definition"></a><br/></dt>
+                                    <dd><p>Push an element at the end (at head) of ring buffer. </p>
+                                        <dl class="field-list simple">
+                                            <dt class="field-odd">Parameters</dt>
+                                            <dd class="field-odd">
+                                                <ul class="simple">
+                                                    <li><p><strong>ring</strong> – Reference to bp_ring. </p></li>
+                                                    <li><p><strong>el</strong> – Reference to the element to be pushed.
+                                                    </p></li>
+                                                </ul>
+                                            </dd>
+                                            <dt class="field-even">Returns</dt>
+                                            <dd class="field-even"><p>0 on success, errno otherwise. </p>
+                                            </dd>
+                                        </dl>
+                                    </dd>
+                                </dl>
+
+                                <dl class="cpp function">
+                                    <dt class="sig sig-object cpp" id="_CPPv416bp_ring_find_idxP9bp_ring_tPvPFbPvPvE">
+                                        <span id="_CPPv316bp_ring_find_idxP9bp_ring_tPvPFbPvPvE"></span><span
+                                            id="_CPPv216bp_ring_find_idxP9bp_ring_tPvPFbPvPvE"></span><span
+                                            class="target"
+                                            id="bp__ring_8h_1a25d5aa6c16fbb026ae76d498a486eba2"></span><span
+                                            class="n"><span class="pre">usize</span></span><span class="w"> </span><span
+                                            class="sig-name descname"><span class="n"><span
+                                            class="pre">bp_ring_find_idx</span></span></span><span
+                                            class="sig-paren">(</span><a class="reference internal"
+                                                                         href="#_CPPv49bp_ring_t"
+                                                                         title="bp_ring_t"><span class="n"><span
+                                            class="pre">bp_ring_t</span></span></a><span class="w"> </span><span
+                                            class="p"><span class="pre">*</span></span><span class="n sig-param"><span
+                                            class="pre">ring</span></span>, <span class="kt"><span
+                                            class="pre">void</span></span><span class="w"> </span><span class="p"><span
+                                            class="pre">*</span></span><span class="n sig-param"><span
+                                            class="pre">param</span></span>, <span class="kt"><span
+                                            class="pre">bool</span></span><span class="w"> </span><span class="p"><span
+                                            class="pre">(</span></span><span class="p"><span class="pre">*</span></span><span
+                                            class="n sig-param"><span class="pre">cmp</span></span><span class="p"><span
+                                            class="pre">)</span></span><span class="p"><span class="pre">(</span></span><span
+                                            class="kt"><span class="pre">void</span></span><span class="w"> </span><span
+                                            class="p"><span class="pre">*</span></span><span class="n"><span
+                                            class="pre">el</span></span><span class="p"><span
+                                            class="pre">,</span></span><span class="w"> </span><span class="kt"><span
+                                            class="pre">void</span></span><span class="w"> </span><span class="p"><span
+                                            class="pre">*</span></span><span class="n"><span
+                                            class="pre">param</span></span><span class="p"><span
+                                            class="pre">)</span></span><span class="sig-paren">)</span><a
+                                            class="headerlink" href="#_CPPv416bp_ring_find_idxP9bp_ring_tPvPFbPvPvE"
+                                            title="Permalink to this definition"></a><br/></dt>
+                                    <dd><p>Find the index of an element, based at some parameter related to the element.
+                                        This parameter could be the element itself, or some field of its type. The match
+                                        will be done based on cmp function pointer. If the cmp function pointer argument
+                                        is null, then the elements will be compared with the parameter byte by
+                                        byte. </p>
+                                        <dl class="field-list simple">
+                                            <dt class="field-odd">Parameters</dt>
+                                            <dd class="field-odd">
+                                                <ul class="simple">
+                                                    <li><p><strong>ring</strong> – Reference to bp_ring. </p></li>
+                                                    <li><p><strong>param</strong> – Reference to the parameter used to
+                                                        compare elements. </p></li>
+                                                    <li><p><strong>cmp</strong> – Function to compare an element with
+                                                        the parameter passed at argument param. </p></li>
+                                                </ul>
+                                            </dd>
+                                            <dt class="field-even">Returns</dt>
+                                            <dd class="field-even"><p>The index of found element, or
+                                                BP_RING_INVALID_INDEX if the element wasn’t found or some mandatory
+                                                argument is null. </p>
+                                            </dd>
+                                        </dl>
+                                    </dd>
+                                </dl>
+
+                                <dl class="cpp function">
+                                    <dt class="sig sig-object cpp" id="_CPPv412bp_ring_findP9bp_ring_tPvPFbPvPvE">
+                                        <span id="_CPPv312bp_ring_findP9bp_ring_tPvPFbPvPvE"></span><span
+                                            id="_CPPv212bp_ring_findP9bp_ring_tPvPFbPvPvE"></span><span class="target"
+                                                                                                        id="bp__ring_8h_1a64d51bccc18709b974a0649e827c8fd7"></span><span
+                                            class="kt"><span class="pre">void</span></span><span class="w"> </span><span
+                                            class="p"><span class="pre">*</span></span><span
+                                            class="sig-name descname"><span class="n"><span
+                                            class="pre">bp_ring_find</span></span></span><span
+                                            class="sig-paren">(</span><a class="reference internal"
+                                                                         href="#_CPPv49bp_ring_t"
+                                                                         title="bp_ring_t"><span class="n"><span
+                                            class="pre">bp_ring_t</span></span></a><span class="w"> </span><span
+                                            class="p"><span class="pre">*</span></span><span class="n sig-param"><span
+                                            class="pre">ring</span></span>, <span class="kt"><span
+                                            class="pre">void</span></span><span class="w"> </span><span class="p"><span
+                                            class="pre">*</span></span><span class="n sig-param"><span
+                                            class="pre">param</span></span>, <span class="kt"><span
+                                            class="pre">bool</span></span><span class="w"> </span><span class="p"><span
+                                            class="pre">(</span></span><span class="p"><span class="pre">*</span></span><span
+                                            class="n sig-param"><span class="pre">cmp</span></span><span class="p"><span
+                                            class="pre">)</span></span><span class="p"><span class="pre">(</span></span><span
+                                            class="kt"><span class="pre">void</span></span><span class="w"> </span><span
+                                            class="p"><span class="pre">*</span></span><span class="n"><span
+                                            class="pre">el</span></span><span class="p"><span
+                                            class="pre">,</span></span><span class="w"> </span><span class="kt"><span
+                                            class="pre">void</span></span><span class="w"> </span><span class="p"><span
+                                            class="pre">*</span></span><span class="n"><span
+                                            class="pre">param</span></span><span class="p"><span
+                                            class="pre">)</span></span><span class="sig-paren">)</span><a
+                                            class="headerlink" href="#_CPPv412bp_ring_findP9bp_ring_tPvPFbPvPvE"
+                                            title="Permalink to this definition"></a><br/></dt>
+                                    <dd><p>Find the element in the ring buffer, based at some parameter related to the
+                                        element. This parameter could be the element itself, or some field of its type.
+                                        The match will be done based on cmp function pointer. If the cmp function point
+                                        argument is null, then the elements will be compared with the parameter byte by
+                                        byte. </p>
+                                        <dl class="field-list simple">
+                                            <dt class="field-odd">Parameters</dt>
+                                            <dd class="field-odd">
+                                                <ul class="simple">
+                                                    <li><p><strong>ring</strong> – Reference to bp_ring. </p></li>
+                                                    <li><p><strong>param</strong> – Reference to the parameter used to
+                                                        compare elements. </p></li>
+                                                    <li><p><strong>cmp</strong> – Function to compare an element with
+                                                        the parameter passed at argument param. </p></li>
+                                                </ul>
+                                            </dd>
+                                            <dt class="field-even">Returns</dt>
+                                            <dd class="field-even"><p>A reference to the found element, or NULL if the
+                                                element wasn’t found or some mandatory argument is null. </p>
+                                            </dd>
+                                        </dl>
+                                    </dd>
+                                </dl>
+
+                                <dl class="cpp function">
+                                    <dt class="sig sig-object cpp" id="_CPPv413bp_ring_clearP9bp_ring_t">
+                                        <span id="_CPPv313bp_ring_clearP9bp_ring_t"></span><span
+                                            id="_CPPv213bp_ring_clearP9bp_ring_t"></span><span
+                                            id="bp_ring_clear__bp_ring_tP"></span><span class="target"
+                                                                                        id="bp__ring_8h_1ae470ae789cb3bc0f95a0e60c941f4d23"></span><span
+                                            class="kt"><span class="pre">int</span></span><span class="w"> </span><span
+                                            class="sig-name descname"><span class="n"><span
+                                            class="pre">bp_ring_clear</span></span></span><span
+                                            class="sig-paren">(</span><a class="reference internal"
+                                                                         href="#_CPPv49bp_ring_t"
+                                                                         title="bp_ring_t"><span class="n"><span
+                                            class="pre">bp_ring_t</span></span></a><span class="w"> </span><span
+                                            class="p"><span class="pre">*</span></span><span class="n sig-param"><span
+                                            class="pre">ring</span></span><span class="sig-paren">)</span><a
+                                            class="headerlink" href="#_CPPv413bp_ring_clearP9bp_ring_t"
+                                            title="Permalink to this definition"></a><br/></dt>
+                                    <dd><p>Drop all elements in the ring buffer. After this function the ring buffer
+                                        size is zero, but the elements stay in the buffer. </p>
+                                        <dl class="field-list simple">
+                                            <dt class="field-odd">Parameters</dt>
+                                            <dd class="field-odd"><p><strong>ring</strong> – Reference to bp_ring. </p>
+                                            </dd>
+                                            <dt class="field-even">Returns</dt>
+                                            <dd class="field-even"><p>0 on success, errno otherwise. </p>
+                                            </dd>
+                                        </dl>
+                                    </dd>
+                                </dl>
+
+                                <dl class="cpp function">
+                                    <dt class="sig sig-object cpp" id="_CPPv412bp_ring_sizeP9bp_ring_t">
+                                        <span id="_CPPv312bp_ring_sizeP9bp_ring_t"></span><span
+                                            id="_CPPv212bp_ring_sizeP9bp_ring_t"></span><span
+                                            id="bp_ring_size__bp_ring_tP"></span><span class="target"
+                                                                                       id="bp__ring_8h_1a51927eb022ba57ef0b845885fd7b21ce"></span><span
+                                            class="n"><span class="pre">usize</span></span><span class="w"> </span><span
+                                            class="sig-name descname"><span class="n"><span
+                                            class="pre">bp_ring_size</span></span></span><span
+                                            class="sig-paren">(</span><a class="reference internal"
+                                                                         href="#_CPPv49bp_ring_t"
+                                                                         title="bp_ring_t"><span class="n"><span
+                                            class="pre">bp_ring_t</span></span></a><span class="w"> </span><span
+                                            class="p"><span class="pre">*</span></span><span class="n sig-param"><span
+                                            class="pre">ring</span></span><span class="sig-paren">)</span><a
+                                            class="headerlink" href="#_CPPv412bp_ring_sizeP9bp_ring_t"
+                                            title="Permalink to this definition"></a><br/></dt>
+                                    <dd><p>Get the ring buffer size. </p>
+                                        <dl class="field-list simple">
+                                            <dt class="field-odd">Parameters</dt>
+                                            <dd class="field-odd"><p><strong>ring</strong> – Reference to bp_ring. </p>
+                                            </dd>
+                                            <dt class="field-even">Returns</dt>
+                                            <dd class="field-even"><p>The size of ring buffer. Always return 0 if the
+                                                argument ring is null. </p>
+                                            </dd>
+                                        </dl>
+                                    </dd>
+                                </dl>
+
+                                <dl class="cpp function">
+                                    <dt class="sig sig-object cpp" id="_CPPv412bp_ring_iterP9bp_ring_t">
+                                        <span id="_CPPv312bp_ring_iterP9bp_ring_t"></span><span
+                                            id="_CPPv212bp_ring_iterP9bp_ring_t"></span><span
+                                            id="bp_ring_iter__bp_ring_tP"></span><span class="target"
+                                                                                       id="bp__ring_8h_1af3ea99f7f141e4536dbf42afa836ca66"></span><span
+                                            class="n"><span class="pre">bp_iter_t</span></span><span
+                                            class="w"> </span><span class="sig-name descname"><span class="n"><span
+                                            class="pre">bp_ring_iter</span></span></span><span
+                                            class="sig-paren">(</span><a class="reference internal"
+                                                                         href="#_CPPv49bp_ring_t"
+                                                                         title="bp_ring_t"><span class="n"><span
+                                            class="pre">bp_ring_t</span></span></a><span class="w"> </span><span
+                                            class="p"><span class="pre">*</span></span><span class="n sig-param"><span
+                                            class="pre">ring</span></span><span class="sig-paren">)</span><a
+                                            class="headerlink" href="#_CPPv412bp_ring_iterP9bp_ring_t"
+                                            title="Permalink to this definition"></a><br/></dt>
+                                    <dd><p>Get a iterator to walk through the bp_ring.</p>
+                                        <div class="admonition warning">
+                                            <p class="admonition-title">Warning</p>
+                                            <p>This function doesn’t check if the ring argument is null. So if this
+                                                argument is null, a crash will occur. That check must be done outside
+                                                the function.</p>
+                                        </div>
+                                        <dl class="field-list simple">
+                                            <dt class="field-odd">Parameters</dt>
+                                            <dd class="field-odd"><p><strong>ring</strong> – Reference to bp_ring. </p>
+                                            </dd>
+                                            <dt class="field-even">Returns</dt>
+                                            <dd class="field-even"><p>A new iterator instance for the bp_ring. </p>
+                                            </dd>
+                                        </dl>
+                                    </dd>
+                                </dl>
+
+                            </div>
+                            <dl class="cpp struct">
+                                <dt class="sig sig-object cpp" id="_CPPv49bp_ring_t">
+                                    <span id="_CPPv39bp_ring_t"></span><span id="_CPPv29bp_ring_t"></span><span
+                                        id="bp_ring_t"></span><span class="target" id="structbp__ring__t"></span><span
+                                        class="k"><span class="pre">struct</span></span><span class="w"> </span><span
+                                        class="sig-name descname"><span class="n"><span
+                                        class="pre">bp_ring_t</span></span></span><a class="headerlink"
+                                                                                     href="#_CPPv49bp_ring_t"
+                                                                                     title="Permalink to this definition"></a><br/>
+                                </dt>
+                                <dd><em>#include &lt;bp_ring.h&gt;</em>
+                                    <p>Struct with metadata about the ring buffer. </p>
+                                    <div class="breathe-sectiondef docutils container">
+                                        <p class="breathe-sectiondef-title rubric"
+                                           id="breathe-section-title-public-members">Public Members</p>
+                                        <dl class="cpp var">
+                                            <dt class="sig sig-object cpp" id="_CPPv4N9bp_ring_t6_arrayE">
+                                                <span id="_CPPv3N9bp_ring_t6_arrayE"></span><span
+                                                    id="_CPPv2N9bp_ring_t6_arrayE"></span><span
+                                                    id="bp_ring_t::_array__u8_tP"></span><span class="target"
+                                                                                               id="structbp__ring__t_1a6ce33135e8469b6d947ddce561a1179b"></span><span
+                                                    class="n"><span class="pre">u8_t</span></span><span
+                                                    class="w"> </span><span class="p"><span
+                                                    class="pre">*</span></span><span class="sig-name descname"><span
+                                                    class="n"><span class="pre">_array</span></span></span><a
+                                                    class="headerlink" href="#_CPPv4N9bp_ring_t6_arrayE"
+                                                    title="Permalink to this definition"></a><br/></dt>
+                                            <dd><p>Reference to the buffer itself. </p>
+                                            </dd>
+                                        </dl>
+
+                                        <dl class="cpp var">
+                                            <dt class="sig sig-object cpp" id="_CPPv4N9bp_ring_t13_element_sizeE">
+                                                <span id="_CPPv3N9bp_ring_t13_element_sizeE"></span><span
+                                                    id="_CPPv2N9bp_ring_t13_element_sizeE"></span><span
+                                                    id="bp_ring_t::_element_size__usize"></span><span class="target"
+                                                                                                      id="structbp__ring__t_1a4237387a5a6b27850e4cdf0248866624"></span><span
+                                                    class="n"><span class="pre">usize</span></span><span
+                                                    class="w"> </span><span class="sig-name descname"><span
+                                                    class="n"><span class="pre">_element_size</span></span></span><a
+                                                    class="headerlink" href="#_CPPv4N9bp_ring_t13_element_sizeE"
+                                                    title="Permalink to this definition"></a><br/></dt>
+                                            <dd><p>Size (in bytes) of a single element in the array. </p>
+                                            </dd>
+                                        </dl>
+
+                                        <dl class="cpp var">
+                                            <dt class="sig sig-object cpp" id="_CPPv4N9bp_ring_t9_max_sizeE">
+                                                <span id="_CPPv3N9bp_ring_t9_max_sizeE"></span><span
+                                                    id="_CPPv2N9bp_ring_t9_max_sizeE"></span><span
+                                                    id="bp_ring_t::_max_size__usize"></span><span class="target"
+                                                                                                  id="structbp__ring__t_1a99a738d02dc7a648f6d5010e01b4ccd6"></span><span
+                                                    class="n"><span class="pre">usize</span></span><span
+                                                    class="w"> </span><span class="sig-name descname"><span
+                                                    class="n"><span class="pre">_max_size</span></span></span><a
+                                                    class="headerlink" href="#_CPPv4N9bp_ring_t9_max_sizeE"
+                                                    title="Permalink to this definition"></a><br/></dt>
+                                            <dd><p>Maximum number of elements in the ring buffer. </p>
+                                            </dd>
+                                        </dl>
+
+                                        <dl class="cpp var">
+                                            <dt class="sig sig-object cpp" id="_CPPv4N9bp_ring_t5_sizeE">
+                                                <span id="_CPPv3N9bp_ring_t5_sizeE"></span><span
+                                                    id="_CPPv2N9bp_ring_t5_sizeE"></span><span
+                                                    id="bp_ring_t::_size__usize"></span><span class="target"
+                                                                                              id="structbp__ring__t_1a665ac7b40f49d975d5621f91fae76d76"></span><span
+                                                    class="n"><span class="pre">usize</span></span><span
+                                                    class="w"> </span><span class="sig-name descname"><span
+                                                    class="n"><span class="pre">_size</span></span></span><a
+                                                    class="headerlink" href="#_CPPv4N9bp_ring_t5_sizeE"
+                                                    title="Permalink to this definition"></a><br/></dt>
+                                            <dd><p>Current number of elements in the ring buffer. </p>
+                                            </dd>
+                                        </dl>
+
+                                        <dl class="cpp var">
+                                            <dt class="sig sig-object cpp" id="_CPPv4N9bp_ring_t5_headE">
+                                                <span id="_CPPv3N9bp_ring_t5_headE"></span><span
+                                                    id="_CPPv2N9bp_ring_t5_headE"></span><span
+                                                    id="bp_ring_t::_head__usize"></span><span class="target"
+                                                                                              id="structbp__ring__t_1a8c90117965a2e91f1f98f27932a3c77c"></span><span
+                                                    class="n"><span class="pre">usize</span></span><span
+                                                    class="w"> </span><span class="sig-name descname"><span
+                                                    class="n"><span class="pre">_head</span></span></span><a
+                                                    class="headerlink" href="#_CPPv4N9bp_ring_t5_headE"
+                                                    title="Permalink to this definition"></a><br/></dt>
+                                            <dd><p>Index of the head of the ring buffer. </p>
+                                            </dd>
+                                        </dl>
+
+                                        <dl class="cpp var">
+                                            <dt class="sig sig-object cpp" id="_CPPv4N9bp_ring_t5_tailE">
+                                                <span id="_CPPv3N9bp_ring_t5_tailE"></span><span
+                                                    id="_CPPv2N9bp_ring_t5_tailE"></span><span
+                                                    id="bp_ring_t::_tail__usize"></span><span class="target"
+                                                                                              id="structbp__ring__t_1a2464bbe18cda35f33a970c0f9531c2bc"></span><span
+                                                    class="n"><span class="pre">usize</span></span><span
+                                                    class="w"> </span><span class="sig-name descname"><span
+                                                    class="n"><span class="pre">_tail</span></span></span><a
+                                                    class="headerlink" href="#_CPPv4N9bp_ring_t5_tailE"
+                                                    title="Permalink to this definition"></a><br/></dt>
+                                            <dd><p>Index of the tail of the ring buffer. </p>
+                                            </dd>
+                                        </dl>
+
+                                    </div>
+                                </dd>
+                            </dl>
+
+                        </section>
+
+
+                    </div>
+                </div>
+                <footer>
+                    <div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+                        <a href="heap.html" class="btn btn-neutral float-left" title="Heap" accesskey="p"
+                           rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+                        <a href="stack.html" class="btn btn-neutral float-right" title="Stack" accesskey="n" rel="next">Next
+                            <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+                    </div>
+
+                    <hr/>
+
+                    <div role="contentinfo">
+                        <p>&#169; Copyright 2021, Matheus T. dos Santos.</p>
+                    </div>
+
+                    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+                    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+                    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+
+
+                </footer>
+            </div>
+        </div>
+    </section>
+</div>
+<script>
+    jQuery(function () {
+        SphinxRtdTheme.Navigation.enable(true);
+    });
+</script>
+
+</body>
+</html>

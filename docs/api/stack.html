@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/"/>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Stack &mdash; Backpack documentation</title>
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css"/>
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css"/>
+    <link rel="stylesheet" href="../_static/graphviz.css" type="text/css"/>
+    <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+    <![endif]-->
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html"/>
+    <link rel="search" title="Search" href="../search.html"/>
+    <link rel="prev" title="Ring" href="ring.html"/>
+</head>
+
+<body class="wy-body-for-nav">
+<div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+        <div class="wy-side-scroll">
+            <div class="wy-side-nav-search">
+                <a href="../index.html" class="icon icon-home"> Backpack
+                </a>
+                <div role="search">
+                    <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+                        <input type="text" name="q" placeholder="Search docs"/>
+                        <input type="hidden" name="check_keywords" value="yes"/>
+                        <input type="hidden" name="area" value="default"/>
+                    </form>
+                </div>
+            </div>
+            <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+                <ul class="current">
+                    <li class="toctree-l1 current"><a class="reference internal" href="index.html">API</a>
+                        <ul class="current">
+                            <li class="toctree-l2"><a class="reference internal" href="array.html">Array</a></li>
+                            <li class="toctree-l2"><a class="reference internal" href="heap.html">Heap</a></li>
+                            <li class="toctree-l2"><a class="reference internal" href="ring.html">Ring</a></li>
+                            <li class="toctree-l2 current"><a class="current reference internal" href="#">Stack</a></li>
+                        </ul>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+        <nav class="wy-nav-top" aria-label="Mobile navigation menu">
+            <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+            <a href="../index.html">Backpack</a>
+        </nav>
+
+        <div class="wy-nav-content">
+            <div class="rst-content">
+                <div role="navigation" aria-label="Page navigation">
+                    <ul class="wy-breadcrumbs">
+                        <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+                        <li><a href="index.html">API</a> &raquo;</li>
+                        <li>Stack</li>
+                        <li class="wy-breadcrumbs-aside">
+                            <a href="../_sources/api/stack.rst.txt" rel="nofollow"> View page source</a>
+                        </li>
+                    </ul>
+                    <hr/>
+                </div>
+                <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+                    <div itemprop="articleBody">
+
+                        <section id="stack">
+                            <span id="api-stack"></span>
+                            <h1>Stack<a class="headerlink" href="#stack" title="Permalink to this headline"></a></h1>
+                            <p>Specifies the stack structure. This structure is a bp_array complement. To allow the
+                                bp_array works as stack. So the following function follow the LIFO (Last-In-First-Out)
+                                order. </p>
+                            <p>
+                            <dl class="simple">
+                                <dt><strong>Author</strong></dt>
+                                <dd><p>Matheus T. dos Santos (<a class="reference external"
+                                                                 href="mailto:tenoriomatheus0&#37;&#52;&#48;gmail&#46;com">tenoriomatheus0<span>&#64;</span>gmail<span>&#46;</span>com</a>)
+                                </p>
+                                </dd>
+                                <dt><strong>Version</strong></dt>
+                                <dd><p>0.1.0 </p>
+                                </dd>
+                                <dt><strong>Date</strong></dt>
+                                <dd><p>19/09/2021</p>
+                                </dd>
+                                <dt><strong>Copyright</strong></dt>
+                                <dd><p>Matheus T. dos Santos all rights reserved (c) 2021 </p>
+                                </dd>
+                            </dl>
+                            </p>
+                            <div class="breathe-sectiondef docutils container">
+                                <p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">
+                                    Functions</p>
+                                <dl class="cpp function">
+                                    <dt class="sig sig-object cpp" id="_CPPv412bp_stack_popP10bp_array_tPv">
+                                        <span id="_CPPv312bp_stack_popP10bp_array_tPv"></span><span
+                                            id="_CPPv212bp_stack_popP10bp_array_tPv"></span><span
+                                            id="bp_stack_pop__bp_array_tP.voidP"></span><span class="target"
+                                                                                              id="bp__stack_8h_1a0042733492ee9761a8e112c2a2ef31b0"></span><span
+                                            class="kt"><span class="pre">int</span></span><span class="w"> </span><span
+                                            class="sig-name descname"><span class="n"><span
+                                            class="pre">bp_stack_pop</span></span></span><span
+                                            class="sig-paren">(</span><a class="reference internal"
+                                                                         href="array.html#_CPPv410bp_array_t"
+                                                                         title="bp_array_t"><span class="n"><span
+                                            class="pre">bp_array_t</span></span></a><span class="w"> </span><span
+                                            class="p"><span class="pre">*</span></span><span class="n sig-param"><span
+                                            class="pre">stack</span></span>, <span class="kt"><span
+                                            class="pre">void</span></span><span class="w"> </span><span class="p"><span
+                                            class="pre">*</span></span><span class="n sig-param"><span
+                                            class="pre">el</span></span><span class="sig-paren">)</span><a
+                                            class="headerlink" href="#_CPPv412bp_stack_popP10bp_array_tPv"
+                                            title="Permalink to this definition"></a><br/></dt>
+                                    <dd><p>Remove the top element in the stack and put it in el argument variable. </p>
+                                        <dl class="field-list simple">
+                                            <dt class="field-odd">Parameters</dt>
+                                            <dd class="field-odd">
+                                                <ul class="simple">
+                                                    <li><p><strong>stack</strong> – Reference to the stack. </p></li>
+                                                    <li><p><strong>el</strong> – [out] Reference to a variable, where
+                                                        the removed element will be put. </p></li>
+                                                </ul>
+                                            </dd>
+                                            <dt class="field-even">Returns</dt>
+                                            <dd class="field-even"><p>0 on success, errno otherwise. </p>
+                                            </dd>
+                                        </dl>
+                                    </dd>
+                                </dl>
+
+                                <dl class="cpp function">
+                                    <dt class="sig sig-object cpp" id="_CPPv413bp_stack_peekP10bp_array_t">
+                                        <span id="_CPPv313bp_stack_peekP10bp_array_t"></span><span
+                                            id="_CPPv213bp_stack_peekP10bp_array_t"></span><span
+                                            id="bp_stack_peek__bp_array_tP"></span><span class="target"
+                                                                                         id="bp__stack_8h_1af9922c55bc93e87e5ac79e639ecfa65e"></span><span
+                                            class="kt"><span class="pre">void</span></span><span class="w"> </span><span
+                                            class="p"><span class="pre">*</span></span><span
+                                            class="sig-name descname"><span class="n"><span
+                                            class="pre">bp_stack_peek</span></span></span><span
+                                            class="sig-paren">(</span><a class="reference internal"
+                                                                         href="array.html#_CPPv410bp_array_t"
+                                                                         title="bp_array_t"><span class="n"><span
+                                            class="pre">bp_array_t</span></span></a><span class="w"> </span><span
+                                            class="p"><span class="pre">*</span></span><span class="n sig-param"><span
+                                            class="pre">stack</span></span><span class="sig-paren">)</span><a
+                                            class="headerlink" href="#_CPPv413bp_stack_peekP10bp_array_t"
+                                            title="Permalink to this definition"></a><br/></dt>
+                                    <dd><p>Get the top element in the stack. </p>
+                                        <dl class="field-list simple">
+                                            <dt class="field-odd">Parameters</dt>
+                                            <dd class="field-odd"><p><strong>stack</strong> – Reference to the stack.
+                                            </p>
+                                            </dd>
+                                            <dt class="field-even">Returns</dt>
+                                            <dd class="field-even"><p>A reference to the desired element, or NULL if the
+                                                stack argument is NULL. </p>
+                                            </dd>
+                                        </dl>
+                                    </dd>
+                                </dl>
+
+                                <dl class="cpp function">
+                                    <dt class="sig sig-object cpp" id="_CPPv413bp_stack_pushP10bp_array_tPv">
+                                        <span id="_CPPv313bp_stack_pushP10bp_array_tPv"></span><span
+                                            id="_CPPv213bp_stack_pushP10bp_array_tPv"></span><span
+                                            id="bp_stack_push__bp_array_tP.voidP"></span><span class="target"
+                                                                                               id="bp__stack_8h_1a66e3dd3f0fa280fe8c3e67e559a0c437"></span><span
+                                            class="kt"><span class="pre">int</span></span><span class="w"> </span><span
+                                            class="sig-name descname"><span class="n"><span
+                                            class="pre">bp_stack_push</span></span></span><span
+                                            class="sig-paren">(</span><a class="reference internal"
+                                                                         href="array.html#_CPPv410bp_array_t"
+                                                                         title="bp_array_t"><span class="n"><span
+                                            class="pre">bp_array_t</span></span></a><span class="w"> </span><span
+                                            class="p"><span class="pre">*</span></span><span class="n sig-param"><span
+                                            class="pre">stack</span></span>, <span class="kt"><span
+                                            class="pre">void</span></span><span class="w"> </span><span class="p"><span
+                                            class="pre">*</span></span><span class="n sig-param"><span
+                                            class="pre">el</span></span><span class="sig-paren">)</span><a
+                                            class="headerlink" href="#_CPPv413bp_stack_pushP10bp_array_tPv"
+                                            title="Permalink to this definition"></a><br/></dt>
+                                    <dd><p>Push an element at the top of the stack. </p>
+                                        <dl class="field-list simple">
+                                            <dt class="field-odd">Parameters</dt>
+                                            <dd class="field-odd">
+                                                <ul class="simple">
+                                                    <li><p><strong>stack</strong> – Reference to the stack. </p></li>
+                                                    <li><p><strong>el</strong> – Reference to the element to be pushed.
+                                                    </p></li>
+                                                </ul>
+                                            </dd>
+                                            <dt class="field-even">Returns</dt>
+                                            <dd class="field-even"><p>0 on success, errno otherwise. </p>
+                                            </dd>
+                                        </dl>
+                                    </dd>
+                                </dl>
+
+                                <dl class="cpp function">
+                                    <dt class="sig sig-object cpp" id="_CPPv413bp_stack_iterP10bp_array_t">
+                                        <span id="_CPPv313bp_stack_iterP10bp_array_t"></span><span
+                                            id="_CPPv213bp_stack_iterP10bp_array_t"></span><span
+                                            id="bp_stack_iter__bp_array_tP"></span><span class="target"
+                                                                                         id="bp__stack_8h_1a99b7b38ab9fe9dcdad820692480e5bd5"></span><span
+                                            class="n"><span class="pre">bp_iter_t</span></span><span
+                                            class="w"> </span><span class="sig-name descname"><span class="n"><span
+                                            class="pre">bp_stack_iter</span></span></span><span
+                                            class="sig-paren">(</span><a class="reference internal"
+                                                                         href="array.html#_CPPv410bp_array_t"
+                                                                         title="bp_array_t"><span class="n"><span
+                                            class="pre">bp_array_t</span></span></a><span class="w"> </span><span
+                                            class="p"><span class="pre">*</span></span><span class="n sig-param"><span
+                                            class="pre">stack</span></span><span class="sig-paren">)</span><a
+                                            class="headerlink" href="#_CPPv413bp_stack_iterP10bp_array_t"
+                                            title="Permalink to this definition"></a><br/></dt>
+                                    <dd><p>Get a iterator to walk through the stack. The traversal order is from top to
+                                        the bottom of the stack.</p>
+                                        <div class="admonition warning">
+                                            <p class="admonition-title">Warning</p>
+                                            <p>This function doesn’t check if the stack argument is null. So if this
+                                                argument is null, a crash will occur. That check must be done outside
+                                                the function.</p>
+                                        </div>
+                                        <dl class="field-list simple">
+                                            <dt class="field-odd">Parameters</dt>
+                                            <dd class="field-odd"><p><strong>stack</strong> – Reference to the stack.
+                                            </p>
+                                            </dd>
+                                            <dt class="field-even">Returns</dt>
+                                            <dd class="field-even"><p>A new iterator instance for the stack. </p>
+                                            </dd>
+                                        </dl>
+                                    </dd>
+                                </dl>
+
+                            </div>
+                        </section>
+
+
+                    </div>
+                </div>
+                <footer>
+                    <div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+                        <a href="ring.html" class="btn btn-neutral float-left" title="Ring" accesskey="p"
+                           rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+                    </div>
+
+                    <hr/>
+
+                    <div role="contentinfo">
+                        <p>&#169; Copyright 2021, Matheus T. dos Santos.</p>
+                    </div>
+
+                    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+                    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+                    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+
+
+                </footer>
+            </div>
+        </div>
+    </section>
+</div>
+<script>
+    jQuery(function () {
+        SphinxRtdTheme.Navigation.enable(true);
+    });
+</script>
+
+</body>
+</html>

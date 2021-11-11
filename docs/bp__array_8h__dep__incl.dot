@@ -1,0 +1,11 @@
+digraph "/home/matheuswhite/Documentos/backpack/src/include/bp_array.h"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node1 [label="/home/matheuswhite\l/Documentos/backpack\l/src/include/bp_array.h",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Specifies the array structure. This structure works as a buffer, where the develop could insert the e..."];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="/home/matheuswhite\l/Documentos/backpack\l/src/include/bp_heap.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$bp__heap_8h.html",tooltip="Specifies the heap structure. the heap could be a Min-Heap or a Max-Heap."];
+  Node1 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="/home/matheuswhite\l/Documentos/backpack\l/src/include/bp_stack.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$bp__stack_8h.html",tooltip="Specifies the stack structure. This structure is a bp_array complement. To allow the bp_array works a..."];
+}
