@@ -1,0 +1,113 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd"
+         version="1.8.17">
+    <compounddef id="structbp__array__t" kind="struct" language="C++" prot="public">
+        <compoundname>bp_array_t</compoundname>
+        <includes local="no">bp_array.h</includes>
+        <sectiondef kind="public-attrib">
+            <memberdef kind="variable" id="structbp__array__t_1aeff44a546d51ecba75816f3bd9ee23a9" prot="public"
+                       static="no" mutable="no">
+                <type>
+                    <ref refid="bp__types_8h_1ac182d38c0a80545f8344c0657273c16e" kindref="member">usize</ref>
+                </type>
+                <definition>usize bp_array_t::_element_size</definition>
+                <argsstring></argsstring>
+                <name>_element_size</name>
+                <briefdescription>
+                </briefdescription>
+                <detaileddescription>
+                    <para>Size (in bytes) of a single element in the array.</para>
+                </detaileddescription>
+                <inbodydescription>
+                </inbodydescription>
+                <location file="src/include/bp_array.h" line="57" column="11" bodyfile="src/include/bp_array.h"
+                          bodystart="57" bodyend="-1"/>
+            </memberdef>
+            <memberdef kind="variable" id="structbp__array__t_1a06ea22ccdaaa3cdaffe4aa37bdb04103" prot="public"
+                       static="no" mutable="no">
+                <type>
+                    <ref refid="bp__types_8h_1ac182d38c0a80545f8344c0657273c16e" kindref="member">usize</ref>
+                </type>
+                <definition>usize bp_array_t::_max_size</definition>
+                <argsstring></argsstring>
+                <name>_max_size</name>
+                <briefdescription>
+                </briefdescription>
+                <detaileddescription>
+                    <para>Maximum number of elements in the array.</para>
+                </detaileddescription>
+                <inbodydescription>
+                </inbodydescription>
+                <location file="src/include/bp_array.h" line="58" column="11" bodyfile="src/include/bp_array.h"
+                          bodystart="58" bodyend="-1"/>
+            </memberdef>
+            <memberdef kind="variable" id="structbp__array__t_1a44569435e38a8de3a11ebd04daf9c0a4" prot="public"
+                       static="no" mutable="no">
+                <type>
+                    <ref refid="bp__types_8h_1ac182d38c0a80545f8344c0657273c16e" kindref="member">usize</ref>
+                </type>
+                <definition>usize bp_array_t::_size</definition>
+                <argsstring></argsstring>
+                <name>_size</name>
+                <briefdescription>
+                </briefdescription>
+                <detaileddescription>
+                    <para>Current number of elements in the array.</para>
+                </detaileddescription>
+                <inbodydescription>
+                </inbodydescription>
+                <location file="src/include/bp_array.h" line="59" column="11" bodyfile="src/include/bp_array.h"
+                          bodystart="59" bodyend="-1"/>
+            </memberdef>
+            <memberdef kind="variable" id="structbp__array__t_1a738ab68d823091ee3f9fd0c027644b33" prot="public"
+                       static="no" mutable="no">
+                <type>
+                    <ref refid="bp__types_8h_1ae081489b4906f65a3cb18e9fbe9f8d23" kindref="member">u8_t</ref>
+                    *
+                </type>
+                <definition>u8_t* bp_array_t::_array</definition>
+                <argsstring></argsstring>
+                <name>_array</name>
+                <briefdescription>
+                </briefdescription>
+                <detaileddescription>
+                    <para>Reference to the buffer, where the elements will be stored.</para>
+                </detaileddescription>
+                <inbodydescription>
+                </inbodydescription>
+                <location file="src/include/bp_array.h" line="60" column="10" bodyfile="src/include/bp_array.h"
+                          bodystart="60" bodyend="-1"/>
+            </memberdef>
+        </sectiondef>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+            <para>Struct with metadata about an external buffer.</para>
+            <para>
+                <simplesect kind="note">
+                    <para>This struct need an external buffer to work properly.</para>
+                </simplesect>
+            </para>
+        </detaileddescription>
+        <location file="src/include/bp_array.h" line="56" column="15" bodyfile="src/include/bp_array.h" bodystart="56"
+                  bodyend="61"/>
+        <listofallmembers>
+            <member refid="structbp__array__t_1a738ab68d823091ee3f9fd0c027644b33" prot="public" virt="non-virtual">
+                <scope>bp_array_t</scope>
+                <name>_array</name>
+            </member>
+            <member refid="structbp__array__t_1aeff44a546d51ecba75816f3bd9ee23a9" prot="public" virt="non-virtual">
+                <scope>bp_array_t</scope>
+                <name>_element_size</name>
+            </member>
+            <member refid="structbp__array__t_1a06ea22ccdaaa3cdaffe4aa37bdb04103" prot="public" virt="non-virtual">
+                <scope>bp_array_t</scope>
+                <name>_max_size</name>
+            </member>
+            <member refid="structbp__array__t_1a44569435e38a8de3a11ebd04daf9c0a4" prot="public" virt="non-virtual">
+                <scope>bp_array_t</scope>
+                <name>_size</name>
+            </member>
+        </listofallmembers>
+    </compounddef>
+</doxygen>

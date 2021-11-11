@@ -1,0 +1,1404 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd"
+         version="1.8.17">
+    <compounddef id="bp__array_8h" kind="file" language="C++">
+        <compoundname>bp_array.h</compoundname>
+        <includes local="no">string.h</includes>
+        <includes refid="bp__iter_8h" local="yes">bp_iter.h</includes>
+        <includes refid="bp__types_8h" local="yes">bp_types.h</includes>
+        <includedby refid="bp__heap_8h" local="yes">src/include/bp_heap.h</includedby>
+        <includedby refid="bp__stack_8h" local="yes">src/include/bp_stack.h</includedby>
+        <incdepgraph>
+            <node id="6">
+                <label>stdbool.h</label>
+            </node>
+            <node id="1">
+                <label>src/include/bp_array.h</label>
+                <link refid="bp__array_8h"/>
+                <childnode refid="2" relation="include">
+                </childnode>
+                <childnode refid="3" relation="include">
+                </childnode>
+                <childnode refid="4" relation="include">
+                </childnode>
+            </node>
+            <node id="5">
+                <label>errno.h</label>
+            </node>
+            <node id="4">
+                <label>bp_types.h</label>
+                <link refid="bp__types_8h"/>
+                <childnode refid="5" relation="include">
+                </childnode>
+                <childnode refid="6" relation="include">
+                </childnode>
+            </node>
+            <node id="2">
+                <label>string.h</label>
+            </node>
+            <node id="3">
+                <label>bp_iter.h</label>
+                <link refid="bp__iter_8h"/>
+                <childnode refid="4" relation="include">
+                </childnode>
+            </node>
+        </incdepgraph>
+        <invincdepgraph>
+            <node id="1">
+                <label>src/include/bp_array.h</label>
+                <link refid="bp__array_8h"/>
+                <childnode refid="2" relation="include">
+                </childnode>
+                <childnode refid="3" relation="include">
+                </childnode>
+            </node>
+            <node id="2">
+                <label>src/include/bp_heap.h</label>
+                <link refid="bp__heap_8h"/>
+            </node>
+            <node id="3">
+                <label>src/include/bp_stack.h</label>
+                <link refid="bp__stack_8h"/>
+            </node>
+        </invincdepgraph>
+        <innerclass refid="structbp__array__t" prot="public">bp_array_t</innerclass>
+        <sectiondef kind="define">
+            <memberdef kind="define" id="bp__array_8h_1ad261e2b92b4752b3872c4d05e60ad8da" prot="public" static="no">
+                <name>BP_ARRAY_INVALID_INDEX</name>
+                <initializer>0xffFFffFF</initializer>
+                <briefdescription>
+                </briefdescription>
+                <detaileddescription>
+                    <para>Value representing an invalid index</para>
+                </detaileddescription>
+                <inbodydescription>
+                </inbodydescription>
+                <location file="src/include/bp_array.h" line="26" column="9" bodyfile="src/include/bp_array.h"
+                          bodystart="26" bodyend="-1"/>
+            </memberdef>
+            <memberdef kind="define" id="bp__array_8h_1a14c990b783d8463e39b3452afb8d00c9" prot="public" static="no">
+                <name>BP_ARRAY_INIT</name>
+                <param>
+                    <defname>array_</defname>
+                </param>
+                <initializer>{ \
+                    ._element_size = sizeof((array_)[0]), \
+                    ._max_size = sizeof(array_) / sizeof((array_)[0]), ._size = 0, \
+                    ._array = (<ref refid="bp__types_8h_1ae081489b4906f65a3cb18e9fbe9f8d23" kindref="member">u8_t</ref> *)
+                    (array_), \
+                    }
+                </initializer>
+                <briefdescription>
+                </briefdescription>
+                <detaileddescription>
+                    <para>Macro to initialize a bp_array.
+                        <parameterlist kind="param">
+                            <parameteritem>
+                                <parameternamelist>
+                                    <parametername>array_</parametername>
+                                </parameternamelist>
+                                <parameterdescription>
+                                    <para>buffer where the elements will be stored.</para>
+                                </parameterdescription>
+                            </parameteritem>
+                        </parameterlist>
+                    </para>
+                </detaileddescription>
+                <inbodydescription>
+                </inbodydescription>
+                <location file="src/include/bp_array.h" line="32" column="9" bodyfile="src/include/bp_array.h"
+                          bodystart="32" bodyend="-1"/>
+            </memberdef>
+            <memberdef kind="define" id="bp__array_8h_1a156d8270d99f086ce9ea1bb463c8b8ca" prot="public" static="no">
+                <name>BP_ARRAY_START</name>
+                <param>
+                    <defname>array_</defname>
+                </param>
+                <param>
+                    <defname>size_</defname>
+                </param>
+                <initializer>{ \
+                    ._element_size = sizeof((array_)[0]), \
+                    ._max_size = sizeof(array_) / sizeof((array_)[0]), ._size = (size_), \
+                    ._array = (<ref refid="bp__types_8h_1ae081489b4906f65a3cb18e9fbe9f8d23" kindref="member">u8_t</ref> *)
+                    (array_), \
+                    }
+                </initializer>
+                <briefdescription>
+                </briefdescription>
+                <detaileddescription>
+                    <para>Macro to initialize a bp_array, which have initials elements.
+                        <parameterlist kind="param">
+                            <parameteritem>
+                                <parameternamelist>
+                                    <parametername>array_</parametername>
+                                </parameternamelist>
+                                <parameterdescription>
+                                    <para>buffer where the elements will be stored.</para>
+                                </parameterdescription>
+                            </parameteritem>
+                            <parameteritem>
+                                <parameternamelist>
+                                    <parametername>size_</parametername>
+                                </parameternamelist>
+                                <parameterdescription>
+                                    <para>Number of elements already presents in the buffer.</para>
+                                </parameterdescription>
+                            </parameteritem>
+                        </parameterlist>
+                    </para>
+                </detaileddescription>
+                <inbodydescription>
+                </inbodydescription>
+                <location file="src/include/bp_array.h" line="44" column="9" bodyfile="src/include/bp_array.h"
+                          bodystart="44" bodyend="-1"/>
+            </memberdef>
+        </sectiondef>
+        <sectiondef kind="func">
+            <memberdef kind="function" id="bp__array_8h_1aac6c8c099278a2f1229834c959e06b11" prot="public" static="no"
+                       const="no" explicit="no" inline="no" virt="non-virtual">
+                <type>void *</type>
+                <definition>void* bp_array_get</definition>
+                <argsstring>(bp_array_t *array, usize idx)</argsstring>
+                <name>bp_array_get</name>
+                <param>
+                    <type>
+                        <ref refid="structbp__array__t" kindref="compound">bp_array_t</ref>
+                        *
+                    </type>
+                    <declname>array</declname>
+                </param>
+                <param>
+                    <type>
+                        <ref refid="bp__types_8h_1ac182d38c0a80545f8344c0657273c16e" kindref="member">usize</ref>
+                    </type>
+                    <declname>idx</declname>
+                </param>
+                <briefdescription>
+                </briefdescription>
+                <detaileddescription>
+                    <para>Get an element from the array, based on its position.
+                        <parameterlist kind="param">
+                            <parameteritem>
+                                <parameternamelist>
+                                    <parametername>array</parametername>
+                                </parameternamelist>
+                                <parameterdescription>
+                                    <para>Reference to bp_array.</para>
+                                </parameterdescription>
+                            </parameteritem>
+                            <parameteritem>
+                                <parameternamelist>
+                                    <parametername>idx</parametername>
+                                </parameternamelist>
+                                <parameterdescription>
+                                    <para>Element index.</para>
+                                </parameterdescription>
+                            </parameteritem>
+                        </parameterlist>
+                        <simplesect kind="return">
+                            <para>A reference to the desired element, or NULL if the index is out of range or the array
+                                argument is NULL.
+                            </para>
+                        </simplesect>
+                    </para>
+                </detaileddescription>
+                <inbodydescription>
+                </inbodydescription>
+                <location file="src/include/bp_array.h" line="70" column="6" declfile="src/include/bp_array.h"
+                          declline="70" declcolumn="6"/>
+            </memberdef>
+            <memberdef kind="function" id="bp__array_8h_1a91287cfddb179ae135afb45ecb7b27ac" prot="public" static="no"
+                       const="no" explicit="no" inline="no" virt="non-virtual">
+                <type>int</type>
+                <definition>int bp_array_push</definition>
+                <argsstring>(bp_array_t *array, void *el)</argsstring>
+                <name>bp_array_push</name>
+                <param>
+                    <type>
+                        <ref refid="structbp__array__t" kindref="compound">bp_array_t</ref>
+                        *
+                    </type>
+                    <declname>array</declname>
+                </param>
+                <param>
+                    <type>void *</type>
+                    <declname>el</declname>
+                </param>
+                <briefdescription>
+                </briefdescription>
+                <detaileddescription>
+                    <para>Push an element at the end of array.
+                        <parameterlist kind="param">
+                            <parameteritem>
+                                <parameternamelist>
+                                    <parametername>array</parametername>
+                                </parameternamelist>
+                                <parameterdescription>
+                                    <para>Reference to bp_array.</para>
+                                </parameterdescription>
+                            </parameteritem>
+                            <parameteritem>
+                                <parameternamelist>
+                                    <parametername>el</parametername>
+                                </parameternamelist>
+                                <parameterdescription>
+                                    <para>Reference to the element to be pushed.</para>
+                                </parameterdescription>
+                            </parameteritem>
+                        </parameterlist>
+                        <simplesect kind="return">
+                            <para>0 on success, errno otherwise.</para>
+                        </simplesect>
+                    </para>
+                </detaileddescription>
+                <inbodydescription>
+                </inbodydescription>
+                <location file="src/include/bp_array.h" line="78" column="5" declfile="src/include/bp_array.h"
+                          declline="78" declcolumn="5"/>
+            </memberdef>
+            <memberdef kind="function" id="bp__array_8h_1a9f7514a29b57dab68d98c2ce2489179f" prot="public" static="no"
+                       const="no" explicit="no" inline="no" virt="non-virtual">
+                <type>int</type>
+                <definition>int bp_array_del</definition>
+                <argsstring>(bp_array_t *array, usize idx)</argsstring>
+                <name>bp_array_del</name>
+                <param>
+                    <type>
+                        <ref refid="structbp__array__t" kindref="compound">bp_array_t</ref>
+                        *
+                    </type>
+                    <declname>array</declname>
+                </param>
+                <param>
+                    <type>
+                        <ref refid="bp__types_8h_1ac182d38c0a80545f8344c0657273c16e" kindref="member">usize</ref>
+                    </type>
+                    <declname>idx</declname>
+                </param>
+                <briefdescription>
+                </briefdescription>
+                <detaileddescription>
+                    <para>Delete an array element, based on its position.
+                        <parameterlist kind="param">
+                            <parameteritem>
+                                <parameternamelist>
+                                    <parametername>array</parametername>
+                                </parameternamelist>
+                                <parameterdescription>
+                                    <para>Reference to bp_array.</para>
+                                </parameterdescription>
+                            </parameteritem>
+                            <parameteritem>
+                                <parameternamelist>
+                                    <parametername>idx</parametername>
+                                </parameternamelist>
+                                <parameterdescription>
+                                    <para>Element idx.</para>
+                                </parameterdescription>
+                            </parameteritem>
+                        </parameterlist>
+                        <simplesect kind="return">
+                            <para>0 on success, errno otherwise.</para>
+                        </simplesect>
+                    </para>
+                </detaileddescription>
+                <inbodydescription>
+                </inbodydescription>
+                <location file="src/include/bp_array.h" line="86" column="5" declfile="src/include/bp_array.h"
+                          declline="86" declcolumn="5"/>
+            </memberdef>
+            <memberdef kind="function" id="bp__array_8h_1abf5690bfd309b022c187b7b19c69f29f" prot="public" static="no"
+                       const="no" explicit="no" inline="no" virt="non-virtual">
+                <type>
+                    <ref refid="bp__types_8h_1ac182d38c0a80545f8344c0657273c16e" kindref="member">usize</ref>
+                </type>
+                <definition>usize bp_array_find_idx</definition>
+                <argsstring>(bp_array_t *array, void *param, bool(*cmp)(void *el, void *param))</argsstring>
+                <name>bp_array_find_idx</name>
+                <param>
+                    <type>
+                        <ref refid="structbp__array__t" kindref="compound">bp_array_t</ref>
+                        *
+                    </type>
+                    <declname>array</declname>
+                </param>
+                <param>
+                    <type>void *</type>
+                    <declname>param</declname>
+                </param>
+                <param>
+                    <type>bool(*)(void *el, void *param)</type>
+                    <declname>cmp</declname>
+                </param>
+                <briefdescription>
+                </briefdescription>
+                <detaileddescription>
+                    <para>Find the index of an element, based at some parameter related to the element. This parameter
+                        could be the element itself, or some field of its type. The match will be done based on cmp
+                        function pointer. If the cmp function pointer argument is null, then the elements will be
+                        compared with the parameter byte by byte.
+                        <parameterlist kind="param">
+                            <parameteritem>
+                                <parameternamelist>
+                                    <parametername>array</parametername>
+                                </parameternamelist>
+                                <parameterdescription>
+                                    <para>Reference to bp_array.</para>
+                                </parameterdescription>
+                            </parameteritem>
+                            <parameteritem>
+                                <parameternamelist>
+                                    <parametername>param</parametername>
+                                </parameternamelist>
+                                <parameterdescription>
+                                    <para>Reference to the parameter used to compare elements.</para>
+                                </parameterdescription>
+                            </parameteritem>
+                            <parameteritem>
+                                <parameternamelist>
+                                    <parametername>cmp</parametername>
+                                </parameternamelist>
+                                <parameterdescription>
+                                    <para>Function to compare an element with the parameter passed at argument param.
+                                    </para>
+                                </parameterdescription>
+                            </parameteritem>
+                        </parameterlist>
+                        <simplesect kind="return">
+                            <para>The index of found element, or BP_ARRAY_INVALID_INDEX if the element wasn&apos;t found
+                                or some mandatory argument is null.
+                            </para>
+                        </simplesect>
+                    </para>
+                </detaileddescription>
+                <inbodydescription>
+                </inbodydescription>
+                <location file="src/include/bp_array.h" line="99" column="7" declfile="src/include/bp_array.h"
+                          declline="99" declcolumn="7"/>
+            </memberdef>
+            <memberdef kind="function" id="bp__array_8h_1a8fbf06a68528f41eef4e953161889969" prot="public" static="no"
+                       const="no" explicit="no" inline="no" virt="non-virtual">
+                <type>void *</type>
+                <definition>void* bp_array_find</definition>
+                <argsstring>(bp_array_t *array, void *param, bool(*cmp)(void *el, void *param))</argsstring>
+                <name>bp_array_find</name>
+                <param>
+                    <type>
+                        <ref refid="structbp__array__t" kindref="compound">bp_array_t</ref>
+                        *
+                    </type>
+                    <declname>array</declname>
+                </param>
+                <param>
+                    <type>void *</type>
+                    <declname>param</declname>
+                </param>
+                <param>
+                    <type>bool(*)(void *el, void *param)</type>
+                    <declname>cmp</declname>
+                </param>
+                <briefdescription>
+                </briefdescription>
+                <detaileddescription>
+                    <para>Find the element in the array, based at some parameter related to the element. This parameter
+                        could be the element itself, or some field of its type. The match will be done based on cmp
+                        function pointer. If the cmp function point argument is null, then the elements will be compared
+                        with the parameter byte by byte.
+                        <parameterlist kind="param">
+                            <parameteritem>
+                                <parameternamelist>
+                                    <parametername>array</parametername>
+                                </parameternamelist>
+                                <parameterdescription>
+                                    <para>Reference to bp_array.</para>
+                                </parameterdescription>
+                            </parameteritem>
+                            <parameteritem>
+                                <parameternamelist>
+                                    <parametername>param</parametername>
+                                </parameternamelist>
+                                <parameterdescription>
+                                    <para>Reference to the parameter used to compare elements.</para>
+                                </parameterdescription>
+                            </parameteritem>
+                            <parameteritem>
+                                <parameternamelist>
+                                    <parametername>cmp</parametername>
+                                </parameternamelist>
+                                <parameterdescription>
+                                    <para>Function to compare an element with the parameter passed at argument param.
+                                    </para>
+                                </parameterdescription>
+                            </parameteritem>
+                        </parameterlist>
+                        <simplesect kind="return">
+                            <para>A reference to the found element, or NULL if the element wasn&apos;t found or some
+                                mandatory argument is null.
+                            </para>
+                        </simplesect>
+                    </para>
+                </detaileddescription>
+                <inbodydescription>
+                </inbodydescription>
+                <location file="src/include/bp_array.h" line="113" column="6" declfile="src/include/bp_array.h"
+                          declline="113" declcolumn="6"/>
+            </memberdef>
+            <memberdef kind="function" id="bp__array_8h_1a3034a2c60f4c88b624d49e331c2b2e59" prot="public" static="no"
+                       const="no" explicit="no" inline="no" virt="non-virtual">
+                <type>int</type>
+                <definition>int bp_array_clear</definition>
+                <argsstring>(bp_array_t *array)</argsstring>
+                <name>bp_array_clear</name>
+                <param>
+                    <type>
+                        <ref refid="structbp__array__t" kindref="compound">bp_array_t</ref>
+                        *
+                    </type>
+                    <declname>array</declname>
+                </param>
+                <briefdescription>
+                </briefdescription>
+                <detaileddescription>
+                    <para>Drop all elements in the array. After this function the array size is zero, but the elements
+                        stay in the buffer.
+                        <parameterlist kind="param">
+                            <parameteritem>
+                                <parameternamelist>
+                                    <parametername>array</parametername>
+                                </parameternamelist>
+                                <parameterdescription>
+                                    <para>Reference to bp_array.</para>
+                                </parameterdescription>
+                            </parameteritem>
+                        </parameterlist>
+                        <simplesect kind="return">
+                            <para>0 on success, errno otherwise.</para>
+                        </simplesect>
+                    </para>
+                </detaileddescription>
+                <inbodydescription>
+                </inbodydescription>
+                <location file="src/include/bp_array.h" line="121" column="5" declfile="src/include/bp_array.h"
+                          declline="121" declcolumn="5"/>
+            </memberdef>
+            <memberdef kind="function" id="bp__array_8h_1a1ba3e67c52ea5cc906bdc782f69f8bbc" prot="public" static="no"
+                       const="no" explicit="no" inline="no" virt="non-virtual">
+                <type>
+                    <ref refid="bp__types_8h_1ac182d38c0a80545f8344c0657273c16e" kindref="member">usize</ref>
+                </type>
+                <definition>usize bp_array_size</definition>
+                <argsstring>(bp_array_t *array)</argsstring>
+                <name>bp_array_size</name>
+                <param>
+                    <type>
+                        <ref refid="structbp__array__t" kindref="compound">bp_array_t</ref>
+                        *
+                    </type>
+                    <declname>array</declname>
+                </param>
+                <briefdescription>
+                </briefdescription>
+                <detaileddescription>
+                    <para>Get the array size.
+                        <parameterlist kind="param">
+                            <parameteritem>
+                                <parameternamelist>
+                                    <parametername>array</parametername>
+                                </parameternamelist>
+                                <parameterdescription>
+                                    <para>Reference to bp_array.</para>
+                                </parameterdescription>
+                            </parameteritem>
+                        </parameterlist>
+                        <simplesect kind="return">
+                            <para>The size of array. Always return 0 if the argument array is null.</para>
+                        </simplesect>
+                    </para>
+                </detaileddescription>
+                <inbodydescription>
+                </inbodydescription>
+                <location file="src/include/bp_array.h" line="128" column="7" declfile="src/include/bp_array.h"
+                          declline="128" declcolumn="7"/>
+            </memberdef>
+            <memberdef kind="function" id="bp__array_8h_1ac4c980a589d349beecc8cf80c00386d7" prot="public" static="no"
+                       const="no" explicit="no" inline="no" virt="non-virtual">
+                <type>
+                    <ref refid="bp__iter_8h_1ac25a2139450ad25247c3b224dab35b11" kindref="member">bp_iter_t</ref>
+                </type>
+                <definition>bp_iter_t bp_array_iter</definition>
+                <argsstring>(bp_array_t *array)</argsstring>
+                <name>bp_array_iter</name>
+                <param>
+                    <type>
+                        <ref refid="structbp__array__t" kindref="compound">bp_array_t</ref>
+                        *
+                    </type>
+                    <declname>array</declname>
+                </param>
+                <briefdescription>
+                </briefdescription>
+                <detaileddescription>
+                    <para>Get a iterator to walk through the bp_array.</para>
+                    <para>
+                        <simplesect kind="warning">
+                            <para>This function doesn&apos;t check if the array argument is null. So if this argument is
+                                null, a crash will occur. That check must be done outside the function.
+                            </para>
+                        </simplesect>
+                        <parameterlist kind="param">
+                            <parameteritem>
+                                <parameternamelist>
+                                    <parametername>array</parametername>
+                                </parameternamelist>
+                                <parameterdescription>
+                                    <para>Reference to bp_array.</para>
+                                </parameterdescription>
+                            </parameteritem>
+                        </parameterlist>
+                        <simplesect kind="return">
+                            <para>A new iterator instance for the bp_array.</para>
+                        </simplesect>
+                    </para>
+                </detaileddescription>
+                <inbodydescription>
+                </inbodydescription>
+                <location file="src/include/bp_array.h" line="139" column="11" declfile="src/include/bp_array.h"
+                          declline="139" declcolumn="11"/>
+            </memberdef>
+        </sectiondef>
+        <briefdescription>
+            <para>Specifies the array structure. This structure works as a buffer, where the develop could insert the
+                elements at the end and remove elements at any position.
+            </para>
+        </briefdescription>
+        <detaileddescription>
+            <para>
+                <simplesect kind="author">
+                    <para>Matheus T. dos Santos (<ulink url="mailto:tenoriomatheus0@gmail.com">
+                        tenoriomatheus0@gmail.com</ulink>)
+                    </para>
+                </simplesect>
+                <simplesect kind="version">
+                    <para>0.1.0</para>
+                </simplesect>
+                <simplesect kind="date">
+                    <para>19/09/2021</para>
+                </simplesect>
+                <simplesect kind="copyright">
+                    <para>Matheus T. dos Santos all rights reserved (c) 2021</para>
+                </simplesect>
+            </para>
+        </detaileddescription>
+        <programlisting>
+            <codeline lineno="1"></codeline>
+            <codeline lineno="12">
+                <highlight class="preprocessor">#ifndef<sp/>BACKPACK_ARRAY_H
+                </highlight>
+                <highlight class="normal"></highlight>
+            </codeline>
+            <codeline lineno="13">
+                <highlight class="normal"></highlight>
+                <highlight class="preprocessor">#define<sp/>BACKPACK_ARRAY_H
+                </highlight>
+                <highlight class="normal"></highlight>
+            </codeline>
+            <codeline lineno="14">
+                <highlight class="normal"></highlight>
+            </codeline>
+            <codeline lineno="15">
+                <highlight class="normal"></highlight>
+                <highlight class="preprocessor">#ifdef<sp/>__cplusplus
+                </highlight>
+                <highlight class="normal"></highlight>
+            </codeline>
+            <codeline lineno="16">
+                <highlight class="normal"></highlight>
+                <highlight class="keyword">extern</highlight>
+                <highlight class="normal">
+                    <sp/>
+                </highlight>
+                <highlight class="stringliteral">&quot;C&quot;</highlight>
+                <highlight class="normal"><sp/>{
+                </highlight>
+            </codeline>
+            <codeline lineno="17">
+                <highlight class="normal"></highlight>
+                <highlight class="preprocessor">#endif</highlight>
+                <highlight class="normal"></highlight>
+            </codeline>
+            <codeline lineno="18">
+                <highlight class="normal"></highlight>
+            </codeline>
+            <codeline lineno="19">
+                <highlight class="normal"></highlight>
+                <highlight class="preprocessor">#include<sp/>&lt;string.h&gt;
+                </highlight>
+                <highlight class="normal"></highlight>
+            </codeline>
+            <codeline lineno="20">
+                <highlight class="normal"></highlight>
+                <highlight class="preprocessor">#include<sp/>&quot;<ref refid="bp__iter_8h" kindref="compound">
+                    bp_iter.h</ref>&quot;
+                </highlight>
+                <highlight class="normal"></highlight>
+            </codeline>
+            <codeline lineno="21">
+                <highlight class="normal"></highlight>
+                <highlight class="preprocessor">#include<sp/>&quot;<ref refid="bp__types_8h" kindref="compound">
+                    bp_types.h</ref>&quot;
+                </highlight>
+                <highlight class="normal"></highlight>
+            </codeline>
+            <codeline lineno="22">
+                <highlight class="normal"></highlight>
+            </codeline>
+            <codeline lineno="26">
+                <highlight class="preprocessor">#define<sp/>BP_ARRAY_INVALID_INDEX<sp/>0xffFFffFF
+                </highlight>
+                <highlight class="normal"></highlight>
+            </codeline>
+            <codeline lineno="27">
+                <highlight class="normal"></highlight>
+            </codeline>
+            <codeline lineno="32">
+                <highlight class="preprocessor">#define<sp/>BP_ARRAY_INIT(array_)
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>\
+                </highlight>
+            </codeline>
+            <codeline lineno="33">
+                <highlight class="preprocessor">
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>{
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>\
+                </highlight>
+            </codeline>
+            <codeline lineno="34">
+                <highlight class="preprocessor">
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>._element_size<sp/>=<sp/>sizeof((array_)[0]),
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>\
+                </highlight>
+            </codeline>
+            <codeline lineno="35">
+                <highlight class="preprocessor">
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>._max_size<sp/>=<sp/>sizeof(array_)<sp/>/<sp/>sizeof((array_)[0]),<sp/>._size<sp/>=<sp/>0,<sp/>
+                    \
+                </highlight>
+            </codeline>
+            <codeline lineno="36">
+                <highlight class="preprocessor">
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>._array<sp/>=<sp/>(u8_t<sp/>*)<sp/>(array_),
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>\
+                </highlight>
+            </codeline>
+            <codeline lineno="37">
+                <highlight class="preprocessor">
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>}
+                </highlight>
+                <highlight class="normal"></highlight>
+            </codeline>
+            <codeline lineno="38">
+                <highlight class="normal"></highlight>
+            </codeline>
+            <codeline lineno="44">
+                <highlight class="preprocessor">#define<sp/>BP_ARRAY_START(array_,<sp/>size_)
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>\
+                </highlight>
+            </codeline>
+            <codeline lineno="45">
+                <highlight class="preprocessor">
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>{
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>\
+                </highlight>
+            </codeline>
+            <codeline lineno="46">
+                <highlight class="preprocessor">
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>._element_size<sp/>=<sp/>sizeof((array_)[0]),
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>\
+                </highlight>
+            </codeline>
+            <codeline lineno="47">
+                <highlight class="preprocessor">
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>._max_size<sp/>=<sp/>sizeof(array_)<sp/>/<sp/>sizeof((array_)[0]),<sp/>._size<sp/>=<sp/>
+                    (size_),<sp/>\
+                </highlight>
+            </codeline>
+            <codeline lineno="48">
+                <highlight class="preprocessor">
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>._array<sp/>=<sp/>(u8_t<sp/>*)<sp/>(array_),
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>\
+                </highlight>
+            </codeline>
+            <codeline lineno="49">
+                <highlight class="preprocessor">
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>}
+                </highlight>
+                <highlight class="normal"></highlight>
+            </codeline>
+            <codeline lineno="50">
+                <highlight class="normal"></highlight>
+            </codeline>
+            <codeline lineno="56" refid="structbp__array__t" refkind="compound">
+                <highlight class="keyword">typedef</highlight>
+                <highlight class="normal">
+                    <sp/>
+                </highlight>
+                <highlight class="keyword">struct
+                    <sp/>
+                </highlight>
+                <highlight class="normal">{</highlight>
+            </codeline>
+            <codeline lineno="57">
+                <highlight class="normal">
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <ref refid="bp__types_8h_1ac182d38c0a80545f8344c0657273c16e" kindref="member">usize</ref>
+                    <sp/>_element_size;
+                    <sp/>
+                </highlight>
+            </codeline>
+            <codeline lineno="58">
+                <highlight class="normal">
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <ref refid="bp__types_8h_1ac182d38c0a80545f8344c0657273c16e" kindref="member">usize</ref>
+                    <sp/>_max_size;
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                </highlight>
+            </codeline>
+            <codeline lineno="59">
+                <highlight class="normal">
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <ref refid="bp__types_8h_1ac182d38c0a80545f8344c0657273c16e" kindref="member">usize</ref>
+                    <sp/>_size;
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                </highlight>
+            </codeline>
+            <codeline lineno="60">
+                <highlight class="normal">
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <ref refid="bp__types_8h_1ae081489b4906f65a3cb18e9fbe9f8d23" kindref="member">u8_t</ref>
+                    <sp/>*_array;
+                    <sp/>
+                </highlight>
+            </codeline>
+            <codeline lineno="61">
+                <highlight class="normal">}
+                    <sp/>
+                    <ref refid="structbp__array__t" kindref="compound">bp_array_t</ref>;
+                </highlight>
+            </codeline>
+            <codeline lineno="62">
+                <highlight class="normal"></highlight>
+            </codeline>
+            <codeline lineno="70">
+                <highlight class="keywordtype">void</highlight>
+                <highlight class="normal"><sp/>*<ref refid="bp__array_8h_1aac6c8c099278a2f1229834c959e06b11"
+                                                     kindref="member">bp_array_get</ref>(
+                    <ref refid="structbp__array__t" kindref="compound">bp_array_t</ref>
+                    <sp/>*array,
+                    <sp/>
+                    <ref refid="bp__types_8h_1ac182d38c0a80545f8344c0657273c16e" kindref="member">usize</ref>
+                    <sp/>idx);
+                </highlight>
+            </codeline>
+            <codeline lineno="71">
+                <highlight class="normal"></highlight>
+            </codeline>
+            <codeline lineno="78">
+                <highlight class="keywordtype">int</highlight>
+                <highlight class="normal">
+                    <sp/>
+                    <ref refid="bp__array_8h_1a91287cfddb179ae135afb45ecb7b27ac" kindref="member">bp_array_push</ref>(
+                    <ref refid="structbp__array__t" kindref="compound">bp_array_t</ref>
+                    <sp/>*array,
+                    <sp/>
+                </highlight>
+                <highlight class="keywordtype">void</highlight>
+                <highlight class="normal"><sp/>*el);
+                </highlight>
+            </codeline>
+            <codeline lineno="79">
+                <highlight class="normal"></highlight>
+            </codeline>
+            <codeline lineno="86">
+                <highlight class="keywordtype">int</highlight>
+                <highlight class="normal">
+                    <sp/>
+                    <ref refid="bp__array_8h_1a9f7514a29b57dab68d98c2ce2489179f" kindref="member">bp_array_del</ref>(
+                    <ref refid="structbp__array__t" kindref="compound">bp_array_t</ref>
+                    <sp/>*array,
+                    <sp/>
+                    <ref refid="bp__types_8h_1ac182d38c0a80545f8344c0657273c16e" kindref="member">usize</ref>
+                    <sp/>idx);
+                </highlight>
+            </codeline>
+            <codeline lineno="87">
+                <highlight class="normal"></highlight>
+            </codeline>
+            <codeline lineno="99">
+                <highlight class="normal">
+                    <ref refid="bp__types_8h_1ac182d38c0a80545f8344c0657273c16e" kindref="member">usize</ref>
+                    <sp/>
+                    <ref refid="bp__array_8h_1abf5690bfd309b022c187b7b19c69f29f" kindref="member">
+                        bp_array_find_idx</ref>(
+                    <ref refid="structbp__array__t" kindref="compound">bp_array_t</ref>
+                    <sp/>*array,
+                    <sp/>
+                </highlight>
+                <highlight class="keywordtype">void</highlight>
+                <highlight class="normal"><sp/>*param,
+                </highlight>
+            </codeline>
+            <codeline lineno="100">
+                <highlight class="normal">
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                    <sp/>
+                </highlight>
+                <highlight class="keywordtype">bool</highlight>
+                <highlight class="normal"><sp/>(*cmp)(
+                </highlight>
+                <highlight class="keywordtype">void</highlight>
+                <highlight class="normal"><sp/>*el,
+                    <sp/>
+                </highlight>
+                <highlight class="keywordtype">void</highlight>
+                <highlight class="normal"><sp/>*param));
+                </highlight>
+            </codeline>
+            <codeline lineno="101">
+                <highlight class="normal"></highlight>
+            </codeline>
+            <codeline lineno="113">
+                <highlight class="keywordtype">void</highlight>
+                <highlight class="normal"><sp/>*<ref refid="bp__array_8h_1a8fbf06a68528f41eef4e953161889969"
+                                                     kindref="member">bp_array_find</ref>(
+                    <ref refid="structbp__array__t" kindref="compound">bp_array_t</ref>
+                    <sp/>*array,
+                    <sp/>
+                </highlight>
+                <highlight class="keywordtype">void</highlight>
+                <highlight class="normal"><sp/>*param,
+                    <sp/>
+                </highlight>
+                <highlight class="keywordtype">bool</highlight>
+                <highlight class="normal"><sp/>(*cmp)(
+                </highlight>
+                <highlight class="keywordtype">void</highlight>
+                <highlight class="normal"><sp/>*el,
+                    <sp/>
+                </highlight>
+                <highlight class="keywordtype">void</highlight>
+                <highlight class="normal"><sp/>*param));
+                </highlight>
+            </codeline>
+            <codeline lineno="114">
+                <highlight class="normal"></highlight>
+            </codeline>
+            <codeline lineno="121">
+                <highlight class="keywordtype">int</highlight>
+                <highlight class="normal">
+                    <sp/>
+                    <ref refid="bp__array_8h_1a3034a2c60f4c88b624d49e331c2b2e59" kindref="member">bp_array_clear</ref>(
+                    <ref refid="structbp__array__t" kindref="compound">bp_array_t</ref>
+                    <sp/>*array);
+                </highlight>
+            </codeline>
+            <codeline lineno="122">
+                <highlight class="normal"></highlight>
+            </codeline>
+            <codeline lineno="128">
+                <highlight class="normal">
+                    <ref refid="bp__types_8h_1ac182d38c0a80545f8344c0657273c16e" kindref="member">usize</ref>
+                    <sp/>
+                    <ref refid="bp__array_8h_1a1ba3e67c52ea5cc906bdc782f69f8bbc" kindref="member">bp_array_size</ref>(
+                    <ref refid="structbp__array__t" kindref="compound">bp_array_t</ref>
+                    <sp/>*array);
+                </highlight>
+            </codeline>
+            <codeline lineno="129">
+                <highlight class="normal"></highlight>
+            </codeline>
+            <codeline lineno="139">
+                <highlight class="normal">
+                    <ref refid="structbp__iter" kindref="compound">bp_iter_t</ref>
+                    <sp/>
+                    <ref refid="bp__array_8h_1ac4c980a589d349beecc8cf80c00386d7" kindref="member">bp_array_iter</ref>(
+                    <ref refid="structbp__array__t" kindref="compound">bp_array_t</ref>
+                    <sp/>*array);
+                </highlight>
+            </codeline>
+            <codeline lineno="140">
+                <highlight class="normal"></highlight>
+            </codeline>
+            <codeline lineno="141">
+                <highlight class="normal"></highlight>
+                <highlight class="preprocessor">#ifdef<sp/>__cplusplus
+                </highlight>
+                <highlight class="normal"></highlight>
+            </codeline>
+            <codeline lineno="142">
+                <highlight class="normal">}</highlight>
+            </codeline>
+            <codeline lineno="143">
+                <highlight class="normal"></highlight>
+                <highlight class="preprocessor">#endif</highlight>
+                <highlight class="normal"></highlight>
+            </codeline>
+            <codeline lineno="144">
+                <highlight class="normal"></highlight>
+            </codeline>
+            <codeline lineno="145">
+                <highlight class="normal"></highlight>
+                <highlight class="preprocessor">#endif
+                    <sp/>
+                    <sp/>//<sp/>BACKPACK_ARRAY_H
+                </highlight>
+            </codeline>
+        </programlisting>
+        <location file="src/include/bp_array.h"/>
+    </compounddef>
+</doxygen>
