@@ -125,6 +125,30 @@ TEST_SUITE("Min Heap | Normal flow")
         }
     }
 
+    TEST_CASE("Delete the top element of the heap multiple times")
+    {
+        u32_t buffer[20] = {0};
+        bp_heap_t heap   = BP_MIN_HEAP_INIT(buffer, bp_int_cmp);
+        u32_t el;
+        int err;
+        unsigned int seed = time(NULL);
+
+        printf("Test case \"%s\" seed: 0x%x\n", getCurrentTestName(), seed);
+        srand(seed);
+
+        for (int i = 0; i < 20; ++i) {
+            el = rand() % 0x7fFFffFF;
+            bp_heap_push(&heap, &el);
+        }
+
+        for (int i = 0; i < 20; ++i) {
+            err = bp_heap_pop(&heap, NULL);
+
+            REQUIRE(err == 0);
+            REQUIRE(heap._coll._size == (20 - i - 1));
+        }
+    }
+
     TEST_CASE("Delete a heap element")
     {
         u32_t buffer[20] = {0};
@@ -434,17 +458,6 @@ TEST_SUITE("Min Heap | Invalid Parameters")
         REQUIRE(err != 0);
     }
 
-    TEST_CASE("Null element argument in pop function")
-    {
-        int err;
-        u32_t buffer[20] = {0};
-        bp_heap_t heap   = BP_MIN_HEAP_INIT(buffer, bp_int_cmp);
-
-        err = bp_heap_pop(&heap, nullptr);
-
-        REQUIRE(err != 0);
-    }
-
     TEST_CASE("Null heap argument in push function")
     {
         int err;
@@ -690,6 +703,30 @@ TEST_SUITE("Max Heap | Normal flow")
 
             REQUIRE(err == 0);
             REQUIRE(top_el == el);
+            REQUIRE(heap._coll._size == (20 - i - 1));
+        }
+    }
+
+    TEST_CASE("Delete the top element of the heap multiple times")
+    {
+        u32_t buffer[20] = {0};
+        bp_heap_t heap   = BP_MAX_HEAP_INIT(buffer, bp_int_cmp);
+        u32_t el;
+        int err;
+        unsigned int seed = time(NULL);
+
+        printf("Test case \"%s\" seed: 0x%x\n", getCurrentTestName(), seed);
+        srand(seed);
+
+        for (int i = 0; i < 20; ++i) {
+            el = rand() % 0x7fFFffFF;
+            bp_heap_push(&heap, &el);
+        }
+
+        for (int i = 0; i < 20; ++i) {
+            err = bp_heap_pop(&heap, NULL);
+
+            REQUIRE(err == 0);
             REQUIRE(heap._coll._size == (20 - i - 1));
         }
     }
@@ -999,17 +1036,6 @@ TEST_SUITE("Max Heap | Invalid Parameters")
         u32_t el = 7;
 
         err = bp_heap_pop(nullptr, &el);
-
-        REQUIRE(err != 0);
-    }
-
-    TEST_CASE("Null element argument in pop function")
-    {
-        int err;
-        u32_t buffer[20] = {0};
-        bp_heap_t heap   = BP_MAX_HEAP_INIT(buffer, bp_int_cmp);
-
-        err = bp_heap_pop(&heap, nullptr);
 
         REQUIRE(err != 0);
     }

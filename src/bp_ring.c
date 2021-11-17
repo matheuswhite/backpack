@@ -106,7 +106,7 @@ void *bp_ring_peek(bp_ring_t *ring)
 
 int bp_ring_pop(bp_ring_t *ring, void *el)
 {
-    if (ring == NULL || el == NULL) {
+    if (ring == NULL) {
         return -ENODEV;
     }
 
@@ -114,7 +114,9 @@ int bp_ring_pop(bp_ring_t *ring, void *el)
         return -ENOENT;
     }
 
-    memcpy(el, &ring->_array[ring->_tail * ring->_element_size], ring->_element_size);
+    if (el != NULL) {
+        memcpy(el, &ring->_array[ring->_tail * ring->_element_size], ring->_element_size);
+    }
     ring->_size -= 1;
     ring->_tail = BP_RING_ADVANCE_TAIL(ring);
 

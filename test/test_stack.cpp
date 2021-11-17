@@ -44,6 +44,20 @@ TEST_SUITE("Stack | Normal flow")
         REQUIRE(el == 3);
     }
 
+    TEST_CASE("Delete the top element from stack")
+    {
+        int stack[10] = {
+            1, 2, 3, 0, 0, 0, 0, 0, 0, 0,
+        };
+        bp_stack_t coll = BP_STACK_START(stack, 3);
+        int err;
+
+        err = bp_stack_pop(&coll, NULL);
+
+        REQUIRE(err == 0);
+        REQUIRE(coll._size == 2);
+    }
+
     TEST_CASE("Peek an element of the stack")
     {
         int stack[10] = {
@@ -113,17 +127,6 @@ TEST_SUITE("Stack | Invalid Parameter")
         int err;
 
         err = bp_stack_pop(nullptr, &el);
-
-        REQUIRE(err != 0);
-    }
-
-    TEST_CASE("Null element argument in pop function")
-    {
-        int err;
-        int stack[10]   = {0};
-        bp_stack_t coll = BP_STACK_INIT(stack);
-
-        err = bp_stack_pop(&coll, nullptr);
 
         REQUIRE(err != 0);
     }

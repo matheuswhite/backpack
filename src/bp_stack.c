@@ -38,7 +38,7 @@ static void *bp_stack_iter_get(struct bp_iter *self);
 
 int bp_stack_pop(bp_stack_t *stack, void *el)
 {
-    if (stack == NULL || el == NULL) {
+    if (stack == NULL) {
         return -ENODEV;
     }
 
@@ -48,7 +48,9 @@ int bp_stack_pop(bp_stack_t *stack, void *el)
 
     void *last_el = &stack->_buffer[(stack->_size - 1) * stack->_element_size];
 
-    memcpy(el, last_el, stack->_element_size);
+    if (el != NULL) {
+        memcpy(el, last_el, stack->_element_size);
+    }
     memset(last_el, 0, stack->_element_size);
     stack->_size -= 1;
 

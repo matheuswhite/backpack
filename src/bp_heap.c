@@ -156,7 +156,7 @@ int bp_heap_clear(bp_heap_t *heap)
 
 int bp_heap_pop(bp_heap_t *heap, void *el)
 {
-    if (heap == NULL || el == NULL) {
+    if (heap == NULL) {
         return -ENODEV;
     }
 
@@ -169,7 +169,9 @@ int bp_heap_pop(bp_heap_t *heap, void *el)
     }
 
     void *ptr = BP_HEAP_GET(heap, 1);
-    memcpy(el, ptr, heap->_coll._element_size);
+    if (el != NULL) {
+        memcpy(el, ptr, heap->_coll._element_size);
+    }
 
     bp_heap_swap(heap, 1, heap->_coll._size);
     heap->_coll._size -= 1;

@@ -60,7 +60,7 @@ typedef struct {
  * @param stack Reference to the stack.
  * @param el [out] Reference to a variable, where the removed element will be put.
  * @return 0 on success.
- * @return -ENODEV if the 'stack' or 'el' argument is NULL.
+ * @return -ENODEV if the 'stack' argument is NULL.
  * @return -ENOENT if the stack is empty.
  */
 int bp_stack_pop(bp_stack_t *stack, void *el);

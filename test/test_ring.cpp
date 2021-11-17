@@ -113,6 +113,21 @@ TEST_SUITE("Ring | Normal flow")
         REQUIRE(coll._size == 4);
     }
 
+    TEST_CASE("Delete the top element from ring")
+    {
+        int ring[10]   = {0};
+        bp_ring_t coll = BP_RING_INIT(ring);
+        int err;
+
+        for (int i = 1; i <= 5; ++i) {
+            bp_ring_push(&coll, &i);
+        }
+        err = bp_ring_pop(&coll, NULL);
+
+        REQUIRE(err == 0);
+        REQUIRE(coll._size == 4);
+    }
+
     TEST_CASE("Find an element in the ring")
     {
         int ring[10]    = {0};
@@ -271,17 +286,6 @@ TEST_SUITE("Ring | Invalid Parameters")
 
         REQUIRE(err != 0);
         REQUIRE(el == 7);
-    }
-
-    TEST_CASE("Null element argument in pop function")
-    {
-        int err;
-        int ring[10]   = {0};
-        bp_ring_t coll = BP_RING_INIT(ring);
-
-        err = bp_ring_pop(&coll, nullptr);
-
-        REQUIRE(err != 0);
     }
 
     TEST_CASE("Null ring argument in push function")

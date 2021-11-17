@@ -72,7 +72,7 @@ void *bp_ring_peek(bp_ring_t *ring);
  * @param ring Reference to bp_ring.
  * @param el [out] Reference to a variable where the removed element will be put.
  * @return 0 on success.
- * @return -ENODEV if the 'ring' or the 'el' argument is NULL.
+ * @return -ENODEV if the 'ring' argument is NULL.
  * @return -ENOENT if the ring is empty.
  */
 int bp_ring_pop(bp_ring_t *ring, void *el);

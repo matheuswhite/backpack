@@ -88,7 +88,7 @@ int bp_heap_clear(bp_heap_t *heap);
  * @param heap Reference to bp_heap.
  * @param el [out] Reference to a variable, where the removed element will be put.
  * @return 0 on success.
- * @return -ENODEV if the 'heap' or 'el' argument is NULL.
+ * @return -ENODEV if the 'heap' argument is NULL.
  * @return -ENOENT if the stack size is zero.
  * @return -EINVAL if the heap '_cmp' field is NULL.
  */
