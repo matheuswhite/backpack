@@ -88,11 +88,11 @@ int bp_array_del(bp_array_t *array, usize idx)
     }
 
     if (idx == array->_size - 1) {
-        memset(bp_array_get(array, idx), 0, array->_element_size);
+        memset(&array->_array[idx * array->_element_size], 0, array->_element_size);
     } else {
         for (usize i = idx; i < (array->_size - 1); i++) {
-            memcpy(bp_array_get(array, i), bp_array_get(array, i + 1),
-                   array->_element_size);
+            memcpy(&array->_array[i * array->_element_size],
+                   &array->_array[(i + 1) * array->_element_size], array->_element_size);
         }
     }
 
@@ -101,21 +101,21 @@ int bp_array_del(bp_array_t *array, usize idx)
     return 0;
 }
 
-usize bp_array_find_idx(bp_array_t *array, void *param,
-                        bool (*cmp)(void *el, void *param))
+usize bp_array_find_idx(bp_array_t *array, void *param, bool (*cmp)(void *, void *))
 {
     if (array == NULL || param == NULL) {
         return BP_ARRAY_INVALID_INDEX;
     }
 
     bool res;
+    void *el;
 
     for (usize i = 0; i < array->_size; ++i) {
+        el = &array->_array[i * array->_element_size];
         if (cmp != NULL) {
-            res = cmp(bp_array_get(array, i), param);
+            res = cmp(el, param);
         } else {
-            res =
-                bp_array_default_cmp(bp_array_get(array, i), param, array->_element_size);
+            res = bp_array_default_cmp(el, param, array->_element_size);
         }
 
         if (res) {
@@ -126,24 +126,25 @@ usize bp_array_find_idx(bp_array_t *array, void *param,
     return BP_ARRAY_INVALID_INDEX;
 }
 
-void *bp_array_find(bp_array_t *array, void *param, bool (*cmp)(void *el, void *param))
+void *bp_array_find(bp_array_t *array, void *param, bool (*cmp)(void *, void *))
 {
     if (array == NULL || param == NULL) {
         return NULL;
     }
 
     bool res;
+    void *el;
 
     for (usize i = 0; i < array->_size; ++i) {
+        el = &array->_array[i * array->_element_size];
         if (cmp != NULL) {
-            res = cmp(bp_array_get(array, i), param);
+            res = cmp(el, param);
         } else {
-            res =
-                bp_array_default_cmp(bp_array_get(array, i), param, array->_element_size);
+            res = bp_array_default_cmp(el, param, array->_element_size);
         }
 
         if (res) {
-            return bp_array_get(array, i);
+            return el;
         }
     }
 
@@ -203,9 +204,15 @@ static bool bp_array_default_cmp(void *left, void *right, usize el_size)
 
 static void *bp_array_iter_init(struct bp_iter *self)
 {
+    bp_array_t *array = self->coll;
+
     self->current.idx = 0;
 
-    return bp_array_get(self->coll, 0);
+    if (array->_size == 0) {
+        return NULL;
+    }
+
+    return &array->_array[0];
 }
 
 static bool bp_array_iter_next(struct bp_iter *self)
@@ -221,7 +228,13 @@ static bool bp_array_iter_next(struct bp_iter *self)
 
 static void *bp_array_iter_get(struct bp_iter *self)
 {
-    return bp_array_get(self->coll, self->current.idx);
+    bp_array_t *array = self->coll;
+
+    if (self->current.idx >= array->_size) {
+        return NULL;
+    }
+
+    return &array->_array[self->current.idx * array->_element_size];
 }
 
 #ifdef __cplusplus

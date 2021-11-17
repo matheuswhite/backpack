@@ -140,19 +140,25 @@ int bp_ring_push(bp_ring_t *ring, void *el)
     return 0;
 }
 
-usize bp_ring_find_idx(bp_ring_t *ring, void *param, bool (*cmp)(void *el, void *param))
+usize bp_ring_find_idx(bp_ring_t *ring, void *param, bool (*cmp)(void *, void *))
 {
     if (ring == NULL || param == NULL) {
         return BP_RING_INVALID_INDEX;
     }
 
     bool res;
+    size_t idx = 0;
 
     for (usize i = 0; i < ring->_size; ++i) {
+        idx += ring->_tail;
+        if (idx >= ring->_max_size) {
+            idx -= ring->_max_size;
+        }
+        void *el = &ring->_array[idx * ring->_element_size];
         if (cmp != NULL) {
-            res = cmp(bp_ring_get(ring, i), param);
+            res = cmp(el, param);
         } else {
-            res = bp_ring_default_cmp(bp_ring_get(ring, i), param, ring->_element_size);
+            res = bp_ring_default_cmp(el, param, ring->_element_size);
         }
 
         if (res) {
@@ -163,7 +169,7 @@ usize bp_ring_find_idx(bp_ring_t *ring, void *param, bool (*cmp)(void *el, void 
     return BP_RING_INVALID_INDEX;
 }
 
-void *bp_ring_find(bp_ring_t *ring, void *param, bool (*cmp)(void *el, void *param))
+void *bp_ring_find(bp_ring_t *ring, void *param, bool (*cmp)(void *, void *))
 {
     if (ring == NULL || param == NULL) {
         return NULL;
@@ -173,7 +179,7 @@ void *bp_ring_find(bp_ring_t *ring, void *param, bool (*cmp)(void *el, void *par
     void *el;
 
     for (usize i = 0; i < ring->_size; ++i) {
-        el = bp_ring_get(ring, i);
+        el = &ring->_array[i * ring->_element_size];
         if (cmp != NULL) {
             res = cmp(el, param);
         } else {
@@ -247,7 +253,11 @@ static void *bp_ring_iter_init(struct bp_iter *self)
 
     self->current.idx = ring->_tail;
 
-    return bp_ring_peek(ring);
+    if (ring->_size == 0) {
+        return NULL;
+    }
+
+    return &ring->_array[ring->_tail * ring->_element_size];
 }
 
 static bool bp_ring_iter_next(struct bp_iter *self)
@@ -266,7 +276,19 @@ static bool bp_ring_iter_next(struct bp_iter *self)
 
 static void *bp_ring_iter_get(struct bp_iter *self)
 {
-    return bp_ring_get(self->coll, self->current.idx);
+    bp_ring_t *ring = self->coll;
+    size_t idx      = self->current.idx;
+
+    if (idx >= ring->_size) {
+        return NULL;
+    }
+
+    idx += ring->_tail;
+    if (idx >= ring->_max_size) {
+        idx -= ring->_max_size;
+    }
+
+    return &ring->_array[idx * ring->_element_size];
 }
 
 #ifdef __cplusplus

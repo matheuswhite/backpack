@@ -72,7 +72,7 @@ extern "C" {
  * @param n The argument of log2.
  * @return The log2 of n parameter.
  */
-static int log2fast(unsigned int n);
+inline static int log2fast(unsigned int n);
 
 /*!
  * Swap two elements in the heap.
@@ -81,7 +81,7 @@ static int log2fast(unsigned int n);
  * @param idx1 The index of the first element to be swapped.
  * @param idx2 The index of the second element to be swapped.
  */
-static void bp_heap_swap(bp_heap_t *heap, usize idx1, usize idx2);
+inline static void bp_heap_swap(bp_heap_t *heap, usize idx1, usize idx2);
 
 /*!
  * Shift up an element in the heap, until its parent is less than (or greater than, for
@@ -168,7 +168,7 @@ int bp_heap_pop(bp_heap_t *heap, void *el)
         return -EINVAL;
     }
 
-    void *ptr = bp_heap_top(heap);
+    void *ptr = BP_HEAP_GET(heap, 1);
     memcpy(el, ptr, heap->_coll._element_size);
 
     bp_heap_swap(heap, 1, heap->_coll._size);
@@ -201,7 +201,7 @@ int bp_heap_push(bp_heap_t *heap, void *el)
     return 0;
 }
 
-int bp_heap_del(bp_heap_t *heap, void *param, bool (*cmp)(void *el, void *param))
+int bp_heap_del(bp_heap_t *heap, void *param, bool (*cmp)(void *, void *))
 {
     if (heap == NULL || param == NULL) {
         return -ENODEV;
@@ -246,7 +246,7 @@ int bp_heap_del(bp_heap_t *heap, void *param, bool (*cmp)(void *el, void *param)
     return 0;
 }
 
-void *bp_heap_find(bp_heap_t *heap, void *param, bool (*cmp)(void *el, void *param))
+void *bp_heap_find(bp_heap_t *heap, void *param, bool (*cmp)(void *, void *))
 {
     if (heap == NULL || param == NULL) {
         return NULL;
@@ -294,7 +294,7 @@ bp_iter_t bp_heap_dfs_iter(bp_heap_t *heap)
     return iter;
 }
 
-static int log2fast(unsigned int n)
+inline static int log2fast(unsigned int n)
 {
     n |= (n >> 1);
     n |= (n >> 2);
@@ -305,7 +305,7 @@ static int log2fast(unsigned int n)
     return (__builtin_popcount(n) - 1);
 }
 
-static void bp_heap_swap(bp_heap_t *heap, usize idx1, usize idx2)
+inline static void bp_heap_swap(bp_heap_t *heap, usize idx1, usize idx2)
 {
 #ifdef _MSC_VER
     u8_t *aux = (u8_t *) alloca(sizeof(u8_t) * heap->_coll._element_size);
@@ -385,12 +385,10 @@ static void bp_heap_shift_down(bp_heap_t *heap, usize idx)
             if (heap->_kind == BP_MIN_HEAP) {
                 if (heap->_cmp(max_el, right_child) > 0) {
                     max_idx = BP_HEAP_RIGHT_CHILD(idx);
-                    max_el  = right_child;
                 }
             } else {
                 if (heap->_cmp(max_el, right_child) < 0) {
                     max_idx = BP_HEAP_RIGHT_CHILD(idx);
-                    max_el  = right_child;
                 }
             }
         }
