@@ -32,7 +32,7 @@ extern "C" {
 #define BP_ARRAY_INIT(array_)                                          \
     {                                                                  \
         ._element_size = sizeof((array_)[0]),                          \
-        ._max_size = sizeof(array_) / sizeof((array_)[0]), ._size = 0, \
+        ._capacity = sizeof(array_) / sizeof((array_)[0]), ._size = 0, \
         ._array = (u8_t *) (array_),                                   \
     }
 
@@ -44,7 +44,7 @@ extern "C" {
 #define BP_ARRAY_START(array_, size_)                                        \
     {                                                                        \
         ._element_size = sizeof((array_)[0]),                                \
-        ._max_size = sizeof(array_) / sizeof((array_)[0]), ._size = (size_), \
+        ._capacity = sizeof(array_) / sizeof((array_)[0]), ._size = (size_), \
         ._array = (u8_t *) (array_),                                         \
     }
 
@@ -55,7 +55,7 @@ extern "C" {
  */
 typedef struct {
     usize _element_size; /*!< Size (in bytes) of a single element in the array. */
-    usize _max_size;     /*!< Maximum number of elements in the array. */
+    usize _capacity;     /*!< Maximum number of elements in the array. */
     usize _size;         /*!< Current number of elements in the array. */
     u8_t *_array; /*!< Reference to the buffer, where the elements will be stored. */
 } bp_array_t;

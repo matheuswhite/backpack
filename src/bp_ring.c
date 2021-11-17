@@ -22,7 +22,7 @@ extern "C" {
  * @return The next value of the pointer
  */
 #define BP_RING_ADVANCE_PTR(ring, ptr) \
-    (((ring)->ptr == ((ring)->_max_size - 1)) ? 0 : ((ring)->ptr + 1))
+    (((ring)->ptr == ((ring)->_capacity - 1)) ? 0 : ((ring)->ptr + 1))
 
 /*!
  * Macro to advance the head pointer. If the head pointer is in the end of buffer, then
@@ -84,8 +84,8 @@ void *bp_ring_get(bp_ring_t *ring, usize idx)
     }
 
     idx += ring->_tail;
-    if (idx >= ring->_max_size) {
-        idx -= ring->_max_size;
+    if (idx >= ring->_capacity) {
+        idx -= ring->_capacity;
     }
 
     return &ring->_array[idx * ring->_element_size];
@@ -133,7 +133,7 @@ int bp_ring_push(bp_ring_t *ring, void *el)
     memcpy(ptr, el, ring->_element_size);
 
     ring->_head = BP_RING_ADVANCE_HEAD(ring);
-    if (ring->_size < ring->_max_size) {
+    if (ring->_size < ring->_capacity) {
         ring->_size += 1;
     } else {
         ring->_tail = BP_RING_ADVANCE_TAIL(ring);
@@ -153,8 +153,8 @@ usize bp_ring_find_idx(bp_ring_t *ring, void *param, bool (*cmp)(void *, void *)
 
     for (usize i = 0; i < ring->_size; ++i) {
         idx += ring->_tail;
-        if (idx >= ring->_max_size) {
-            idx -= ring->_max_size;
+        if (idx >= ring->_capacity) {
+            idx -= ring->_capacity;
         }
         void *el = &ring->_array[idx * ring->_element_size];
         if (cmp != NULL) {
@@ -271,7 +271,7 @@ static bool bp_ring_iter_next(struct bp_iter *self)
     }
 
     self->current.idx =
-        ((self->current.idx == (ring->_max_size - 1)) ? 0 : (self->current.idx + 1));
+        ((self->current.idx == (ring->_capacity - 1)) ? 0 : (self->current.idx + 1));
 
     return true;
 }
@@ -286,8 +286,8 @@ static void *bp_ring_iter_get(struct bp_iter *self)
     }
 
     idx += ring->_tail;
-    if (idx >= ring->_max_size) {
-        idx -= ring->_max_size;
+    if (idx >= ring->_capacity) {
+        idx -= ring->_capacity;
     }
 
     return &ring->_array[idx * ring->_element_size];

@@ -33,7 +33,7 @@ extern "C" {
 #define BP_RING_INIT(array_)                                                       \
     {                                                                              \
         ._array = (u8_t *) (array_), ._element_size = sizeof((array_)[0]),         \
-        ._max_size = sizeof(array_) / sizeof((array_)[0]), ._size = 0, ._head = 0, \
+        ._capacity = sizeof(array_) / sizeof((array_)[0]), ._size = 0, ._head = 0, \
         ._tail = 0,                                                                \
     }
 
@@ -43,7 +43,7 @@ extern "C" {
 typedef struct {
     u8_t *_array;        /*!< Reference to the buffer itself. */
     usize _element_size; /*!< Size (in bytes) of a single element in the array. */
-    usize _max_size;     /*!< Maximum number of elements in the ring buffer. */
+    usize _capacity;     /*!< Maximum number of elements in the ring buffer. */
     usize _size;         /*!< Current number of elements in the ring buffer. */
     usize _head;         /*!< Index of the head of the ring buffer. */
     usize _tail;         /*!< Index of the tail of the ring buffer. */

@@ -27,7 +27,7 @@ extern "C" {
 #define BP_STACK_INIT(buffer)                                          \
     {                                                                  \
         ._element_size = sizeof((buffer)[0]),                          \
-        ._max_size = sizeof(buffer) / sizeof((buffer)[0]), ._size = 0, \
+        ._capacity = sizeof(buffer) / sizeof((buffer)[0]), ._size = 0, \
         ._buffer = (u8_t *) (buffer),                                  \
     }
 
@@ -39,7 +39,7 @@ extern "C" {
 #define BP_STACK_START(buffer, size_)                                        \
     {                                                                        \
         ._element_size = sizeof((buffer)[0]),                                \
-        ._max_size = sizeof(buffer) / sizeof((buffer)[0]), ._size = (size_), \
+        ._capacity = sizeof(buffer) / sizeof((buffer)[0]), ._size = (size_), \
         ._buffer = (u8_t *) (buffer),                                        \
     }
 
@@ -50,7 +50,7 @@ extern "C" {
  */
 typedef struct {
     usize _element_size; /*!< Size (in bytes) of a single element in the stack. */
-    usize _max_size;     /*!< Maximum number of elements in the stack */
+    usize _capacity;     /*!< Maximum number of elements in the stack */
     usize _size;         /*!< Current number of elements in the array. */
     u8_t *_buffer; /*!< Reference to the buffer, where the elements will be stored. */
 } bp_stack_t;

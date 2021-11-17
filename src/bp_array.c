@@ -66,7 +66,7 @@ int bp_array_push(bp_array_t *array, void *el)
         return -ENODEV;
     }
 
-    if (array->_size >= array->_max_size) {
+    if (array->_size >= array->_capacity) {
         return -ENOMEM;
     }
 

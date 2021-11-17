@@ -52,7 +52,7 @@ TEST_SUITE("Ring | Normal flow")
         int el         = 7;
         int err;
 
-        for (int i = 0; i < coll._max_size; ++i) {
+        for (int i = 0; i < coll._capacity; ++i) {
             bp_ring_push(&coll, &i);
         }
         err = bp_ring_push(&coll, &el);

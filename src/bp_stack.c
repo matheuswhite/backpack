@@ -76,7 +76,7 @@ int bp_stack_push(bp_stack_t *stack, void *el)
         return -ENODEV;
     }
 
-    if (stack->_size >= stack->_max_size) {
+    if (stack->_size >= stack->_capacity) {
         return -ENOMEM;
     }
 
