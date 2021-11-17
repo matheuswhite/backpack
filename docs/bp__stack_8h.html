@@ -71,6 +71,8 @@
 </div><!-- top -->
 <div class="header">
     <div class="summary">
+        <a href="#nested-classes">Classes</a> &#124;
+        <a href="#define-members">Macros</a> &#124;
         <a href="#func-members">Functions</a></div>
     <div class="headertitle">
         <div class="title">bp_stack.h File Reference</div>
@@ -78,10 +80,11 @@
 </div><!--header-->
 <div class="contents">
 
-    <p>Specifies the stack structure. This structure is a bp_array complement. To allow the bp_array works as stack. So
-        the following function follow the LIFO (Last-In-First-Out) order.
+    <p>Specifies the stack structure. The following module follow the LIFO (Last-In-First-Out) order.
         <a href="#details">More...</a></p>
-    <div class="textblock"><code>#include &quot;<a class="el" href="bp__array_8h.html">bp_array.h</a>&quot;</code><br/>
+    <div class="textblock"><code>#include &lt;string.h&gt;</code><br/>
+        <code>#include &quot;<a class="el" href="bp__iter_8h.html">bp_iter.h</a>&quot;</code><br/>
+        <code>#include &quot;<a class="el" href="bp__types_8h.html">bp_types.h</a>&quot;</code><br/>
     </div>
     <div class="textblock">
         <div class="dynheader">
@@ -95,56 +98,116 @@
     </div>
     <table class="memberdecls">
         <tr class="heading">
+            <td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+                Classes</h2></td>
+        </tr>
+        <tr class="memitem:">
+            <td class="memItemLeft" align="right" valign="top">struct &#160;</td>
+            <td class="memItemRight" valign="bottom"><a class="el" href="structbp__stack__t.html">bp_stack_t</a></td>
+        </tr>
+        <tr class="separator:">
+            <td class="memSeparator" colspan="2">&#160;</td>
+        </tr>
+    </table>
+    <table class="memberdecls">
+        <tr class="heading">
+            <td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+                Macros</h2></td>
+        </tr>
+        <tr class="memitem:afa3d2877e1a0186decfb8a0a78d0e378">
+            <td class="memItemLeft" align="right" valign="top">#define&#160;</td>
+            <td class="memItemRight" valign="bottom"><a class="el"
+                                                        href="bp__stack_8h.html#afa3d2877e1a0186decfb8a0a78d0e378">BP_STACK_INIT</a>(buffer)
+            </td>
+        </tr>
+        <tr class="separator:afa3d2877e1a0186decfb8a0a78d0e378">
+            <td class="memSeparator" colspan="2">&#160;</td>
+        </tr>
+        <tr class="memitem:affb32125caa9ff683983c70ccaa8310c">
+            <td class="memItemLeft" align="right" valign="top">#define&#160;</td>
+            <td class="memItemRight" valign="bottom"><a class="el"
+                                                        href="bp__stack_8h.html#affb32125caa9ff683983c70ccaa8310c">BP_STACK_START</a>(buffer,
+                size_)
+            </td>
+        </tr>
+        <tr class="separator:affb32125caa9ff683983c70ccaa8310c">
+            <td class="memSeparator" colspan="2">&#160;</td>
+        </tr>
+    </table>
+    <table class="memberdecls">
+        <tr class="heading">
             <td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
                 Functions</h2></td>
         </tr>
-        <tr class="memitem:a0042733492ee9761a8e112c2a2ef31b0">
+        <tr class="memitem:a9df3b62f071ff974f3b2bd92a0169a8f">
             <td class="memItemLeft" align="right" valign="top">int&#160;</td>
             <td class="memItemRight" valign="bottom"><a class="el"
-                                                        href="bp__stack_8h.html#a0042733492ee9761a8e112c2a2ef31b0">bp_stack_pop</a>
-                (<a class="el" href="structbp__array__t.html">bp_array_t</a> *stack, void *el)
+                                                        href="bp__stack_8h.html#a9df3b62f071ff974f3b2bd92a0169a8f">bp_stack_pop</a>
+                (<a class="el" href="structbp__stack__t.html">bp_stack_t</a> *stack, void *el)
             </td>
         </tr>
-        <tr class="separator:a0042733492ee9761a8e112c2a2ef31b0">
+        <tr class="separator:a9df3b62f071ff974f3b2bd92a0169a8f">
             <td class="memSeparator" colspan="2">&#160;</td>
         </tr>
-        <tr class="memitem:af9922c55bc93e87e5ac79e639ecfa65e">
+        <tr class="memitem:ad347bef9496295338831026f83bb5400">
             <td class="memItemLeft" align="right" valign="top">void *&#160;</td>
             <td class="memItemRight" valign="bottom"><a class="el"
-                                                        href="bp__stack_8h.html#af9922c55bc93e87e5ac79e639ecfa65e">bp_stack_peek</a>
-                (<a class="el" href="structbp__array__t.html">bp_array_t</a> *stack)
+                                                        href="bp__stack_8h.html#ad347bef9496295338831026f83bb5400">bp_stack_peek</a>
+                (<a class="el" href="structbp__stack__t.html">bp_stack_t</a> *stack)
             </td>
         </tr>
-        <tr class="separator:af9922c55bc93e87e5ac79e639ecfa65e">
+        <tr class="separator:ad347bef9496295338831026f83bb5400">
             <td class="memSeparator" colspan="2">&#160;</td>
         </tr>
-        <tr class="memitem:a66e3dd3f0fa280fe8c3e67e559a0c437">
+        <tr class="memitem:a11f53722967f09a2a0e9f26ddbf2f4e0">
             <td class="memItemLeft" align="right" valign="top">int&#160;</td>
             <td class="memItemRight" valign="bottom"><a class="el"
-                                                        href="bp__stack_8h.html#a66e3dd3f0fa280fe8c3e67e559a0c437">bp_stack_push</a>
-                (<a class="el" href="structbp__array__t.html">bp_array_t</a> *stack, void *el)
+                                                        href="bp__stack_8h.html#a11f53722967f09a2a0e9f26ddbf2f4e0">bp_stack_push</a>
+                (<a class="el" href="structbp__stack__t.html">bp_stack_t</a> *stack, void *el)
             </td>
         </tr>
-        <tr class="separator:a66e3dd3f0fa280fe8c3e67e559a0c437">
+        <tr class="separator:a11f53722967f09a2a0e9f26ddbf2f4e0">
             <td class="memSeparator" colspan="2">&#160;</td>
         </tr>
-        <tr class="memitem:a99b7b38ab9fe9dcdad820692480e5bd5">
+        <tr class="memitem:ac92cb4d3934b7d181f12bafd47aca60a">
+            <td class="memItemLeft" align="right" valign="top">int&#160;</td>
+            <td class="memItemRight" valign="bottom"><a class="el"
+                                                        href="bp__stack_8h.html#ac92cb4d3934b7d181f12bafd47aca60a">bp_stack_clear</a>
+                (<a class="el" href="structbp__stack__t.html">bp_stack_t</a> *stack)
+            </td>
+        </tr>
+        <tr class="separator:ac92cb4d3934b7d181f12bafd47aca60a">
+            <td class="memSeparator" colspan="2">&#160;</td>
+        </tr>
+        <tr class="memitem:a82922b5e636b3d7353600ad221ffa36f">
+            <td class="memItemLeft" align="right" valign="top"><a class="el"
+                                                                  href="bp__types_8h.html#ac182d38c0a80545f8344c0657273c16e">usize</a>&#160;
+            </td>
+            <td class="memItemRight" valign="bottom"><a class="el"
+                                                        href="bp__stack_8h.html#a82922b5e636b3d7353600ad221ffa36f">bp_stack_size</a>
+                (<a class="el" href="structbp__stack__t.html">bp_stack_t</a> *stack)
+            </td>
+        </tr>
+        <tr class="separator:a82922b5e636b3d7353600ad221ffa36f">
+            <td class="memSeparator" colspan="2">&#160;</td>
+        </tr>
+        <tr class="memitem:a2a08425a8e78446db7862e50c8986f03">
             <td class="memItemLeft" align="right" valign="top"><a class="el"
                                                                   href="bp__iter_8h.html#ac25a2139450ad25247c3b224dab35b11">bp_iter_t</a>&#160;
             </td>
             <td class="memItemRight" valign="bottom"><a class="el"
-                                                        href="bp__stack_8h.html#a99b7b38ab9fe9dcdad820692480e5bd5">bp_stack_iter</a>
-                (<a class="el" href="structbp__array__t.html">bp_array_t</a> *stack)
+                                                        href="bp__stack_8h.html#a2a08425a8e78446db7862e50c8986f03">bp_stack_iter</a>
+                (<a class="el" href="structbp__stack__t.html">bp_stack_t</a> *stack)
             </td>
         </tr>
-        <tr class="separator:a99b7b38ab9fe9dcdad820692480e5bd5">
+        <tr class="separator:a2a08425a8e78446db7862e50c8986f03">
             <td class="memSeparator" colspan="2">&#160;</td>
         </tr>
     </table>
     <a name="details" id="details"></a>
     <h2 class="groupheader">Detailed Description</h2>
-    <div class="textblock"><p>Specifies the stack structure. This structure is a bp_array complement. To allow the
-        bp_array works as stack. So the following function follow the LIFO (Last-In-First-Out) order. </p>
+    <div class="textblock"><p>Specifies the stack structure. The following module follow the LIFO (Last-In-First-Out)
+        order. </p>
         <dl class="section author">
             <dt>Author</dt>
             <dd>Matheus T. dos Santos (<a href="#"
@@ -167,9 +230,158 @@
             <dd>Matheus T. dos Santos all rights reserved (c) 2021</dd>
         </dl>
     </div>
+    <h2 class="groupheader">Macro Definition Documentation</h2>
+    <a id="afa3d2877e1a0186decfb8a0a78d0e378"></a>
+    <h2 class="memtitle"><span class="permalink"><a href="#afa3d2877e1a0186decfb8a0a78d0e378">&#9670;&nbsp;</a></span>BP_STACK_INIT
+    </h2>
+
+    <div class="memitem">
+        <div class="memproto">
+            <table class="memname">
+                <tr>
+                    <td class="memname">#define BP_STACK_INIT</td>
+                    <td>(</td>
+                    <td class="paramtype">&#160;</td>
+                    <td class="paramname">buffer</td>
+                    <td>)</td>
+                    <td></td>
+                </tr>
+            </table>
+        </div>
+        <div class="memdoc">
+            <b>Value:</b>
+            <div class="fragment">
+                <div class="line"> { \</div>
+                <div class="line"> ._element_size = <span class="keyword">sizeof</span>((buffer)[0]), \</div>
+                <div class="line"> ._max_size = <span class="keyword">sizeof</span>(buffer) / <span class="keyword">sizeof</span>((buffer)[0]),
+                    ._size = 0, \
+                </div>
+                <div class="line"> ._buffer = (<a class="code"
+                                                  href="bp__types_8h.html#ae081489b4906f65a3cb18e9fbe9f8d23">u8_t</a> *)
+                    (buffer), \
+                </div>
+                <div class="line"> }</div>
+            </div><!-- fragment --><p>Macro to initialize a bp_stack. </p>
+            <dl class="params">
+                <dt>Parameters</dt>
+                <dd>
+                    <table class="params">
+                        <tr>
+                            <td class="paramname">buffer</td>
+                            <td>Buffer where the elements will be stored.</td>
+                        </tr>
+                    </table>
+                </dd>
+            </dl>
+
+        </div>
+    </div>
+    <a id="affb32125caa9ff683983c70ccaa8310c"></a>
+    <h2 class="memtitle"><span class="permalink"><a href="#affb32125caa9ff683983c70ccaa8310c">&#9670;&nbsp;</a></span>BP_STACK_START
+    </h2>
+
+    <div class="memitem">
+        <div class="memproto">
+            <table class="memname">
+                <tr>
+                    <td class="memname">#define BP_STACK_START</td>
+                    <td>(</td>
+                    <td class="paramtype">&#160;</td>
+                    <td class="paramname">buffer,</td>
+                </tr>
+                <tr>
+                    <td class="paramkey"></td>
+                    <td></td>
+                    <td class="paramtype">&#160;</td>
+                    <td class="paramname">size_&#160;</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>)</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </table>
+        </div>
+        <div class="memdoc">
+            <b>Value:</b>
+            <div class="fragment">
+                <div class="line"> { \</div>
+                <div class="line"> ._element_size = <span class="keyword">sizeof</span>((buffer)[0]), \</div>
+                <div class="line"> ._max_size = <span class="keyword">sizeof</span>(buffer) / <span class="keyword">sizeof</span>((buffer)[0]),
+                    ._size = (size_), \
+                </div>
+                <div class="line"> ._buffer = (<a class="code"
+                                                  href="bp__types_8h.html#ae081489b4906f65a3cb18e9fbe9f8d23">u8_t</a> *)
+                    (buffer), \
+                </div>
+                <div class="line"> }</div>
+            </div><!-- fragment --><p>Macro to initialize a bp_stack, which have initials elements. </p>
+            <dl class="params">
+                <dt>Parameters</dt>
+                <dd>
+                    <table class="params">
+                        <tr>
+                            <td class="paramname">buffer</td>
+                            <td>Buffer where the elements will be stored.</td>
+                        </tr>
+                        <tr>
+                            <td class="paramname">size_</td>
+                            <td>Number of elements already presentes in the buffer.</td>
+                        </tr>
+                    </table>
+                </dd>
+            </dl>
+
+        </div>
+    </div>
     <h2 class="groupheader">Function Documentation</h2>
-    <a id="a99b7b38ab9fe9dcdad820692480e5bd5"></a>
-    <h2 class="memtitle"><span class="permalink"><a href="#a99b7b38ab9fe9dcdad820692480e5bd5">&#9670;&nbsp;</a></span>bp_stack_iter()
+    <a id="ac92cb4d3934b7d181f12bafd47aca60a"></a>
+    <h2 class="memtitle"><span class="permalink"><a href="#ac92cb4d3934b7d181f12bafd47aca60a">&#9670;&nbsp;</a></span>bp_stack_clear()
+    </h2>
+
+    <div class="memitem">
+        <div class="memproto">
+            <table class="memname">
+                <tr>
+                    <td class="memname">int bp_stack_clear</td>
+                    <td>(</td>
+                    <td class="paramtype"><a class="el" href="structbp__stack__t.html">bp_stack_t</a> *&#160;</td>
+                    <td class="paramname"><em>stack</em></td>
+                    <td>)</td>
+                    <td></td>
+                </tr>
+            </table>
+        </div>
+        <div class="memdoc">
+            <p>Drop all elements in the stack.</p>
+            <dl class="section warning">
+                <dt>Warning</dt>
+                <dd>After this function the stack size is zero, but the elements stay in the buffer.</dd>
+            </dl>
+            <dl class="params">
+                <dt>Parameters</dt>
+                <dd>
+                    <table class="params">
+                        <tr>
+                            <td class="paramname">stack</td>
+                            <td>Reference to the stack.</td>
+                        </tr>
+                    </table>
+                </dd>
+            </dl>
+            <dl class="section return">
+                <dt>Returns</dt>
+                <dd>0 on success.</dd>
+                <dd>
+                    -ENODEV if the 'stack' argument is NULL.
+                </dd>
+            </dl>
+
+        </div>
+    </div>
+    <a id="a2a08425a8e78446db7862e50c8986f03"></a>
+    <h2 class="memtitle"><span class="permalink"><a href="#a2a08425a8e78446db7862e50c8986f03">&#9670;&nbsp;</a></span>bp_stack_iter()
     </h2>
 
     <div class="memitem">
@@ -180,7 +392,7 @@
                         bp_stack_iter
                     </td>
                     <td>(</td>
-                    <td class="paramtype"><a class="el" href="structbp__array__t.html">bp_array_t</a> *&#160;</td>
+                    <td class="paramtype"><a class="el" href="structbp__stack__t.html">bp_stack_t</a> *&#160;</td>
                     <td class="paramname"><em>stack</em></td>
                     <td>)</td>
                     <td></td>
@@ -213,8 +425,8 @@
 
         </div>
     </div>
-    <a id="af9922c55bc93e87e5ac79e639ecfa65e"></a>
-    <h2 class="memtitle"><span class="permalink"><a href="#af9922c55bc93e87e5ac79e639ecfa65e">&#9670;&nbsp;</a></span>bp_stack_peek()
+    <a id="ad347bef9496295338831026f83bb5400"></a>
+    <h2 class="memtitle"><span class="permalink"><a href="#ad347bef9496295338831026f83bb5400">&#9670;&nbsp;</a></span>bp_stack_peek()
     </h2>
 
     <div class="memitem">
@@ -223,7 +435,7 @@
                 <tr>
                     <td class="memname">void* bp_stack_peek</td>
                     <td>(</td>
-                    <td class="paramtype"><a class="el" href="structbp__array__t.html">bp_array_t</a> *&#160;</td>
+                    <td class="paramtype"><a class="el" href="structbp__stack__t.html">bp_stack_t</a> *&#160;</td>
                     <td class="paramname"><em>stack</em></td>
                     <td>)</td>
                     <td></td>
@@ -247,14 +459,14 @@
                 <dt>Returns</dt>
                 <dd>A reference to the desired element.</dd>
                 <dd>
-                    NULL if the 'stack' argument is NULL.
+                    NULL if the 'stack' argument is NULL or the stack is empty.
                 </dd>
             </dl>
 
         </div>
     </div>
-    <a id="a0042733492ee9761a8e112c2a2ef31b0"></a>
-    <h2 class="memtitle"><span class="permalink"><a href="#a0042733492ee9761a8e112c2a2ef31b0">&#9670;&nbsp;</a></span>bp_stack_pop()
+    <a id="a9df3b62f071ff974f3b2bd92a0169a8f"></a>
+    <h2 class="memtitle"><span class="permalink"><a href="#a9df3b62f071ff974f3b2bd92a0169a8f">&#9670;&nbsp;</a></span>bp_stack_pop()
     </h2>
 
     <div class="memitem">
@@ -263,7 +475,7 @@
                 <tr>
                     <td class="memname">int bp_stack_pop</td>
                     <td>(</td>
-                    <td class="paramtype"><a class="el" href="structbp__array__t.html">bp_array_t</a> *&#160;</td>
+                    <td class="paramtype"><a class="el" href="structbp__stack__t.html">bp_stack_t</a> *&#160;</td>
                     <td class="paramname"><em>stack</em>,</td>
                 </tr>
                 <tr>
@@ -310,8 +522,8 @@
 
         </div>
     </div>
-    <a id="a66e3dd3f0fa280fe8c3e67e559a0c437"></a>
-    <h2 class="memtitle"><span class="permalink"><a href="#a66e3dd3f0fa280fe8c3e67e559a0c437">&#9670;&nbsp;</a></span>bp_stack_push()
+    <a id="a11f53722967f09a2a0e9f26ddbf2f4e0"></a>
+    <h2 class="memtitle"><span class="permalink"><a href="#a11f53722967f09a2a0e9f26ddbf2f4e0">&#9670;&nbsp;</a></span>bp_stack_push()
     </h2>
 
     <div class="memitem">
@@ -320,7 +532,7 @@
                 <tr>
                     <td class="memname">int bp_stack_push</td>
                     <td>(</td>
-                    <td class="paramtype"><a class="el" href="structbp__array__t.html">bp_array_t</a> *&#160;</td>
+                    <td class="paramtype"><a class="el" href="structbp__stack__t.html">bp_stack_t</a> *&#160;</td>
                     <td class="paramname"><em>stack</em>,</td>
                 </tr>
                 <tr>
@@ -357,11 +569,65 @@
             <dl class="section return">
                 <dt>Returns</dt>
                 <dd>0 on success, errno otherwise.</dd>
+                <dd>
+                    -ENODEV if the 'stack' or the 'el' argument is NULL.
+                </dd>
+                <dd>
+                    -ENOMEM if the stack is full.
+                </dd>
+            </dl>
+
+        </div>
+    </div>
+    <a id="a82922b5e636b3d7353600ad221ffa36f"></a>
+    <h2 class="memtitle"><span class="permalink"><a href="#a82922b5e636b3d7353600ad221ffa36f">&#9670;&nbsp;</a></span>bp_stack_size()
+    </h2>
+
+    <div class="memitem">
+        <div class="memproto">
+            <table class="memname">
+                <tr>
+                    <td class="memname"><a class="el"
+                                           href="bp__types_8h.html#ac182d38c0a80545f8344c0657273c16e">usize</a>
+                        bp_stack_size
+                    </td>
+                    <td>(</td>
+                    <td class="paramtype"><a class="el" href="structbp__stack__t.html">bp_stack_t</a> *&#160;</td>
+                    <td class="paramname"><em>stack</em></td>
+                    <td>)</td>
+                    <td></td>
+                </tr>
+            </table>
+        </div>
+        <div class="memdoc">
+            <p>Get a iterator to walk through the stack. </p>
+            <dl class="params">
+                <dt>Parameters</dt>
+                <dd>
+                    <table class="params">
+                        <tr>
+                            <td class="paramname">stack</td>
+                            <td>Reference to the stack.</td>
+                        </tr>
+                    </table>
+                </dd>
+            </dl>
+            <dl class="section return">
+                <dt>Returns</dt>
+                <dd>The size of the stack.</dd>
+                <dd>
+                    0 if the 'stack' argument is NULL.
+                </dd>
             </dl>
 
         </div>
     </div>
 </div><!-- contents -->
+<div class="ttc" id="abp__types_8h_html_ae081489b4906f65a3cb18e9fbe9f8d23">
+    <div class="ttname"><a href="bp__types_8h.html#ae081489b4906f65a3cb18e9fbe9f8d23">u8_t</a></div>
+    <div class="ttdeci">unsigned char u8_t</div>
+    <div class="ttdef"><b>Definition:</b> bp_types.h:22</div>
+</div>
 <!-- start footer part -->
 <hr class="footer"/>
 <address class="footer"><small>

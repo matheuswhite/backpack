@@ -8,8 +8,8 @@ digraph "/home/matheuswhite/Documentos/backpack/src/include/bp_iter.h"
   Node2 [label="/home/matheuswhite\l/Documentos/backpack\l/src/include/bp_array.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$bp__array_8h.html",tooltip="Specifies the array structure. This structure works as a buffer, where the develop could insert the e..."];
   Node2 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node3 [label="/home/matheuswhite\l/Documentos/backpack\l/src/include/bp_heap.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$bp__heap_8h.html",tooltip="Specifies the heap structure. the heap could be a Min-Heap or a Max-Heap."];
-  Node2 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node4 [label="/home/matheuswhite\l/Documentos/backpack\l/src/include/bp_stack.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$bp__stack_8h.html",tooltip="Specifies the stack structure. This structure is a bp_array complement. To allow the bp_array works a..."];
+  Node1 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="/home/matheuswhite\l/Documentos/backpack\l/src/include/bp_ring.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$bp__ring_8h.html",tooltip="Specifies the ring structure. This structure works as a circular buffer. When the buffer is in its ma..."];
   Node1 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node5 [label="/home/matheuswhite\l/Documentos/backpack\l/src/include/bp_ring.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$bp__ring_8h.html",tooltip="Specifies the ring structure. This structure works as a circular buffer. When the buffer is in its ma..."];
+  Node5 [label="/home/matheuswhite\l/Documentos/backpack\l/src/include/bp_stack.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$bp__stack_8h.html",tooltip="Specifies the stack structure. The following module follow the LIFO (Last-In-First-Out) order."];
 }
