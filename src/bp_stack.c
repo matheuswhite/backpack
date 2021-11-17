@@ -36,7 +36,7 @@ static bool bp_stack_iter_next(struct bp_iter *self);
  */
 static void *bp_stack_iter_get(struct bp_iter *self);
 
-int bp_stack_pop(bp_array_t *stack, void *el)
+int bp_stack_pop(bp_stack_t *stack, void *el)
 {
     if (stack == NULL || el == NULL) {
         return -ENODEV;
@@ -46,15 +46,16 @@ int bp_stack_pop(bp_array_t *stack, void *el)
         return -ENOENT;
     }
 
-    usize last_el;
+    void *last_el = &stack->_buffer[(stack->_size - 1) * stack->_element_size];
 
-    last_el = bp_array_size(stack) - 1;
-    memcpy(el, bp_array_get(stack, last_el), stack->_element_size);
+    memcpy(el, last_el, stack->_element_size);
+    memset(last_el, 0, stack->_element_size);
+    stack->_size -= 1;
 
-    return bp_array_del(stack, last_el);
+    return 0;
 }
 
-void *bp_stack_peek(bp_array_t *stack)
+void *bp_stack_peek(bp_stack_t *stack)
 {
     if (stack == NULL) {
         return NULL;
@@ -64,15 +65,47 @@ void *bp_stack_peek(bp_array_t *stack)
         return NULL;
     }
 
-    return bp_array_get(stack, bp_array_size(stack) - 1);
+    return &stack->_buffer[(stack->_size - 1) * stack->_element_size];
 }
 
-int bp_stack_push(bp_array_t *stack, void *el)
+int bp_stack_push(bp_stack_t *stack, void *el)
 {
-    return bp_array_push(stack, el);
+    if (stack == NULL || el == NULL) {
+        return -ENODEV;
+    }
+
+    if (stack->_size >= stack->_max_size) {
+        return -ENOMEM;
+    }
+
+    void *ptr = &stack->_buffer[stack->_size * stack->_element_size];
+    memcpy(ptr, el, stack->_element_size);
+    stack->_size += 1;
+
+    return 0;
 }
 
-bp_iter_t bp_stack_iter(bp_array_t *stack)
+int bp_stack_clear(bp_stack_t *stack)
+{
+    if (stack == NULL) {
+        return -ENODEV;
+    }
+
+    stack->_size = 0;
+
+    return 0;
+}
+
+usize bp_stack_size(bp_stack_t *stack)
+{
+    if (stack == NULL) {
+        return 0;
+    }
+
+    return stack->_size;
+}
+
+bp_iter_t bp_stack_iter(bp_stack_t *stack)
 {
     bp_iter_t iter = {
         .init        = bp_stack_iter_init,
@@ -87,15 +120,15 @@ bp_iter_t bp_stack_iter(bp_array_t *stack)
 
 static void *bp_stack_iter_init(struct bp_iter *self)
 {
-    bp_array_t *stack = self->coll;
+    bp_stack_t *stack = self->coll;
 
     if (stack->_size == 0) {
-        self->current.idx = 0;
-    } else {
-        self->current.idx = bp_array_size(stack) - 1;
+        return NULL;
     }
 
-    return bp_array_get(stack, self->current.idx);
+    self->current.idx = stack->_size - 1;
+
+    return &stack->_buffer[self->current.idx * stack->_element_size];
 }
 
 static bool bp_stack_iter_next(struct bp_iter *self)
@@ -110,7 +143,13 @@ static bool bp_stack_iter_next(struct bp_iter *self)
 
 static void *bp_stack_iter_get(struct bp_iter *self)
 {
-    return bp_array_get(self->coll, self->current.idx);
+    bp_stack_t *stack = self->coll;
+
+    if (self->current.idx >= stack->_size) {
+        return NULL;
+    }
+
+    return &stack->_buffer[self->current.idx * stack->_element_size];
 }
 
 #ifdef __cplusplus

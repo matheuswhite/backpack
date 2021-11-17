@@ -1,8 +1,7 @@
 /*!
  * @file bp_stack.h
  * @author Matheus T. dos Santos (tenoriomatheus0@gmail.com)
- * @brief Specifies the stack structure. This structure is a bp_array complement. To allow
- * the bp_array works as stack. So the following function follow the LIFO
+ * @brief Specifies the stack structure. The following module follow the LIFO
  * (Last-In-First-Out) order.
  * @version 0.1.0
  * @date 19/09/2021
@@ -17,7 +16,44 @@
 extern "C" {
 #endif
 
-#include "bp_array.h"
+#include <string.h>
+#include "bp_iter.h"
+#include "bp_types.h"
+
+/*!
+ * Macro to initialize a bp_stack.
+ * @param buffer Buffer where the elements will be stored.
+ */
+#define BP_STACK_INIT(buffer)                                          \
+    {                                                                  \
+        ._element_size = sizeof((buffer)[0]),                          \
+        ._max_size = sizeof(buffer) / sizeof((buffer)[0]), ._size = 0, \
+        ._buffer = (u8_t *) (buffer),                                  \
+    }
+
+/*!
+ * Macro to initialize a bp_stack, which have initials elements.
+ * @param buffer Buffer where the elements will be stored.
+ * @param size_ Number of elements already presentes in the buffer.
+ */
+#define BP_STACK_START(buffer, size_)                                        \
+    {                                                                        \
+        ._element_size = sizeof((buffer)[0]),                                \
+        ._max_size = sizeof(buffer) / sizeof((buffer)[0]), ._size = (size_), \
+        ._buffer = (u8_t *) (buffer),                                        \
+    }
+
+/*!
+ * Struct with metadata about an external buffer.
+ *
+ * @note This struct need an external buffer to work properly.
+ */
+typedef struct {
+    usize _element_size; /*!< Size (in bytes) of a single element in the stack. */
+    usize _max_size;     /*!< Maximum number of elements in the stack */
+    usize _size;         /*!< Current number of elements in the array. */
+    u8_t *_buffer; /*!< Reference to the buffer, where the elements will be stored. */
+} bp_stack_t;
 
 /*!
  * Remove the top element in the stack and put it in el argument variable.
@@ -27,23 +63,45 @@ extern "C" {
  * @return -ENODEV if the 'stack' or 'el' argument is NULL.
  * @return -ENOENT if the stack is empty.
  */
-int bp_stack_pop(bp_array_t *stack, void *el);
+int bp_stack_pop(bp_stack_t *stack, void *el);
 
 /*!
  * Get the top element in the stack.
  * @param stack Reference to the stack.
  * @return A reference to the desired element.
- * @return NULL if the 'stack' argument is NULL.
+ * @return NULL if the 'stack' argument is NULL or the stack is empty.
  */
-void *bp_stack_peek(bp_array_t *stack);
+void *bp_stack_peek(bp_stack_t *stack);
 
 /*!
  * Push an element at the top of the stack.
  * @param stack Reference to the stack.
  * @param el Reference to the element to be pushed.
  * @return 0 on success, errno otherwise.
+ * @return -ENODEV if the 'stack' or the 'el' argument is NULL.
+ * @return -ENOMEM if the stack is full.
  */
-int bp_stack_push(bp_array_t *stack, void *el);
+int bp_stack_push(bp_stack_t *stack, void *el);
+
+/*!
+ * Drop all elements in the stack.
+ *
+ * @warning After this function the stack size is zero, but the elements stay in the
+ * buffer.
+ *
+ * @param stack Reference to the stack.
+ * @return 0 on success.
+ * @return -ENODEV if the 'stack' argument is NULL.
+ */
+int bp_stack_clear(bp_stack_t *stack);
+
+/*!
+ * Get a iterator to walk through the stack.
+ * @param stack Reference to the stack.
+ * @return The size of the stack.
+ * @return 0 if the 'stack' argument is NULL.
+ */
+usize bp_stack_size(bp_stack_t *stack);
 
 /*!
  * Get a iterator to walk through the stack. The traversal order is from top to the bottom
@@ -55,7 +113,7 @@ int bp_stack_push(bp_array_t *stack, void *el);
  * @param stack Reference to the stack.
  * @return A new iterator instance for the stack.
  */
-bp_iter_t bp_stack_iter(bp_array_t *stack);
+bp_iter_t bp_stack_iter(bp_stack_t *stack);
 
 #ifdef __cplusplus
 }

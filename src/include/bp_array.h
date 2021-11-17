@@ -125,7 +125,7 @@ void *bp_array_find(bp_array_t *array, void *param, bool (*cmp)(void *el, void *
  * buffer.
  *
  * @param array Reference to bp_array.
- * @return 0 on success, errno otherwise.
+ * @return 0 on success.
  * @return -ENODEV if the 'array' argument is NULL.
  */
 int bp_array_clear(bp_array_t *array);

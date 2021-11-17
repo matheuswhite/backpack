@@ -17,7 +17,7 @@ TEST_SUITE("Stack | Normal flow")
     TEST_CASE("Push an element to array")
     {
         int stack[10]   = {0};
-        bp_array_t coll = BP_ARRAY_INIT(stack);
+        bp_stack_t coll = BP_STACK_INIT(stack);
         int el          = 10;
         int err;
 
@@ -33,7 +33,7 @@ TEST_SUITE("Stack | Normal flow")
         int stack[10] = {
             1, 2, 3, 0, 0, 0, 0, 0, 0, 0,
         };
-        bp_array_t coll = BP_ARRAY_START(stack, 3);
+        bp_stack_t coll = BP_STACK_START(stack, 3);
         int el;
         int err;
 
@@ -49,7 +49,7 @@ TEST_SUITE("Stack | Normal flow")
         int stack[10] = {
             1, 2, 3, 0, 0, 0, 0, 0, 0, 0,
         };
-        bp_array_t coll = BP_ARRAY_START(stack, 3);
+        bp_stack_t coll = BP_STACK_START(stack, 3);
         int *el;
 
         el = (int *) bp_stack_peek(&coll);
@@ -58,6 +58,29 @@ TEST_SUITE("Stack | Normal flow")
         REQUIRE(*el == 3);
         REQUIRE(stack[2] == 3);
         REQUIRE(coll._size == 3);
+    }
+
+    TEST_CASE("Drop all elements in the array")
+    {
+        int array[10]   = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+        bp_stack_t coll = BP_STACK_START(array, 10);
+        int err;
+
+        err = bp_stack_clear(&coll);
+
+        REQUIRE(err == 0);
+        REQUIRE(coll._size == 0);
+    }
+
+    TEST_CASE("Get the size of the array")
+    {
+        int array[10]   = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+        bp_stack_t coll = BP_STACK_START(array, 10);
+        usize size;
+
+        size = bp_stack_size(&coll);
+
+        REQUIRE(size == coll._size);
     }
 }
 
@@ -77,7 +100,7 @@ TEST_SUITE("Stack | Invalid Parameter")
     {
         int err;
         int stack[10]   = {0};
-        bp_array_t coll = BP_ARRAY_INIT(stack);
+        bp_stack_t coll = BP_STACK_INIT(stack);
 
         err = bp_stack_push(&coll, nullptr);
 
@@ -98,7 +121,7 @@ TEST_SUITE("Stack | Invalid Parameter")
     {
         int err;
         int stack[10]   = {0};
-        bp_array_t coll = BP_ARRAY_INIT(stack);
+        bp_stack_t coll = BP_STACK_INIT(stack);
 
         err = bp_stack_pop(&coll, nullptr);
 
@@ -113,6 +136,24 @@ TEST_SUITE("Stack | Invalid Parameter")
 
         REQUIRE(el == nullptr);
     }
+
+    TEST_CASE("Null array argument in clear function")
+    {
+        int err;
+
+        err = bp_stack_clear(nullptr);
+
+        REQUIRE(err != 0);
+    }
+
+    TEST_CASE("Null array argument in size function")
+    {
+        usize size;
+
+        size = bp_stack_size(nullptr);
+
+        REQUIRE(size == 0);
+    }
 }
 
 TEST_SUITE("Stack | Error flow")
@@ -120,7 +161,7 @@ TEST_SUITE("Stack | Error flow")
     TEST_CASE("Push an element on full stack")
     {
         int stack[10]   = {0};
-        bp_array_t coll = BP_ARRAY_START(stack, 10);
+        bp_stack_t coll = BP_STACK_START(stack, 10);
         int el          = 10;
         int err;
 
@@ -132,7 +173,7 @@ TEST_SUITE("Stack | Error flow")
     TEST_CASE("Pop an element from an empty stack")
     {
         int stack[10]   = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
-        bp_array_t coll = BP_ARRAY_INIT(stack);
+        bp_stack_t coll = BP_STACK_INIT(stack);
         int el          = 0;
         int err;
 
@@ -146,7 +187,7 @@ TEST_SUITE("Stack | Error flow")
     TEST_CASE("Peek an element from an empty stack")
     {
         int stack[10]   = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
-        bp_array_t coll = BP_ARRAY_INIT(stack);
+        bp_stack_t coll = BP_STACK_INIT(stack);
         int *el;
 
         el = (int *) bp_stack_peek(&coll);
@@ -161,7 +202,7 @@ TEST_SUITE("Stack | Iterator test")
     TEST_CASE("Manual for")
     {
         int stack[10]   = {1, 2, 3, 4, 5, 6, 7, 0, 0, 0};
-        bp_array_t coll = BP_ARRAY_START(stack, 7);
+        bp_stack_t coll = BP_STACK_START(stack, 7);
         bp_iter_t it    = bp_stack_iter(&coll);
         usize i         = 6;
 
@@ -176,7 +217,7 @@ TEST_SUITE("Stack | Iterator test")
     TEST_CASE("Foreach macro usage")
     {
         int stack[10]   = {1, 2, 3, 4, 5, 6, 7, 0, 0, 0};
-        bp_array_t coll = BP_ARRAY_START(stack, 7);
+        bp_stack_t coll = BP_STACK_START(stack, 7);
         bp_iter_t it    = bp_stack_iter(&coll);
         usize i         = 6;
 
