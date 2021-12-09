@@ -57,3 +57,6 @@ enable_testing()
 include_directories(test_runner 3rdparty/doctest)
 add_executable(test_runner ${SRC_FILES} test/test_runner.cpp test/test_array.cpp test/test_stack.cpp test/test_ring.cpp test/test_heap.cpp)
 add_test(all_test test_runner)
+
+# Examples
+add_executable(example_array ${SRC_FILES} examples/array.c)
