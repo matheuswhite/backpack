@@ -135,6 +135,11 @@ int bp_ring_push(bp_ring_t *ring, void *el)
     ring->_head = BP_RING_ADVANCE_HEAD(ring);
     if (ring->_size < ring->_capacity) {
         ring->_size += 1;
+
+        if (ring->_size == ring->_capacity) {
+            ring->_tail = BP_RING_ADVANCE_TAIL(ring);
+        }
+
     } else {
         ring->_tail = BP_RING_ADVANCE_TAIL(ring);
     }
