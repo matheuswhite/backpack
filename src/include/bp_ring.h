@@ -51,6 +51,15 @@ typedef struct {
 } bp_ring_t;
 
 /*!
+ * Push an element at the end (at head) of ring buffer.
+ * @param ring Reference to bp_ring.
+ * @param el Reference to the element to be pushed.
+ * @return 0 on success.
+ * @return -ENODEV if the 'ring' or the 'el' argument is NULL.
+ */
+int bp_ring_push(bp_ring_t *ring, void *el);
+
+/*!
  * Get an element from the ring buffer, based on its position.
  * @param ring Reference to bp_ring.
  * @param idx Element index.
@@ -77,15 +86,6 @@ void *bp_ring_peek(bp_ring_t *ring);
  * @return -ENOENT if the ring is empty.
  */
 int bp_ring_pop(bp_ring_t *ring, void *el);
-
-/*!
- * Push an element at the end (at head) of ring buffer.
- * @param ring Reference to bp_ring.
- * @param el Reference to the element to be pushed.
- * @return 0 on success.
- * @return -ENODEV if the 'ring' or the 'el' argument is NULL.
- */
-int bp_ring_push(bp_ring_t *ring, void *el);
 
 /*!
  * Find the index of an element, based at some parameter related to the element. This

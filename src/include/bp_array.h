@@ -63,15 +63,6 @@ typedef struct {
 } bp_array_t;
 
 /*!
- * Get an element from the array, based on its position.
- * @param array Reference to bp_array.
- * @param idx Element index.
- * @return A reference to the desired element.
- * @return NULL if the index is out of range or the 'array' argument is NULL.
- */
-void *bp_array_get(bp_array_t *array, size_t idx);
-
-/*!
  * Push an element at the end of array.
  * @param array Reference to bp_array.
  * @param el Reference to the element to be pushed.
@@ -80,6 +71,15 @@ void *bp_array_get(bp_array_t *array, size_t idx);
  * @return -ENOMEM if the array is full.
  */
 int bp_array_push(bp_array_t *array, void *el);
+
+/*!
+ * Get an element from the array, based on its position.
+ * @param array Reference to bp_array.
+ * @param idx Element index.
+ * @return A reference to the desired element.
+ * @return NULL if the index is out of range or the 'array' argument is NULL.
+ */
+void *bp_array_get(bp_array_t *array, size_t idx);
 
 /*!
  * Delete an array element, based on its position.

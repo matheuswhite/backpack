@@ -130,6 +130,28 @@ static bool bp_heap_bfs_iter_next(struct bp_iter *self);
  */
 static bool bp_heap_dfs_iter_next(struct bp_iter *self);
 
+int bp_heap_push(bp_heap_t *heap, void *el)
+{
+    if (heap == NULL || el == NULL) {
+        return -ENODEV;
+    }
+
+    if (heap->_cmp == NULL) {
+        return -EINVAL;
+    }
+
+    int err;
+
+    err = bp_array_push(&heap->_coll, el);
+    if (err) {
+        return err;
+    }
+
+    bp_heap_shift_up(heap, heap->_coll._size);
+
+    return 0;
+}
+
 void *bp_heap_top(bp_heap_t *heap)
 {
     if (heap == NULL) {
@@ -177,28 +199,6 @@ int bp_heap_pop(bp_heap_t *heap, void *el)
     heap->_coll._size -= 1;
 
     bp_heap_shift_down(heap, 1);
-
-    return 0;
-}
-
-int bp_heap_push(bp_heap_t *heap, void *el)
-{
-    if (heap == NULL || el == NULL) {
-        return -ENODEV;
-    }
-
-    if (heap->_cmp == NULL) {
-        return -EINVAL;
-    }
-
-    int err;
-
-    err = bp_array_push(&heap->_coll, el);
-    if (err) {
-        return err;
-    }
-
-    bp_heap_shift_up(heap, heap->_coll._size);
 
     return 0;
 }

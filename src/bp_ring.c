@@ -73,6 +73,25 @@ static bool bp_ring_iter_next(struct bp_iter *self);
  */
 static void *bp_ring_iter_get(struct bp_iter *self);
 
+int bp_ring_push(bp_ring_t *ring, void *el)
+{
+    if (ring == NULL || el == NULL) {
+        return -ENODEV;
+    }
+
+    void *ptr = &ring->_array[ring->_head * ring->_element_size];
+    memcpy(ptr, el, ring->_element_size);
+
+    ring->_head = BP_RING_ADVANCE_HEAD(ring);
+    if (ring->_size < ring->_capacity) {
+        ring->_size += 1;
+    } else {
+        ring->_tail = BP_RING_ADVANCE_TAIL(ring);
+    }
+
+    return 0;
+}
+
 void *bp_ring_get(bp_ring_t *ring, size_t idx)
 {
     if (ring == NULL) {
@@ -119,25 +138,6 @@ int bp_ring_pop(bp_ring_t *ring, void *el)
     }
     ring->_size -= 1;
     ring->_tail = BP_RING_ADVANCE_TAIL(ring);
-
-    return 0;
-}
-
-int bp_ring_push(bp_ring_t *ring, void *el)
-{
-    if (ring == NULL || el == NULL) {
-        return -ENODEV;
-    }
-
-    void *ptr = &ring->_array[ring->_head * ring->_element_size];
-    memcpy(ptr, el, ring->_element_size);
-
-    ring->_head = BP_RING_ADVANCE_HEAD(ring);
-    if (ring->_size < ring->_capacity) {
-        ring->_size += 1;
-    } else {
-        ring->_tail = BP_RING_ADVANCE_TAIL(ring);
-    }
 
     return 0;
 }

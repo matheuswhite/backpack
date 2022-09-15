@@ -47,19 +47,6 @@ static bool bp_array_iter_next(struct bp_iter *self);
  */
 static void *bp_array_iter_get(struct bp_iter *self);
 
-void *bp_array_get(bp_array_t *array, size_t idx)
-{
-    if (array == NULL) {
-        return NULL;
-    }
-
-    if (idx >= array->_size) {
-        return NULL;
-    }
-
-    return &array->_array[idx * array->_element_size];
-}
-
 int bp_array_push(bp_array_t *array, void *el)
 {
     if (array == NULL || el == NULL) {
@@ -75,6 +62,19 @@ int bp_array_push(bp_array_t *array, void *el)
     array->_size += 1;
 
     return 0;
+}
+
+void *bp_array_get(bp_array_t *array, size_t idx)
+{
+    if (array == NULL) {
+        return NULL;
+    }
+
+    if (idx >= array->_size) {
+        return NULL;
+    }
+
+    return &array->_array[idx * array->_element_size];
 }
 
 int bp_array_del(bp_array_t *array, size_t idx)

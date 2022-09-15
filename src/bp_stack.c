@@ -36,6 +36,23 @@ static bool bp_stack_iter_next(struct bp_iter *self);
  */
 static void *bp_stack_iter_get(struct bp_iter *self);
 
+int bp_stack_push(bp_stack_t *stack, void *el)
+{
+    if (stack == NULL || el == NULL) {
+        return -ENODEV;
+    }
+
+    if (stack->_size >= stack->_capacity) {
+        return -ENOMEM;
+    }
+
+    void *ptr = &stack->_buffer[stack->_size * stack->_element_size];
+    memcpy(ptr, el, stack->_element_size);
+    stack->_size += 1;
+
+    return 0;
+}
+
 int bp_stack_pop(bp_stack_t *stack, void *el)
 {
     if (stack == NULL) {
@@ -68,23 +85,6 @@ void *bp_stack_peek(bp_stack_t *stack)
     }
 
     return &stack->_buffer[(stack->_size - 1) * stack->_element_size];
-}
-
-int bp_stack_push(bp_stack_t *stack, void *el)
-{
-    if (stack == NULL || el == NULL) {
-        return -ENODEV;
-    }
-
-    if (stack->_size >= stack->_capacity) {
-        return -ENOMEM;
-    }
-
-    void *ptr = &stack->_buffer[stack->_size * stack->_element_size];
-    memcpy(ptr, el, stack->_element_size);
-    stack->_size += 1;
-
-    return 0;
 }
 
 int bp_stack_clear(bp_stack_t *stack)

@@ -64,6 +64,16 @@ typedef struct {
     }
 
 /*!
+ * Push an element on the Heap tree.
+ * @param heap Reference to bp_heap.
+ * @param el Reference to the element to be pushed.
+ * @return 0 on success.
+ * @return -ENODEV if the 'heap' or the 'el' argument is NULL.
+ * @return -EINVAL if the heap '_cmp' field is NULL.
+ */
+int bp_heap_push(bp_heap_t *heap, void *el);
+
+/*!
  * Get the root element of the Heap tree.
  * @param heap Reference to bp_heap.
  * @return A reference to the root element.
@@ -93,16 +103,6 @@ int bp_heap_clear(bp_heap_t *heap);
  * @return -EINVAL if the heap '_cmp' field is NULL.
  */
 int bp_heap_pop(bp_heap_t *heap, void *el);
-
-/*!
- * Push an element on the Heap tree.
- * @param heap Reference to bp_heap.
- * @param el Reference to the element to be pushed.
- * @return 0 on success.
- * @return -ENODEV if the 'heap' or the 'el' argument is NULL.
- * @return -EINVAL if the heap '_cmp' field is NULL.
- */
-int bp_heap_push(bp_heap_t *heap, void *el);
 
 /*!
  * Delete an array element, based at some parameter related to the element. This parameter

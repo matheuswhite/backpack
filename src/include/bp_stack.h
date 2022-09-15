@@ -57,6 +57,16 @@ typedef struct {
 } bp_stack_t;
 
 /*!
+ * Push an element at the top of the stack.
+ * @param stack Reference to the stack.
+ * @param el Reference to the element to be pushed.
+ * @return 0 on success, errno otherwise.
+ * @return -ENODEV if the 'stack' or the 'el' argument is NULL.
+ * @return -ENOMEM if the stack is full.
+ */
+int bp_stack_push(bp_stack_t *stack, void *el);
+
+/*!
  * Remove the top element in the stack and put it in el argument variable.
  * @param stack Reference to the stack.
  * @param el [out] Reference to a variable, where the removed element will be put.
@@ -73,16 +83,6 @@ int bp_stack_pop(bp_stack_t *stack, void *el);
  * @return NULL if the 'stack' argument is NULL or the stack is empty.
  */
 void *bp_stack_peek(bp_stack_t *stack);
-
-/*!
- * Push an element at the top of the stack.
- * @param stack Reference to the stack.
- * @param el Reference to the element to be pushed.
- * @return 0 on success, errno otherwise.
- * @return -ENODEV if the 'stack' or the 'el' argument is NULL.
- * @return -ENOMEM if the stack is full.
- */
-int bp_stack_push(bp_stack_t *stack, void *el);
 
 /*!
  * Drop all elements in the stack.
