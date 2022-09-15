@@ -17,9 +17,10 @@
 extern "C" {
 #endif
 
+#include <stdbool.h>
+#include <stdint.h>
 #include <string.h>
 #include "bp_iter.h"
-#include "bp_types.h"
 
 /*!
  * Value representing an invalid index
@@ -32,7 +33,7 @@ extern "C" {
  */
 #define BP_RING_INIT(array_)                                                       \
     {                                                                              \
-        ._array = (u8_t *) (array_), ._element_size = sizeof((array_)[0]),         \
+        ._array = (uint8_t *) (array_), ._element_size = sizeof((array_)[0]),      \
         ._capacity = sizeof(array_) / sizeof((array_)[0]), ._size = 0, ._head = 0, \
         ._tail = 0,                                                                \
     }
@@ -41,12 +42,12 @@ extern "C" {
  * Struct with metadata about the ring buffer.
  */
 typedef struct {
-    u8_t *_array;        /*!< Reference to the buffer itself. */
-    usize _element_size; /*!< Size (in bytes) of a single element in the array. */
-    usize _capacity;     /*!< Maximum number of elements in the ring buffer. */
-    usize _size;         /*!< Current number of elements in the ring buffer. */
-    usize _head;         /*!< Index of the head of the ring buffer. */
-    usize _tail;         /*!< Index of the tail of the ring buffer. */
+    uint8_t *_array;      /*!< Reference to the buffer itself. */
+    size_t _element_size; /*!< Size (in bytes) of a single element in the array. */
+    size_t _capacity;     /*!< Maximum number of elements in the ring buffer. */
+    size_t _size;         /*!< Current number of elements in the ring buffer. */
+    size_t _head;         /*!< Index of the head of the ring buffer. */
+    size_t _tail;         /*!< Index of the tail of the ring buffer. */
 } bp_ring_t;
 
 /*!
@@ -56,7 +57,7 @@ typedef struct {
  * @return A reference to the desired element
  * @return NULL if the index is out of range or the 'ring' argument is NULL.
  */
-void *bp_ring_get(bp_ring_t *ring, usize idx);
+void *bp_ring_get(bp_ring_t *ring, size_t idx);
 
 /*!
  * Get the oldest element (at tail) in the ring buffer.
@@ -98,7 +99,7 @@ int bp_ring_push(bp_ring_t *ring, void *el);
  * @return BP_RING_INVALID_INDEX if the element wasn't found or if the 'ring' or the
  * 'param' argument is NULL.
  */
-usize bp_ring_find_idx(bp_ring_t *ring, void *param, bool (*cmp)(void *el, void *param));
+size_t bp_ring_find_idx(bp_ring_t *ring, void *param, bool (*cmp)(void *el, void *param));
 
 /*!
  * Find the element in the ring buffer, based at some parameter related to the element.
@@ -132,7 +133,7 @@ int bp_ring_clear(bp_ring_t *ring);
  * @return The size of ring buffer.
  * @return 0 if the 'ring' argument is null.
  */
-usize bp_ring_size(bp_ring_t *ring);
+size_t bp_ring_size(bp_ring_t *ring);
 
 /*!
  * Get a iterator to walk through the bp_ring.

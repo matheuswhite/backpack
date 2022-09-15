@@ -23,7 +23,7 @@ extern "C" {
  * @return true if the elements are equals
  * @return false if the elements are different
  */
-static bool bp_array_default_cmp(void *left, void *right, usize el_size);
+static bool bp_array_default_cmp(void *left, void *right, size_t el_size);
 
 /*!
  * Initialize iterator for bp_array.
@@ -47,7 +47,7 @@ static bool bp_array_iter_next(struct bp_iter *self);
  */
 static void *bp_array_iter_get(struct bp_iter *self);
 
-void *bp_array_get(bp_array_t *array, usize idx)
+void *bp_array_get(bp_array_t *array, size_t idx)
 {
     if (array == NULL) {
         return NULL;
@@ -77,7 +77,7 @@ int bp_array_push(bp_array_t *array, void *el)
     return 0;
 }
 
-int bp_array_del(bp_array_t *array, usize idx)
+int bp_array_del(bp_array_t *array, size_t idx)
 {
     if (array == NULL) {
         return -ENODEV;
@@ -90,7 +90,7 @@ int bp_array_del(bp_array_t *array, usize idx)
     if (idx == array->_size - 1) {
         memset(&array->_array[idx * array->_element_size], 0, array->_element_size);
     } else {
-        for (usize i = idx; i < (array->_size - 1); i++) {
+        for (size_t i = idx; i < (array->_size - 1); i++) {
             memcpy(&array->_array[i * array->_element_size],
                    &array->_array[(i + 1) * array->_element_size], array->_element_size);
         }
@@ -101,7 +101,7 @@ int bp_array_del(bp_array_t *array, usize idx)
     return 0;
 }
 
-usize bp_array_find_idx(bp_array_t *array, void *param, bool (*cmp)(void *, void *))
+size_t bp_array_find_idx(bp_array_t *array, void *param, bool (*cmp)(void *, void *))
 {
     if (array == NULL || param == NULL) {
         return BP_ARRAY_INVALID_INDEX;
@@ -110,7 +110,7 @@ usize bp_array_find_idx(bp_array_t *array, void *param, bool (*cmp)(void *, void
     bool res;
     void *el;
 
-    for (usize i = 0; i < array->_size; ++i) {
+    for (size_t i = 0; i < array->_size; ++i) {
         el = &array->_array[i * array->_element_size];
         if (cmp != NULL) {
             res = cmp(el, param);
@@ -135,7 +135,7 @@ void *bp_array_find(bp_array_t *array, void *param, bool (*cmp)(void *, void *))
     bool res;
     void *el;
 
-    for (usize i = 0; i < array->_size; ++i) {
+    for (size_t i = 0; i < array->_size; ++i) {
         el = &array->_array[i * array->_element_size];
         if (cmp != NULL) {
             res = cmp(el, param);
@@ -162,7 +162,7 @@ int bp_array_clear(bp_array_t *array)
     return 0;
 }
 
-usize bp_array_size(bp_array_t *array)
+size_t bp_array_size(bp_array_t *array)
 {
     if (array == NULL) {
         return 0;
@@ -184,15 +184,15 @@ bp_iter_t bp_array_iter(bp_array_t *array)
     return iter;
 }
 
-static bool bp_array_default_cmp(void *left, void *right, usize el_size)
+static bool bp_array_default_cmp(void *left, void *right, size_t el_size)
 {
     bool res;
-    u8_t *left_ptr  = NULL;
-    u8_t *right_ptr = NULL;
+    uint8_t *left_ptr  = NULL;
+    uint8_t *right_ptr = NULL;
 
     for (size_t i = 0; i < el_size; i++) {
-        left_ptr  = (u8_t *) left + i;
-        right_ptr = (u8_t *) right + i;
+        left_ptr  = (uint8_t *) left + i;
+        right_ptr = (uint8_t *) right + i;
         res       = (bool) (*left_ptr - *right_ptr);
         if (res != 0) {
             return false;

@@ -98,7 +98,7 @@ int bp_stack_clear(bp_stack_t *stack)
     return 0;
 }
 
-usize bp_stack_size(bp_stack_t *stack)
+size_t bp_stack_size(bp_stack_t *stack)
 {
     if (stack == NULL) {
         return 0;

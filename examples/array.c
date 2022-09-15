@@ -43,7 +43,7 @@ int main(void)
     int data;
     int key;
     struct key_value *kv1;
-    usize kv1_index;
+    size_t kv1_index;
     int local_data[11]              = {0};
     int data_with_values[5]         = {1, 2, 3, 4, 0};
     struct key_value struct_data[3] = {

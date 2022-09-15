@@ -18,7 +18,9 @@
 extern "C" {
 #endif
 
-#include "bp_types.h"
+#include <errno.h>
+#include <stdbool.h>
+#include <stdint.h>
 
 /*!
  * Macro to easy iterator usage in loops.
@@ -50,8 +52,9 @@ typedef struct bp_iter {
     void *(*get)(
         struct bp_iter *self); /*!< Function to get the current iterator element. */
     union {
-        usize *el; /*!< Reference to current iterator element. */
-        usize idx; /*!< Index of current iterator element in the data structure itself. */
+        size_t *el; /*!< Reference to current iterator element. */
+        size_t
+            idx;   /*!< Index of current iterator element in the data structure itself. */
     } current;     /*!< Union with the current iterator element address */
     void *coll;    /*!< Reference to the data structure itself. */
 } bp_iter_t;

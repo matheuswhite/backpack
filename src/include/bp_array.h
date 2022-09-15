@@ -16,9 +16,11 @@
 extern "C" {
 #endif
 
+#include <errno.h>
+#include <stdbool.h>
+#include <stdint.h>
 #include <string.h>
 #include "bp_iter.h"
-#include "bp_types.h"
 
 /*!
  * Value representing an invalid index
@@ -33,7 +35,7 @@ extern "C" {
     {                                                                  \
         ._element_size = sizeof((array_)[0]),                          \
         ._capacity = sizeof(array_) / sizeof((array_)[0]), ._size = 0, \
-        ._array = (u8_t *) (array_),                                   \
+        ._array = (uint8_t *) (array_),                                \
     }
 
 /*!
@@ -45,7 +47,7 @@ extern "C" {
     {                                                                        \
         ._element_size = sizeof((array_)[0]),                                \
         ._capacity = sizeof(array_) / sizeof((array_)[0]), ._size = (size_), \
-        ._array = (u8_t *) (array_),                                         \
+        ._array = (uint8_t *) (array_),                                      \
     }
 
 /*!
@@ -54,10 +56,10 @@ extern "C" {
  * @note This struct need an external buffer to work properly.
  */
 typedef struct {
-    usize _element_size; /*!< Size (in bytes) of a single element in the array. */
-    usize _capacity;     /*!< Maximum number of elements in the array. */
-    usize _size;         /*!< Current number of elements in the array. */
-    u8_t *_array; /*!< Reference to the buffer, where the elements will be stored. */
+    size_t _element_size; /*!< Size (in bytes) of a single element in the array. */
+    size_t _capacity;     /*!< Maximum number of elements in the array. */
+    size_t _size;         /*!< Current number of elements in the array. */
+    uint8_t *_array; /*!< Reference to the buffer, where the elements will be stored. */
 } bp_array_t;
 
 /*!
@@ -67,7 +69,7 @@ typedef struct {
  * @return A reference to the desired element.
  * @return NULL if the index is out of range or the 'array' argument is NULL.
  */
-void *bp_array_get(bp_array_t *array, usize idx);
+void *bp_array_get(bp_array_t *array, size_t idx);
 
 /*!
  * Push an element at the end of array.
@@ -87,7 +89,7 @@ int bp_array_push(bp_array_t *array, void *el);
  * @return -ENODEV if the 'array' argument is NULL.
  * @return -EFAULT if the index 'idx' is out of range.
  */
-int bp_array_del(bp_array_t *array, usize idx);
+int bp_array_del(bp_array_t *array, size_t idx);
 
 /*!
  * Find the index of an element, based at some parameter related to the element. This
@@ -101,8 +103,8 @@ int bp_array_del(bp_array_t *array, usize idx);
  * @return BP_ARRAY_INVALID_INDEX if the element wasn't found or if the 'array' or the
  * 'param' argument is NULL.
  */
-usize bp_array_find_idx(bp_array_t *array, void *param,
-                        bool (*cmp)(void *el, void *param));
+size_t bp_array_find_idx(bp_array_t *array, void *param,
+                         bool (*cmp)(void *el, void *param));
 
 /*!
  * Find the element in the array, based at some parameter related to the element. This
@@ -136,7 +138,7 @@ int bp_array_clear(bp_array_t *array);
  * @return The size of array.
  * @return 0 if the 'array' argument is NULL.
  */
-usize bp_array_size(bp_array_t *array);
+size_t bp_array_size(bp_array_t *array);
 
 /*!
  * Get a iterator to walk through the bp_array.

@@ -16,9 +16,10 @@
 extern "C" {
 #endif
 
+#include <stdbool.h>
+#include <stdint.h>
 #include <string.h>
 #include "bp_iter.h"
-#include "bp_types.h"
 
 /*!
  * Macro to initialize a bp_stack.
@@ -28,7 +29,7 @@ extern "C" {
     {                                                                  \
         ._element_size = sizeof((buffer)[0]),                          \
         ._capacity = sizeof(buffer) / sizeof((buffer)[0]), ._size = 0, \
-        ._buffer = (u8_t *) (buffer),                                  \
+        ._buffer = (uint8_t *) (buffer),                               \
     }
 
 /*!
@@ -40,7 +41,7 @@ extern "C" {
     {                                                                        \
         ._element_size = sizeof((buffer)[0]),                                \
         ._capacity = sizeof(buffer) / sizeof((buffer)[0]), ._size = (size_), \
-        ._buffer = (u8_t *) (buffer),                                        \
+        ._buffer = (uint8_t *) (buffer),                                     \
     }
 
 /*!
@@ -49,10 +50,10 @@ extern "C" {
  * @note This struct need an external buffer to work properly.
  */
 typedef struct {
-    usize _element_size; /*!< Size (in bytes) of a single element in the stack. */
-    usize _capacity;     /*!< Maximum number of elements in the stack */
-    usize _size;         /*!< Current number of elements in the array. */
-    u8_t *_buffer; /*!< Reference to the buffer, where the elements will be stored. */
+    size_t _element_size; /*!< Size (in bytes) of a single element in the stack. */
+    size_t _capacity;     /*!< Maximum number of elements in the stack */
+    size_t _size;         /*!< Current number of elements in the array. */
+    uint8_t *_buffer; /*!< Reference to the buffer, where the elements will be stored. */
 } bp_stack_t;
 
 /*!
@@ -101,7 +102,7 @@ int bp_stack_clear(bp_stack_t *stack);
  * @return The size of the stack.
  * @return 0 if the 'stack' argument is NULL.
  */
-usize bp_stack_size(bp_stack_t *stack);
+size_t bp_stack_size(bp_stack_t *stack);
 
 /*!
  * Get a iterator to walk through the stack. The traversal order is from top to the bottom

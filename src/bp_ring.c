@@ -49,7 +49,7 @@ extern "C" {
  * @return true if the elements are equals
  * @return false if the elements are different
  */
-static bool bp_ring_default_cmp(void *left, void *right, usize el_size);
+static bool bp_ring_default_cmp(void *left, void *right, size_t el_size);
 
 /*!
  * Initialize iterator for bp_ring.
@@ -73,7 +73,7 @@ static bool bp_ring_iter_next(struct bp_iter *self);
  */
 static void *bp_ring_iter_get(struct bp_iter *self);
 
-void *bp_ring_get(bp_ring_t *ring, usize idx)
+void *bp_ring_get(bp_ring_t *ring, size_t idx)
 {
     if (ring == NULL) {
         return NULL;
@@ -142,7 +142,7 @@ int bp_ring_push(bp_ring_t *ring, void *el)
     return 0;
 }
 
-usize bp_ring_find_idx(bp_ring_t *ring, void *param, bool (*cmp)(void *, void *))
+size_t bp_ring_find_idx(bp_ring_t *ring, void *param, bool (*cmp)(void *, void *))
 {
     if (ring == NULL || param == NULL) {
         return BP_RING_INVALID_INDEX;
@@ -151,7 +151,7 @@ usize bp_ring_find_idx(bp_ring_t *ring, void *param, bool (*cmp)(void *, void *)
     bool res;
     size_t idx = 0;
 
-    for (usize i = 0; i < ring->_size; ++i) {
+    for (size_t i = 0; i < ring->_size; ++i) {
         idx += ring->_tail;
         if (idx >= ring->_capacity) {
             idx -= ring->_capacity;
@@ -180,7 +180,7 @@ void *bp_ring_find(bp_ring_t *ring, void *param, bool (*cmp)(void *, void *))
     bool res;
     void *el;
 
-    for (usize i = 0; i < ring->_size; ++i) {
+    for (size_t i = 0; i < ring->_size; ++i) {
         el = &ring->_array[i * ring->_element_size];
         if (cmp != NULL) {
             res = cmp(el, param);
@@ -209,7 +209,7 @@ int bp_ring_clear(bp_ring_t *ring)
     return 0;
 }
 
-usize bp_ring_size(bp_ring_t *ring)
+size_t bp_ring_size(bp_ring_t *ring)
 {
     if (ring == NULL) {
         return 0;
@@ -231,15 +231,15 @@ bp_iter_t bp_ring_iter(bp_ring_t *ring)
     return iter;
 }
 
-static bool bp_ring_default_cmp(void *left, void *right, usize el_size)
+static bool bp_ring_default_cmp(void *left, void *right, size_t el_size)
 {
     bool res;
-    u8_t *left_ptr  = NULL;
-    u8_t *right_ptr = NULL;
+    uint8_t *left_ptr  = NULL;
+    uint8_t *right_ptr = NULL;
 
     for (size_t i = 0; i < el_size; i++) {
-        left_ptr  = (u8_t *) left + i;
-        right_ptr = (u8_t *) right + i;
+        left_ptr  = (uint8_t *) left + i;
+        right_ptr = (uint8_t *) right + i;
         res       = (bool) (*left_ptr - *right_ptr);
         if (res != 0) {
             return false;
