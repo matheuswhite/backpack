@@ -208,6 +208,10 @@ static void *bp_array_iter_init(struct bp_iter *self)
 
     self->current.idx = 0;
 
+    if (array == NULL) {
+        return NULL;
+    }
+
     if (array->_size == 0) {
         return NULL;
     }
@@ -218,17 +222,27 @@ static void *bp_array_iter_init(struct bp_iter *self)
 static bool bp_array_iter_next(struct bp_iter *self)
 {
     bp_array_t *array = self->coll;
+
+    if (array == NULL) {
+        return false;
+    }
+
     if (self->current.idx >= array->_size) {
         return false;
     }
 
     self->current.idx += 1;
+
     return true;
 }
 
 static void *bp_array_iter_get(struct bp_iter *self)
 {
     bp_array_t *array = self->coll;
+
+    if (array == NULL) {
+        return NULL;
+    }
 
     if (self->current.idx >= array->_size) {
         return NULL;

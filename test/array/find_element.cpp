@@ -45,7 +45,7 @@ bool cmp_norm(void *el, void *param)
 }
 }
 
-TEST(FindElementIndex, OnNullArray)
+TEST(FindElement, OnNullArray)
 {
     uint16_t param = 0;
     size_t index;
@@ -58,7 +58,7 @@ TEST(FindElementIndex, OnNullArray)
     EXPECT_EQ(el, nullptr);
 }
 
-TEST(FindElementIndex, OnEmptyArray)
+TEST(FindElement, OnEmptyArray)
 {
     uint16_t buffer[10] = {0};
     bp_array_t array    = BP_ARRAY_INIT(buffer);
@@ -77,7 +77,7 @@ TEST(FindElementIndex, OnEmptyArray)
     EXPECT_EQ(array._element_size, 2);
 }
 
-TEST(FindElementIndex, OnFullArrayInFirstPosition)
+TEST(FindElement, OnFullArrayInFirstPosition)
 {
     uint16_t buffer[10] = {0};
     for (int i = 0; i < 10; ++i) {
@@ -99,7 +99,7 @@ TEST(FindElementIndex, OnFullArrayInFirstPosition)
     EXPECT_EQ(array._element_size, 2);
 }
 
-TEST(FindElementIndex, OnFullArrayInLastPosition)
+TEST(FindElement, OnFullArrayInLastPosition)
 {
     uint16_t buffer[10] = {0};
     for (int i = 0; i < 10; ++i) {
@@ -121,7 +121,7 @@ TEST(FindElementIndex, OnFullArrayInLastPosition)
     EXPECT_EQ(array._element_size, 2);
 }
 
-TEST(FindElementIndex, OnFullArrayInMiddle)
+TEST(FindElement, OnFullArrayInMiddle)
 {
     uint16_t buffer[10] = {0};
     for (int i = 0; i < 10; ++i) {
@@ -143,7 +143,7 @@ TEST(FindElementIndex, OnFullArrayInMiddle)
     EXPECT_EQ(array._element_size, 2);
 }
 
-TEST(FindElementIndex, OnOneElementArray)
+TEST(FindElement, OnOneElementArray)
 {
     uint16_t buffer[10] = {0};
     for (int i = 0; i < 10; ++i) {
@@ -165,7 +165,7 @@ TEST(FindElementIndex, OnOneElementArray)
     EXPECT_EQ(array._element_size, 2);
 }
 
-TEST(FindElementIndex, WithParamElementCompareFunction)
+TEST(FindElement, WithParamElementCompareFunction)
 {
     pos_t buffer[10] = {0};
     for (int i = 0; i < 10; ++i) {
@@ -189,7 +189,7 @@ TEST(FindElementIndex, WithParamElementCompareFunction)
     EXPECT_EQ(array._element_size, 4);
 }
 
-TEST(FindElementIndex, WithComplexCompareFunction)
+TEST(FindElement, WithComplexCompareFunction)
 {
     pos_t buffer[10] = {0};
     for (int i = 0; i < 10; ++i) {
@@ -213,7 +213,29 @@ TEST(FindElementIndex, WithComplexCompareFunction)
     EXPECT_EQ(array._element_size, 4);
 }
 
-TEST(FindElementIndex, WithElementNotInArray)
+TEST(FindElement, WithDefaultCompareFunction)
+{
+    uint16_t buffer[10] = {0};
+    for (int i = 0; i < 10; ++i) {
+        buffer[i] = i + 1;
+    }
+    bp_array_t array = BP_ARRAY_START(buffer, 10);
+    uint16_t param   = 5;
+    size_t index;
+    uint16_t *el;
+
+    index = bp_array_find_idx(&array, &param, nullptr);
+    el    = (uint16_t *) bp_array_find(&array, &param, nullptr);
+
+    EXPECT_EQ(index, 4);
+    EXPECT_EQ(*el, 5);
+    EXPECT_EQ(array._array, (uint8_t *) buffer);
+    EXPECT_EQ(array._size, 10);
+    EXPECT_EQ(array._capacity, 10);
+    EXPECT_EQ(array._element_size, 2);
+}
+
+TEST(FindElement, WithElementNotInArray)
 {
     uint16_t buffer[10] = {0};
     for (int i = 0; i < 10; ++i) {
@@ -235,7 +257,7 @@ TEST(FindElementIndex, WithElementNotInArray)
     EXPECT_EQ(array._element_size, 2);
 }
 
-TEST(FindElementIndex, WithDuplicateElementInSequence)
+TEST(FindElement, WithDuplicateElementInSequence)
 {
     uint16_t buffer[10] = {0};
     for (int i = 0; i < 10; ++i) {
@@ -258,7 +280,7 @@ TEST(FindElementIndex, WithDuplicateElementInSequence)
     EXPECT_EQ(array._element_size, 2);
 }
 
-TEST(FindElementIndex, WithDuplicateElementNotInSequence)
+TEST(FindElement, WithDuplicateElementNotInSequence)
 {
     uint16_t buffer[10] = {0};
     for (int i = 0; i < 10; ++i) {
@@ -279,4 +301,22 @@ TEST(FindElementIndex, WithDuplicateElementNotInSequence)
     EXPECT_EQ(array._size, 10);
     EXPECT_EQ(array._capacity, 10);
     EXPECT_EQ(array._element_size, 2);
+}
+
+TEST(FindElement, NotInitArray)
+{
+    bp_array_t array = {0};
+    uint16_t param   = 5;
+    size_t index;
+    void *el;
+
+    index = bp_array_find_idx(&array, &param, cmp_uint16_elements);
+    el    = bp_array_find(&array, &param, cmp_uint16_elements);
+
+    EXPECT_EQ(index, BP_ARRAY_INVALID_INDEX);
+    EXPECT_EQ(el, nullptr);
+    EXPECT_EQ(array._array, nullptr);
+    EXPECT_EQ(array._size, 0);
+    EXPECT_EQ(array._capacity, 0);
+    EXPECT_EQ(array._element_size, 0);
 }
