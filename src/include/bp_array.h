@@ -82,6 +82,13 @@ int bp_array_push(bp_array_t *array, void *el);
 void *bp_array_get(bp_array_t *array, size_t idx);
 
 /*!
+ * Get the last element from the array.
+ * @param array Reference to bp_array.
+ * @return NULL if the array is empty or the 'array' argument is NULL.
+ */
+void *bp_array_last(bp_array_t *array);
+
+/*!
  * Delete an array element, based on its position.
  * @param array Reference to bp_array.
  * @param idx Element idx.

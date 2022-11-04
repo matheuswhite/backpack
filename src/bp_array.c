@@ -77,6 +77,19 @@ void *bp_array_get(bp_array_t *array, size_t idx)
     return &array->_array[idx * array->_element_size];
 }
 
+void *bp_array_last(bp_array_t *array)
+{
+    if (array == NULL) {
+        return NULL;
+    }
+
+    if (array->_size == 0U) {
+        return NULL;
+    }
+
+    return &array->_array[(array->_size - 1U) * array->_element_size];
+}
+
 int bp_array_del(bp_array_t *array, size_t idx)
 {
     if (array == NULL) {
