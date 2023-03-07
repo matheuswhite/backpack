@@ -73,6 +73,18 @@ static bool bp_ring_iter_next(struct bp_iter *self);
  */
 static void *bp_ring_iter_get(struct bp_iter *self);
 
+static void *bp_ring_iterator_first(struct bp_iterator *self);
+
+static void *bp_ring_iterator_last(struct bp_iterator *self);
+
+static void *bp_ring_once_iterator_next(struct bp_iterator *self);
+
+static void *bp_ring_once_iterator_prev(struct bp_iterator *self);
+
+static void *bp_ring_circular_iterator_next(struct bp_iterator *self);
+
+static void *bp_ring_circular_iterator_prev(struct bp_iterator *self);
+
 int bp_ring_push(bp_ring_t *ring, void *el)
 {
     if (ring == NULL || el == NULL) {
@@ -231,6 +243,42 @@ bp_iter_t bp_ring_iter(bp_ring_t *ring)
     return iter;
 }
 
+static struct bp_iterator_vtable once_iterator_vtable = {
+    .first = bp_ring_iterator_first,
+    .last  = bp_ring_iterator_last,
+    .next  = bp_ring_once_iterator_next,
+    .prev  = bp_ring_once_iterator_prev,
+};
+
+bp_iterator_t bp_ring_once_iterator(bp_ring_t *ring)
+{
+    bp_iterator_t iter = {
+        .vtable      = &once_iterator_vtable,
+        .coll        = ring,
+        .current_idx = 0U,
+    };
+
+    return iter;
+}
+
+static struct bp_iterator_vtable circular_iterator_vtable = {
+    .first = bp_ring_iterator_first,
+    .last  = bp_ring_iterator_last,
+    .next  = bp_ring_circular_iterator_next,
+    .prev  = bp_ring_circular_iterator_prev,
+};
+
+bp_iterator_t bp_ring_circular_iterator(bp_ring_t *ring)
+{
+    bp_iterator_t iter = {
+        .vtable      = &circular_iterator_vtable,
+        .coll        = ring,
+        .current_idx = 0U,
+    };
+
+    return iter;
+}
+
 static bool bp_ring_default_cmp(void *left, void *right, size_t el_size)
 {
     bool res;
@@ -291,6 +339,110 @@ static void *bp_ring_iter_get(struct bp_iter *self)
     }
 
     return &ring->_array[idx * ring->_element_size];
+}
+
+static void *bp_ring_iterator_first(struct bp_iterator *self)
+{
+    bp_ring_t *ring = (bp_ring_t *) self->coll;
+
+    if (ring->_size == 0U) {
+        return NULL;
+    }
+
+    return &ring->_array[ring->_tail * ring->_element_size];
+}
+
+static void *bp_ring_iterator_last(struct bp_iterator *self)
+{
+    bp_ring_t *ring = (bp_ring_t *) self->coll;
+
+    if (ring->_size == 0U) {
+        return NULL;
+    }
+
+    size_t before_head =
+        (ring->_head == 0U) ? (ring->_capacity - 1U) : (ring->_head - 1U);
+
+    return &ring->_array[before_head * ring->_element_size];
+}
+
+static void *bp_ring_once_iterator_next(struct bp_iterator *self)
+{
+    bp_ring_t *ring = (bp_ring_t *) self->coll;
+
+    if (ring->_size == 0U) {
+        return NULL;
+    }
+
+    size_t before_head =
+        (ring->_head == 0U) ? (ring->_capacity - 1U) : (ring->_head - 1U);
+
+    if (self->current_idx == before_head) {
+        return NULL;
+    }
+
+    self->current_idx =
+        (self->current_idx == (ring->_capacity - 1U)) ? 0U : (self->current_idx + 1);
+
+    return &ring->_array[self->current_idx * ring->_element_size];
+}
+
+static void *bp_ring_once_iterator_prev(struct bp_iterator *self)
+{
+    bp_ring_t *ring = (bp_ring_t *) self->coll;
+
+    if (ring->_size == 0U) {
+        return NULL;
+    }
+
+    if (self->current_idx == ring->_tail) {
+        return NULL;
+    }
+
+    self->current_idx =
+        (self->current_idx == 0U) ? (ring->_capacity - 1U) : (self->current_idx - 1);
+
+    return &ring->_array[self->current_idx * ring->_element_size];
+}
+
+static void *bp_ring_circular_iterator_next(struct bp_iterator *self)
+{
+    bp_ring_t *ring = (bp_ring_t *) self->coll;
+
+    if (ring->_size == 0U) {
+        return NULL;
+    }
+
+    size_t before_head =
+        (ring->_head == 0U) ? (ring->_capacity - 1U) : (ring->_head - 1U);
+
+    if (self->current_idx == before_head) {
+        self->current_idx = ring->_tail;
+    } else {
+        self->current_idx =
+            (self->current_idx == (ring->_capacity - 1U)) ? 0U : (self->current_idx + 1);
+    }
+
+    return &ring->_array[self->current_idx * ring->_element_size];
+}
+
+static void *bp_ring_circular_iterator_prev(struct bp_iterator *self)
+{
+    bp_ring_t *ring = (bp_ring_t *) self->coll;
+
+    if (ring->_size == 0U) {
+        return NULL;
+    }
+
+    if (self->current_idx == ring->_tail) {
+        self->current_idx =
+            (ring->_head == 0U) ? (ring->_capacity - 1U) : (ring->_head - 1U);
+    } else {
+        self->current_idx =
+            (self->current_idx == 0U) ? (ring->_capacity - 1U) : (self->current_idx - 1);
+    }
+
+    return &ring->_array[self->current_idx * ring->_element_size];
 }
 
 #ifdef __cplusplus

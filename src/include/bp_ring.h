@@ -21,6 +21,7 @@ extern "C" {
 #include <stdint.h>
 #include <string.h>
 #include "bp_iter.h"
+#include "bp_iter2.h"
 
 /*!
  * Value representing an invalid index
@@ -136,15 +137,37 @@ int bp_ring_clear(bp_ring_t *ring);
 size_t bp_ring_size(bp_ring_t *ring);
 
 /*!
- * Get a iterator to walk through the bp_ring.
+ * @brief Get a iterator to walk through the bp_ring.
  *
- * @warning This function doesn't check if the ring argument is null. So if this argument
- * is null, a crash will occur. That check must be done outside the function.
+ * @deprecated Use 'bp_ring_once_iterator' or 'bp_ring_circular_iterator' instead.
  *
  * @param ring Reference to bp_ring.
  * @return A new iterator instance for the bp_ring.
  */
 bp_iter_t bp_ring_iter(bp_ring_t *ring);
+
+/*!
+ * Get a iterator to walk through the bp_ring that executes once.
+ *
+ * @warning This function doesn't check if the ring argument is null. So if this argument
+ * is null, a crash will occurs. That check must be done outside the function.
+ *
+ * @param ring Reference to bp_ring.
+ * @return A new iterator instance for the bp_ring that executes once.
+ */
+bp_iterator_t bp_ring_once_iterator(bp_ring_t *ring);
+
+/*!
+ * @brief Get a iterator to walk through the bp_ring. If ring has at least one element,
+ * this iterator never return NULL. Instead, it goes back to start.
+ *
+ * @warning This function doesn't check if the ring argument is null. So if this argument
+ * is null, a crash will occurs. That check must be done outside the function.
+ *
+ * @param ring Reference to bp_ring.
+ * @return A new iterator instance for the bp_ring.
+ */
+bp_iterator_t bp_ring_circular_iterator(bp_ring_t *ring);
 
 #ifdef __cplusplus
 }
