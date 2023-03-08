@@ -73,6 +73,8 @@ static bool bp_ring_iter_next(struct bp_iter *self);
  */
 static void *bp_ring_iter_get(struct bp_iter *self);
 
+static void *bp_ring_iterator_get(struct bp_iterator *self);
+
 static void *bp_ring_iterator_first(struct bp_iterator *self);
 
 static void *bp_ring_iterator_last(struct bp_iterator *self);
@@ -244,6 +246,7 @@ bp_iter_t bp_ring_iter(bp_ring_t *ring)
 }
 
 static struct bp_iterator_vtable once_iterator_vtable = {
+    .get   = bp_ring_iterator_get,
     .first = bp_ring_iterator_first,
     .last  = bp_ring_iterator_last,
     .next  = bp_ring_once_iterator_next,
@@ -262,6 +265,7 @@ bp_iterator_t bp_ring_once_iterator(bp_ring_t *ring)
 }
 
 static struct bp_iterator_vtable circular_iterator_vtable = {
+    .get   = bp_ring_iterator_get,
     .first = bp_ring_iterator_first,
     .last  = bp_ring_iterator_last,
     .next  = bp_ring_circular_iterator_next,
@@ -339,6 +343,17 @@ static void *bp_ring_iter_get(struct bp_iter *self)
     }
 
     return &ring->_array[idx * ring->_element_size];
+}
+
+static void *bp_ring_iterator_get(struct bp_iterator *self)
+{
+    bp_ring_t *ring = (bp_ring_t *) self->coll;
+
+    if (ring->_size == 0U) {
+        return NULL;
+    }
+
+    return &ring->_array[self->current_idx * ring->_element_size];
 }
 
 static void *bp_ring_iterator_first(struct bp_iterator *self)

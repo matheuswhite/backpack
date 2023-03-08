@@ -42,11 +42,17 @@ typedef struct bp_iterator {
 } bp_iterator_t;
 
 struct bp_iterator_vtable {
+    void *(*get)(struct bp_iterator *self);
     void *(*first)(struct bp_iterator *self);
     void *(*last)(struct bp_iterator *self);
     void *(*next)(struct bp_iterator *self);
     void *(*prev)(struct bp_iterator *self);
 };
+
+static inline void *bp_iterator_get(bp_iterator_t *it)
+{
+    return it->vtable->get(it);
+}
 
 static inline void *bp_iterator_first(bp_iterator_t *it)
 {
