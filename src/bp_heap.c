@@ -8,7 +8,7 @@
  * @copyright Matheus T. dos Santos todos os direitos reservados (c) 2021
  *
  */
-#include "bp_heap.h"
+#include "backpack/bp_heap.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -65,7 +65,7 @@ extern "C" {
  * @return Reference to the desired node.
  * @return NULL if the index is out of range or the 'heap_ptr' argument is NULL.
  */
-#define BP_HEAP_GET(heap_ptr, idx) bp_array_get(&(heap_ptr)->_coll, (idx) -1)
+#define BP_HEAP_GET(heap_ptr, idx) bp_array_get(&(heap_ptr)->_coll, (idx) - 1)
 
 /*!
  * Calculate the log2 of the parameter n.
